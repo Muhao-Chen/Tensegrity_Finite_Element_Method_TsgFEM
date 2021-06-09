@@ -1,0 +1,1 @@
+This folder has one M file, 'main_cable_dome.m', conducting pseudo-static analysis of a very simple structure, half_Tbar. A horizontal force is exerted on the top nodes, and the one string will slack.

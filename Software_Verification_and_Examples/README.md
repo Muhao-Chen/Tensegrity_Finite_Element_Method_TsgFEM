@@ -1,0 +1,1 @@
+This folder contains dynamics and static examples of TsgFEM. To better understand this software, we suggest user first read these two files: 'tower' and 'lander' in the Statics_Examples and Dynamics_Examples folders.

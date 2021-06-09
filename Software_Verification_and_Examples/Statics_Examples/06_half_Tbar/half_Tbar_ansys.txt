@@ -1,0 +1,130 @@
+!nodal coordinate, topology, cross sectional area, prestress for ANSYS APDL
+
+finish
+/clear 
+/filename,tower  
+/title,the analysis of tower  
+!Unit:m，N，Pa，s
+
+/prep7
+!specify element type 
+ et,1,link180 
+ 
+!specify Youngs modulus 
+ es=206043956043.956024169921875 
+ eg=206043956043.956024169921875 
+
+!specify string material property 
+ mp,ex,1,es	!Youngs modulus 
+ mp,prxy,1,0.3	!Poisson ratio
+ mp,dens,1,7870	!Material density
+mp,alpx,1,6.5e-6	!coefficient of linear expansion
+
+!specify string material property 
+ mp,ex,2,eg	!Youngs modulus 
+ mp,prxy,2,0.3	!Poisson ratio
+ mp,dens,2,7870	!Material density
+mp,alpx,2,6.5e-6	!coefficient of linear expansion
+
+K,1,-1.000000000000000,0.000000000000000,0.000000000000000  !nodal coordinate
+K,2,0.000000000000000,0.000000000000000,0.000000000000000  !nodal coordinate
+K,3,1.000000000000000,0.000000000000000,0.000000000000000  !nodal coordinate
+K,4,0.000000000000000,0.000000000000000,1.000000000000000  !nodal coordinate
+
+L,   2,   4  !line
+L,   1,   4  !line
+L,   3,   4  !line
+
+*dim,area,,3
+area(1)=5.558532e-05 !cross sectional area
+area(2)=1.178511e-06 !cross sectional area
+area(3)=1.178511e-06 !cross sectional area
+
+sectype,1,link  !specify section type
+secdata,area(1)   !specify section data
+seccontrol,,0       !only in tension(1) both tension and compression(0) 
+sectype,2,link  !specify section type
+secdata,area(2)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,3,link  !specify section type
+secdata,area(3)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+
+!define element type
+lsel,s,,,1  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,2  !select element
+latt,1,,1,,,,2  !specify section area
+lsel,s,,,3  !select element
+latt,1,,1,,,,3  !specify section area
+
+*dim,prestress,,3
+ prestress(1)=-899518.050558  !prestress
+ prestress(2)=30000000.000000  !prestress
+ prestress(3)=30000000.000000  !prestress
+
+!line mesh 
+ LSEL,ALL 
+ LESIZE,ALL,,,1
+LMESH,ALL
+finish
+
+!First solve for self-equilibrium）
+/SOLU
+ANTYPE,0 
+NLGEO!consider large deformation 
+SSTIF,ON	!prestress stiffness  
+NSUBST,100	!Substep 
+AUTOTS,ON	!Automatic time stepping 
+  OUTRES,ALL,ALL 	!Output result 
+
+DK,1,UX
+DK,1,UY
+DK,1,UZ
+DK,2,UX
+DK,2,UY
+DK,2,UZ
+DK,3,UX
+DK,3,UY
+DK,3,UZ
+DK,4,UY
+
+*DO,J,1,3	!Prestress in initial state
+	INISTATE,DEFINE,J,,,,PRESTRESS(J)
+*ENDDO
+
+ALLSEL,ALL
+SOLVE
+FINISH
+
+!Post analysis
+/POST1
+ETABLE,MSTRESS,LS,1
+*DO,J,1,3
+    *GET,PRESTRESS(J),ELEM,J,ETAB,MSTRESS
+*ENDDO
+
+!Second solve for external force
+/SOLU
+ANTYPE,0 
+NLGEOM,ON!consider large deformation 
+SSTIF,ON	!prestress stiffness 
+NSUBST,100	!Automatic time stepping 
+AUTOTS,ON	!Automatic time stepping 
+OUTRES,ALL,ALL 	!Output result 
+
+FK,4,X,10000.000000
+*DO,J,1,3	!Prestress in initial state
+	INISTATE,DEFINE,J,,,,PRESTRESS(J)
+*ENDDO
+
+ALLSEL,ALL
+SOLVE
+FINISH
+
+!Post analysis
+/POST1
+PLDISP !Plot deformed configuration
+ALLSEL,ALL  !Contour plot for force
+ETABLE,MFORCE,SMISC,1
+PLLS,MFORCE,MFORCE,0.4

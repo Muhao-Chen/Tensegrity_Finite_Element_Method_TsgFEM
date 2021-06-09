@@ -1,0 +1,1 @@
+Video of static and dynamic examples are in the two folders. 

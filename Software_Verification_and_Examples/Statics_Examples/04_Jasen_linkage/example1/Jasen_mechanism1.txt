@@ -1,0 +1,173 @@
+!nodal coordinate, topology, cross sectional area, prestress for ANSYS APDL
+
+finish
+/clear 
+/filename,tower  
+/title,the analysis of tower  
+!Unit:m，N，Pa，s
+
+/prep7
+!specify element type 
+ et,1,link180 
+ 
+!specify Youngs modulus 
+ es=75998509224.175415039062500 
+ eg=8100000000.000000000000000 
+
+!specify string material property 
+ mp,ex,1,es	!Youngs modulus 
+ mp,prxy,1,0.3	!Poisson ratio
+ mp,dens,1,7870	!Material density
+mp,alpx,1,6.5e-6	!coefficient of linear expansion
+
+!specify string material property 
+ mp,ex,2,eg	!Youngs modulus 
+ mp,prxy,2,0.3	!Poisson ratio
+ mp,dens,2,2700	!Material density
+mp,alpx,2,6.5e-6	!coefficient of linear expansion
+
+K,1,38.000000000000000,7.800000000000000,0.000000000000000  !nodal coordinate
+K,2,38.000000000000000,22.800000000000001,0.000000000000000  !nodal coordinate
+K,3,-8.735652302443297,40.570166118107252,0.000000000000000  !nodal coordinate
+K,4,-39.667791263174934,-5.871655328881529,0.000000000000000  !nodal coordinate
+K,5,0.000000000000000,0.000000000000000,0.000000000000000  !nodal coordinate
+K,6,-19.447599367531691,-39.687388940668853,0.000000000000000  !nodal coordinate
+K,7,17.004699357292598,-35.430639279698191,0.000000000000000  !nodal coordinate
+K,8,30.310933769358282,-82.589351367404319,0.000000000000000  !nodal coordinate
+
+L,   1,   2  !line
+L,   2,   3  !line
+L,   3,   4  !line
+L,   3,   5  !line
+L,   4,   5  !line
+L,   4,   6  !line
+L,   5,   7  !line
+L,   6,   7  !line
+L,   6,   8  !line
+L,   7,   8  !line
+L,   2,   7  !line
+
+*dim,area,,11
+area(1)=1.000000e-03 !cross sectional area
+area(2)=1.000000e-03 !cross sectional area
+area(3)=1.000000e-03 !cross sectional area
+area(4)=1.000000e-03 !cross sectional area
+area(5)=1.000000e-03 !cross sectional area
+area(6)=1.000000e-03 !cross sectional area
+area(7)=1.000000e-03 !cross sectional area
+area(8)=1.000000e-03 !cross sectional area
+area(9)=1.000000e-03 !cross sectional area
+area(10)=1.000000e-03 !cross sectional area
+area(11)=1.000000e-03 !cross sectional area
+
+sectype,1,link  !specify section type
+secdata,area(1)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,2,link  !specify section type
+secdata,area(2)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,3,link  !specify section type
+secdata,area(3)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,4,link  !specify section type
+secdata,area(4)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,5,link  !specify section type
+secdata,area(5)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,6,link  !specify section type
+secdata,area(6)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,7,link  !specify section type
+secdata,area(7)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,8,link  !specify section type
+secdata,area(8)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,9,link  !specify section type
+secdata,area(9)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,10,link  !specify section type
+secdata,area(10)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,11,link  !specify section type
+secdata,area(11)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+
+!define element type
+lsel,s,,,1  !select element
+latt,,,1,,,,1  !specify section area
+lsel,s,,,2  !select element
+latt,,,1,,,,2  !specify section area
+lsel,s,,,3  !select element
+latt,,,1,,,,3  !specify section area
+lsel,s,,,4  !select element
+latt,,,1,,,,4  !specify section area
+lsel,s,,,5  !select element
+latt,,,1,,,,5  !specify section area
+lsel,s,,,6  !select element
+latt,,,1,,,,6  !specify section area
+lsel,s,,,7  !select element
+latt,,,1,,,,7  !specify section area
+lsel,s,,,8  !select element
+latt,,,1,,,,8  !specify section area
+lsel,s,,,9  !select element
+latt,,,1,,,,9  !specify section area
+lsel,s,,,10  !select element
+latt,,,1,,,,10  !specify section area
+lsel,s,,,11  !select element
+latt,,,1,,,,11  !specify section area
+
+*dim,prestress,,11
+ prestress(1)=0.000000  !prestress
+ prestress(2)=0.000000  !prestress
+ prestress(3)=0.000000  !prestress
+ prestress(4)=0.000000  !prestress
+ prestress(5)=0.000000  !prestress
+ prestress(6)=0.000000  !prestress
+ prestress(7)=0.000000  !prestress
+ prestress(8)=0.000000  !prestress
+ prestress(9)=0.000000  !prestress
+ prestress(10)=0.000000  !prestress
+ prestress(11)=0.000000  !prestress
+
+!line mesh 
+ LSEL,ALL 
+ LESIZE,ALL,,,1
+LMESH,ALL
+finish
+
+!First solve for self-equilibrium）
+/SOLU
+ANTYPE,0 
+NLGEO!consider large deformation 
+SSTIF,ON	!prestress stiffness  
+NSUBST,100	!Substep 
+AUTOTS,ON	!Automatic time stepping 
+  OUTRES,ALL,ALL 	!Output result 
+
+DK,1,UX
+DK,1,UY
+DK,1,UZ
+DK,2,UZ
+DK,3,UZ
+DK,4,UZ
+DK,5,UX
+DK,5,UY
+DK,5,UZ
+DK,6,UZ
+DK,7,UZ
+DK,8,UZ
+
+*DO,J,1,11	!Prestress in initial state
+	INISTATE,DEFINE,J,,,,PRESTRESS(J)
+*ENDDO
+
+ALLSEL,ALL
+SOLVE
+FINISH
+
+!Post analysis
+/POST1
+PLDISP !Plot deformed shape
+ALLSEL,ALL

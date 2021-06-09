@@ -1,0 +1,713 @@
+!nodal coordinate, topology, cross sectional area, prestress for ANSYS APDL
+
+finish
+/clear 
+/filename,tower  
+/title,the analysis of tower  
+!Unit:m，N，Pa，s
+
+/prep7
+!specify element type 
+ et,1,link180 
+ 
+!specify Youngs modulus 
+ es=75998509224.175415039062500 
+ eg=8100000000.000000000000000 
+
+!specify string material property 
+ mp,ex,1,es	!Youngs modulus 
+ mp,prxy,1,0.3	!Poisson ratio
+ mp,dens,1,7870	!Material density
+mp,alpx,1,6.5e-6	!coefficient of linear expansion
+
+!specify string material property 
+ mp,ex,2,eg	!Youngs modulus 
+ mp,prxy,2,0.3	!Poisson ratio
+ mp,dens,2,2700	!Material density
+mp,alpx,2,6.5e-6	!coefficient of linear expansion
+
+K,1,0.000000000000000,7.800000000000000,0.000000000000000  !nodal coordinate
+K,2,0.000000000000000,22.800000000000001,0.000000000000000  !nodal coordinate
+K,3,-46.735652302443299,40.570166118107245,0.000000000000000  !nodal coordinate
+K,4,-77.667791263174934,-5.871655328881545,0.000000000000000  !nodal coordinate
+K,5,-38.000000000000000,0.000000000000000,0.000000000000000  !nodal coordinate
+K,6,-57.447599367531701,-39.687388940668882,0.000000000000000  !nodal coordinate
+K,7,-20.995300642707409,-35.430639279698198,0.000000000000000  !nodal coordinate
+K,8,-7.689066230641668,-82.589351367404305,0.000000000000000  !nodal coordinate
+K,9,0.000000000000000,7.800000000000000,-10.000000000000000  !nodal coordinate
+K,10,-12.990381056766580,0.300000000000001,-10.000000000000000  !nodal coordinate
+K,11,20.351349892921991,37.560286865222842,-10.000000000000000  !nodal coordinate
+K,12,73.106342950595092,19.379233334553863,-10.000000000000000  !nodal coordinate
+K,13,38.000000000000000,0.000000000000000,-10.000000000000000  !nodal coordinate
+K,14,65.555693978951368,-19.290492551558984,-10.000000000000000  !nodal coordinate
+K,15,34.700498194921309,-39.161247271227396,-10.000000000000000  !nodal coordinate
+K,16,54.384410280714043,-84.033773442580440,-10.000000000000000  !nodal coordinate
+K,17,0.000000000000000,7.800000000000000,-20.000000000000000  !nodal coordinate
+K,18,12.990381056766575,0.299999999999994,-20.000000000000000  !nodal coordinate
+K,19,-20.351349892922002,37.560286865222849,-20.000000000000000  !nodal coordinate
+K,20,-73.106342950595092,19.379233334553856,-20.000000000000000  !nodal coordinate
+K,21,-38.000000000000000,0.000000000000000,-20.000000000000000  !nodal coordinate
+K,22,-65.555693978951382,-19.290492551558998,-20.000000000000000  !nodal coordinate
+K,23,-34.700498194921316,-39.161247271227396,-20.000000000000000  !nodal coordinate
+K,24,-54.384410280714015,-84.033773442580468,-20.000000000000000  !nodal coordinate
+K,25,0.000000000000000,7.800000000000000,-30.000000000000000  !nodal coordinate
+K,26,0.000000000000000,22.800000000000001,-30.000000000000000  !nodal coordinate
+K,27,46.735652302443299,40.570166118107245,-30.000000000000000  !nodal coordinate
+K,28,77.667791263174934,-5.871655328881545,-30.000000000000000  !nodal coordinate
+K,29,38.000000000000000,0.000000000000000,-30.000000000000000  !nodal coordinate
+K,30,57.447599367531701,-39.687388940668882,-30.000000000000000  !nodal coordinate
+K,31,20.995300642707409,-35.430639279698198,-30.000000000000000  !nodal coordinate
+K,32,7.689066230641668,-82.589351367404305,-30.000000000000000  !nodal coordinate
+K,33,0.000000000000000,7.800000000000000,-40.000000000000000  !nodal coordinate
+K,34,-12.990381056766580,0.300000000000001,-40.000000000000000  !nodal coordinate
+K,35,-41.538404311417985,41.348877795279918,-40.000000000000000  !nodal coordinate
+K,36,-78.091789821643687,-0.811411669342746,-40.000000000000000  !nodal coordinate
+K,37,-38.000000000000000,0.000000000000000,-40.000000000000000  !nodal coordinate
+K,38,-107.168032098206211,-27.399607077730604,-40.000000000000000  !nodal coordinate
+K,39,-70.961477109913147,-21.401659438767325,-40.000000000000000  !nodal coordinate
+K,40,-55.411589700501317,-67.868862943547924,-40.000000000000000  !nodal coordinate
+K,41,0.000000000000000,7.800000000000000,-50.000000000000000  !nodal coordinate
+K,42,12.990381056766575,0.299999999999994,-50.000000000000000  !nodal coordinate
+K,43,41.538404311420777,41.348877795278860,-50.000000000000000  !nodal coordinate
+K,44,78.091789821643644,-0.811411669346975,-50.000000000000000  !nodal coordinate
+K,45,38.000000000000000,0.000000000000000,-50.000000000000000  !nodal coordinate
+K,46,107.168032098219939,-27.399607077720283,-50.000000000000000  !nodal coordinate
+K,47,70.961477109931593,-21.401659438731784,-50.000000000000000  !nodal coordinate
+K,48,55.411589700484789,-67.868862943499835,-50.000000000000000  !nodal coordinate
+
+L,   1,   2  !line
+L,   2,   3  !line
+L,   3,   4  !line
+L,   3,   5  !line
+L,   4,   5  !line
+L,   4,   6  !line
+L,   5,   7  !line
+L,   6,   7  !line
+L,   6,   8  !line
+L,   7,   8  !line
+L,   2,   7  !line
+L,   9,  10  !line
+L,  10,  11  !line
+L,  11,  12  !line
+L,  11,  13  !line
+L,  12,  13  !line
+L,  12,  14  !line
+L,  13,  15  !line
+L,  14,  15  !line
+L,  14,  16  !line
+L,  15,  16  !line
+L,  10,  15  !line
+L,  17,  18  !line
+L,  18,  19  !line
+L,  19,  20  !line
+L,  19,  21  !line
+L,  20,  21  !line
+L,  20,  22  !line
+L,  21,  23  !line
+L,  22,  23  !line
+L,  22,  24  !line
+L,  23,  24  !line
+L,  18,  23  !line
+L,  25,  26  !line
+L,  26,  27  !line
+L,  27,  28  !line
+L,  27,  29  !line
+L,  28,  29  !line
+L,  28,  30  !line
+L,  29,  31  !line
+L,  30,  31  !line
+L,  30,  32  !line
+L,  31,  32  !line
+L,  26,  31  !line
+L,  33,  34  !line
+L,  34,  35  !line
+L,  35,  36  !line
+L,  35,  37  !line
+L,  36,  37  !line
+L,  36,  38  !line
+L,  37,  39  !line
+L,  38,  39  !line
+L,  38,  40  !line
+L,  39,  40  !line
+L,  34,  39  !line
+L,  41,  42  !line
+L,  42,  43  !line
+L,  43,  44  !line
+L,  43,  45  !line
+L,  44,  45  !line
+L,  44,  46  !line
+L,  45,  47  !line
+L,  46,  47  !line
+L,  46,  48  !line
+L,  47,  48  !line
+L,  42,  47  !line
+
+*dim,area,,66
+area(1)=1.000000e-03 !cross sectional area
+area(2)=1.000000e-03 !cross sectional area
+area(3)=1.000000e-03 !cross sectional area
+area(4)=1.000000e-03 !cross sectional area
+area(5)=1.000000e-03 !cross sectional area
+area(6)=1.000000e-03 !cross sectional area
+area(7)=1.000000e-03 !cross sectional area
+area(8)=1.000000e-03 !cross sectional area
+area(9)=1.000000e-03 !cross sectional area
+area(10)=1.000000e-03 !cross sectional area
+area(11)=1.000000e-03 !cross sectional area
+area(12)=1.000000e-03 !cross sectional area
+area(13)=1.000000e-03 !cross sectional area
+area(14)=1.000000e-03 !cross sectional area
+area(15)=1.000000e-03 !cross sectional area
+area(16)=1.000000e-03 !cross sectional area
+area(17)=1.000000e-03 !cross sectional area
+area(18)=1.000000e-03 !cross sectional area
+area(19)=1.000000e-03 !cross sectional area
+area(20)=1.000000e-03 !cross sectional area
+area(21)=1.000000e-03 !cross sectional area
+area(22)=1.000000e-03 !cross sectional area
+area(23)=1.000000e-03 !cross sectional area
+area(24)=1.000000e-03 !cross sectional area
+area(25)=1.000000e-03 !cross sectional area
+area(26)=1.000000e-03 !cross sectional area
+area(27)=1.000000e-03 !cross sectional area
+area(28)=1.000000e-03 !cross sectional area
+area(29)=1.000000e-03 !cross sectional area
+area(30)=1.000000e-03 !cross sectional area
+area(31)=1.000000e-03 !cross sectional area
+area(32)=1.000000e-03 !cross sectional area
+area(33)=1.000000e-03 !cross sectional area
+area(34)=1.000000e-03 !cross sectional area
+area(35)=1.000000e-03 !cross sectional area
+area(36)=1.000000e-03 !cross sectional area
+area(37)=1.000000e-03 !cross sectional area
+area(38)=1.000000e-03 !cross sectional area
+area(39)=1.000000e-03 !cross sectional area
+area(40)=1.000000e-03 !cross sectional area
+area(41)=1.000000e-03 !cross sectional area
+area(42)=1.000000e-03 !cross sectional area
+area(43)=1.000000e-03 !cross sectional area
+area(44)=1.000000e-03 !cross sectional area
+area(45)=1.000000e-03 !cross sectional area
+area(46)=1.000000e-03 !cross sectional area
+area(47)=1.000000e-03 !cross sectional area
+area(48)=1.000000e-03 !cross sectional area
+area(49)=1.000000e-03 !cross sectional area
+area(50)=1.000000e-03 !cross sectional area
+area(51)=1.000000e-03 !cross sectional area
+area(52)=1.000000e-03 !cross sectional area
+area(53)=1.000000e-03 !cross sectional area
+area(54)=1.000000e-03 !cross sectional area
+area(55)=1.000000e-03 !cross sectional area
+area(56)=1.000000e-03 !cross sectional area
+area(57)=1.000000e-03 !cross sectional area
+area(58)=1.000000e-03 !cross sectional area
+area(59)=1.000000e-03 !cross sectional area
+area(60)=1.000000e-03 !cross sectional area
+area(61)=1.000000e-03 !cross sectional area
+area(62)=1.000000e-03 !cross sectional area
+area(63)=1.000000e-03 !cross sectional area
+area(64)=1.000000e-03 !cross sectional area
+area(65)=1.000000e-03 !cross sectional area
+area(66)=1.000000e-03 !cross sectional area
+
+sectype,1,link  !specify section type
+secdata,area(1)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,2,link  !specify section type
+secdata,area(2)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,3,link  !specify section type
+secdata,area(3)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,4,link  !specify section type
+secdata,area(4)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,5,link  !specify section type
+secdata,area(5)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,6,link  !specify section type
+secdata,area(6)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,7,link  !specify section type
+secdata,area(7)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,8,link  !specify section type
+secdata,area(8)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,9,link  !specify section type
+secdata,area(9)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,10,link  !specify section type
+secdata,area(10)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,11,link  !specify section type
+secdata,area(11)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,12,link  !specify section type
+secdata,area(12)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,13,link  !specify section type
+secdata,area(13)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,14,link  !specify section type
+secdata,area(14)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,15,link  !specify section type
+secdata,area(15)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,16,link  !specify section type
+secdata,area(16)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,17,link  !specify section type
+secdata,area(17)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,18,link  !specify section type
+secdata,area(18)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,19,link  !specify section type
+secdata,area(19)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,20,link  !specify section type
+secdata,area(20)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,21,link  !specify section type
+secdata,area(21)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,22,link  !specify section type
+secdata,area(22)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,23,link  !specify section type
+secdata,area(23)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,24,link  !specify section type
+secdata,area(24)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,25,link  !specify section type
+secdata,area(25)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,26,link  !specify section type
+secdata,area(26)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,27,link  !specify section type
+secdata,area(27)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,28,link  !specify section type
+secdata,area(28)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,29,link  !specify section type
+secdata,area(29)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,30,link  !specify section type
+secdata,area(30)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,31,link  !specify section type
+secdata,area(31)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,32,link  !specify section type
+secdata,area(32)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,33,link  !specify section type
+secdata,area(33)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,34,link  !specify section type
+secdata,area(34)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,35,link  !specify section type
+secdata,area(35)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,36,link  !specify section type
+secdata,area(36)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,37,link  !specify section type
+secdata,area(37)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,38,link  !specify section type
+secdata,area(38)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,39,link  !specify section type
+secdata,area(39)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,40,link  !specify section type
+secdata,area(40)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,41,link  !specify section type
+secdata,area(41)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,42,link  !specify section type
+secdata,area(42)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,43,link  !specify section type
+secdata,area(43)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,44,link  !specify section type
+secdata,area(44)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,45,link  !specify section type
+secdata,area(45)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,46,link  !specify section type
+secdata,area(46)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,47,link  !specify section type
+secdata,area(47)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,48,link  !specify section type
+secdata,area(48)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,49,link  !specify section type
+secdata,area(49)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,50,link  !specify section type
+secdata,area(50)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,51,link  !specify section type
+secdata,area(51)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,52,link  !specify section type
+secdata,area(52)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,53,link  !specify section type
+secdata,area(53)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,54,link  !specify section type
+secdata,area(54)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,55,link  !specify section type
+secdata,area(55)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,56,link  !specify section type
+secdata,area(56)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,57,link  !specify section type
+secdata,area(57)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,58,link  !specify section type
+secdata,area(58)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,59,link  !specify section type
+secdata,area(59)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,60,link  !specify section type
+secdata,area(60)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,61,link  !specify section type
+secdata,area(61)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,62,link  !specify section type
+secdata,area(62)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,63,link  !specify section type
+secdata,area(63)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,64,link  !specify section type
+secdata,area(64)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,65,link  !specify section type
+secdata,area(65)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+sectype,66,link  !specify section type
+secdata,area(66)   !specify section data
+seccontrol,,       !only in tension(1) both tension and compression(0) 
+
+!define element type
+lsel,s,,,1  !select element
+latt,,,1,,,,1  !specify section area
+lsel,s,,,2  !select element
+latt,,,1,,,,2  !specify section area
+lsel,s,,,3  !select element
+latt,,,1,,,,3  !specify section area
+lsel,s,,,4  !select element
+latt,,,1,,,,4  !specify section area
+lsel,s,,,5  !select element
+latt,,,1,,,,5  !specify section area
+lsel,s,,,6  !select element
+latt,,,1,,,,6  !specify section area
+lsel,s,,,7  !select element
+latt,,,1,,,,7  !specify section area
+lsel,s,,,8  !select element
+latt,,,1,,,,8  !specify section area
+lsel,s,,,9  !select element
+latt,,,1,,,,9  !specify section area
+lsel,s,,,10  !select element
+latt,,,1,,,,10  !specify section area
+lsel,s,,,11  !select element
+latt,,,1,,,,11  !specify section area
+lsel,s,,,12  !select element
+latt,,,1,,,,12  !specify section area
+lsel,s,,,13  !select element
+latt,,,1,,,,13  !specify section area
+lsel,s,,,14  !select element
+latt,,,1,,,,14  !specify section area
+lsel,s,,,15  !select element
+latt,,,1,,,,15  !specify section area
+lsel,s,,,16  !select element
+latt,,,1,,,,16  !specify section area
+lsel,s,,,17  !select element
+latt,,,1,,,,17  !specify section area
+lsel,s,,,18  !select element
+latt,,,1,,,,18  !specify section area
+lsel,s,,,19  !select element
+latt,,,1,,,,19  !specify section area
+lsel,s,,,20  !select element
+latt,,,1,,,,20  !specify section area
+lsel,s,,,21  !select element
+latt,,,1,,,,21  !specify section area
+lsel,s,,,22  !select element
+latt,,,1,,,,22  !specify section area
+lsel,s,,,23  !select element
+latt,,,1,,,,23  !specify section area
+lsel,s,,,24  !select element
+latt,,,1,,,,24  !specify section area
+lsel,s,,,25  !select element
+latt,,,1,,,,25  !specify section area
+lsel,s,,,26  !select element
+latt,,,1,,,,26  !specify section area
+lsel,s,,,27  !select element
+latt,,,1,,,,27  !specify section area
+lsel,s,,,28  !select element
+latt,,,1,,,,28  !specify section area
+lsel,s,,,29  !select element
+latt,,,1,,,,29  !specify section area
+lsel,s,,,30  !select element
+latt,,,1,,,,30  !specify section area
+lsel,s,,,31  !select element
+latt,,,1,,,,31  !specify section area
+lsel,s,,,32  !select element
+latt,,,1,,,,32  !specify section area
+lsel,s,,,33  !select element
+latt,,,1,,,,33  !specify section area
+lsel,s,,,34  !select element
+latt,,,1,,,,34  !specify section area
+lsel,s,,,35  !select element
+latt,,,1,,,,35  !specify section area
+lsel,s,,,36  !select element
+latt,,,1,,,,36  !specify section area
+lsel,s,,,37  !select element
+latt,,,1,,,,37  !specify section area
+lsel,s,,,38  !select element
+latt,,,1,,,,38  !specify section area
+lsel,s,,,39  !select element
+latt,,,1,,,,39  !specify section area
+lsel,s,,,40  !select element
+latt,,,1,,,,40  !specify section area
+lsel,s,,,41  !select element
+latt,,,1,,,,41  !specify section area
+lsel,s,,,42  !select element
+latt,,,1,,,,42  !specify section area
+lsel,s,,,43  !select element
+latt,,,1,,,,43  !specify section area
+lsel,s,,,44  !select element
+latt,,,1,,,,44  !specify section area
+lsel,s,,,45  !select element
+latt,,,1,,,,45  !specify section area
+lsel,s,,,46  !select element
+latt,,,1,,,,46  !specify section area
+lsel,s,,,47  !select element
+latt,,,1,,,,47  !specify section area
+lsel,s,,,48  !select element
+latt,,,1,,,,48  !specify section area
+lsel,s,,,49  !select element
+latt,,,1,,,,49  !specify section area
+lsel,s,,,50  !select element
+latt,,,1,,,,50  !specify section area
+lsel,s,,,51  !select element
+latt,,,1,,,,51  !specify section area
+lsel,s,,,52  !select element
+latt,,,1,,,,52  !specify section area
+lsel,s,,,53  !select element
+latt,,,1,,,,53  !specify section area
+lsel,s,,,54  !select element
+latt,,,1,,,,54  !specify section area
+lsel,s,,,55  !select element
+latt,,,1,,,,55  !specify section area
+lsel,s,,,56  !select element
+latt,,,1,,,,56  !specify section area
+lsel,s,,,57  !select element
+latt,,,1,,,,57  !specify section area
+lsel,s,,,58  !select element
+latt,,,1,,,,58  !specify section area
+lsel,s,,,59  !select element
+latt,,,1,,,,59  !specify section area
+lsel,s,,,60  !select element
+latt,,,1,,,,60  !specify section area
+lsel,s,,,61  !select element
+latt,,,1,,,,61  !specify section area
+lsel,s,,,62  !select element
+latt,,,1,,,,62  !specify section area
+lsel,s,,,63  !select element
+latt,,,1,,,,63  !specify section area
+lsel,s,,,64  !select element
+latt,,,1,,,,64  !specify section area
+lsel,s,,,65  !select element
+latt,,,1,,,,65  !specify section area
+lsel,s,,,66  !select element
+latt,,,1,,,,66  !specify section area
+
+*dim,prestress,,66
+ prestress(1)=0.000000  !prestress
+ prestress(2)=0.000000  !prestress
+ prestress(3)=0.000000  !prestress
+ prestress(4)=0.000000  !prestress
+ prestress(5)=0.000000  !prestress
+ prestress(6)=0.000000  !prestress
+ prestress(7)=0.000000  !prestress
+ prestress(8)=0.000000  !prestress
+ prestress(9)=0.000000  !prestress
+ prestress(10)=0.000000  !prestress
+ prestress(11)=0.000000  !prestress
+ prestress(12)=0.000000  !prestress
+ prestress(13)=0.000000  !prestress
+ prestress(14)=0.000000  !prestress
+ prestress(15)=0.000000  !prestress
+ prestress(16)=0.000000  !prestress
+ prestress(17)=0.000000  !prestress
+ prestress(18)=0.000000  !prestress
+ prestress(19)=0.000000  !prestress
+ prestress(20)=0.000000  !prestress
+ prestress(21)=0.000000  !prestress
+ prestress(22)=0.000000  !prestress
+ prestress(23)=0.000000  !prestress
+ prestress(24)=0.000000  !prestress
+ prestress(25)=0.000000  !prestress
+ prestress(26)=0.000000  !prestress
+ prestress(27)=0.000000  !prestress
+ prestress(28)=0.000000  !prestress
+ prestress(29)=0.000000  !prestress
+ prestress(30)=0.000000  !prestress
+ prestress(31)=0.000000  !prestress
+ prestress(32)=0.000000  !prestress
+ prestress(33)=0.000000  !prestress
+ prestress(34)=0.000000  !prestress
+ prestress(35)=0.000000  !prestress
+ prestress(36)=0.000000  !prestress
+ prestress(37)=0.000000  !prestress
+ prestress(38)=0.000000  !prestress
+ prestress(39)=0.000000  !prestress
+ prestress(40)=0.000000  !prestress
+ prestress(41)=0.000000  !prestress
+ prestress(42)=0.000000  !prestress
+ prestress(43)=0.000000  !prestress
+ prestress(44)=0.000000  !prestress
+ prestress(45)=0.000000  !prestress
+ prestress(46)=0.000000  !prestress
+ prestress(47)=0.000000  !prestress
+ prestress(48)=0.000000  !prestress
+ prestress(49)=0.000000  !prestress
+ prestress(50)=0.000000  !prestress
+ prestress(51)=0.000000  !prestress
+ prestress(52)=0.000000  !prestress
+ prestress(53)=0.000000  !prestress
+ prestress(54)=0.000000  !prestress
+ prestress(55)=0.000000  !prestress
+ prestress(56)=0.000000  !prestress
+ prestress(57)=0.000000  !prestress
+ prestress(58)=0.000000  !prestress
+ prestress(59)=0.000000  !prestress
+ prestress(60)=0.000000  !prestress
+ prestress(61)=0.000000  !prestress
+ prestress(62)=0.000000  !prestress
+ prestress(63)=0.000000  !prestress
+ prestress(64)=0.000000  !prestress
+ prestress(65)=0.000000  !prestress
+ prestress(66)=0.000000  !prestress
+
+!line mesh 
+ LSEL,ALL 
+ LESIZE,ALL,,,1
+LMESH,ALL
+finish
+
+!First solve for self-equilibrium）
+/SOLU
+ANTYPE,0 
+NLGEO!consider large deformation 
+SSTIF,ON	!prestress stiffness  
+NSUBST,100	!Substep 
+AUTOTS,ON	!Automatic time stepping 
+  OUTRES,ALL,ALL 	!Output result 
+
+DK,1,UX
+DK,1,UY
+DK,1,UZ
+DK,2,UZ
+DK,3,UZ
+DK,4,UZ
+DK,5,UX
+DK,5,UY
+DK,5,UZ
+DK,6,UZ
+DK,7,UZ
+DK,8,UZ
+DK,9,UX
+DK,9,UY
+DK,9,UZ
+DK,10,UZ
+DK,11,UZ
+DK,12,UZ
+DK,13,UX
+DK,13,UY
+DK,13,UZ
+DK,14,UZ
+DK,15,UZ
+DK,16,UZ
+DK,17,UX
+DK,17,UY
+DK,17,UZ
+DK,18,UZ
+DK,19,UZ
+DK,20,UZ
+DK,21,UX
+DK,21,UY
+DK,21,UZ
+DK,22,UZ
+DK,23,UZ
+DK,24,UZ
+DK,25,UX
+DK,25,UY
+DK,25,UZ
+DK,26,UZ
+DK,27,UZ
+DK,28,UZ
+DK,29,UX
+DK,29,UY
+DK,29,UZ
+DK,30,UZ
+DK,31,UZ
+DK,32,UZ
+DK,33,UX
+DK,33,UY
+DK,33,UZ
+DK,34,UZ
+DK,35,UZ
+DK,36,UZ
+DK,37,UX
+DK,37,UY
+DK,37,UZ
+DK,38,UZ
+DK,39,UZ
+DK,40,UZ
+DK,41,UX
+DK,41,UY
+DK,41,UZ
+DK,42,UZ
+DK,43,UZ
+DK,44,UZ
+DK,45,UX
+DK,45,UY
+DK,45,UZ
+DK,46,UZ
+DK,47,UZ
+DK,48,UZ
+
+*DO,J,1,66	!Prestress in initial state
+	INISTATE,DEFINE,J,,,,PRESTRESS(J)
+*ENDDO
+
+ALLSEL,ALL
+SOLVE
+FINISH
+
+!Post analysis
+/POST1
+PLDISP !Plot deformed shape
+ALLSEL,ALL

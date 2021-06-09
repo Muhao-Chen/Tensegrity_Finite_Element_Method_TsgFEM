@@ -1,0 +1,821 @@
+!nodal coordinate, topology, cross sectional area, prestress for ANSYS APDL
+
+finish
+/clear 
+/filename,tower  
+/title,the analysis of tower  
+!Unit:m，N，Pa，s
+
+/prep7
+!specify element type 
+ et,1,link180 
+ 
+!specify Youngs modulus 
+ es=75998509224.175415039062500 
+ eg=206043956043.956024169921875 
+
+!specify string material property 
+ mp,ex,1,es	!Youngs modulus 
+ mp,prxy,1,0.3	!Poisson ratio
+ mp,dens,1,7870	!Material density
+mp,alpx,1,6.5e-6	!coefficient of linear expansion
+
+!specify string material property 
+ mp,ex,2,eg	!Youngs modulus 
+ mp,prxy,2,0.3	!Poisson ratio
+ mp,dens,2,393500	!Material density
+mp,alpx,2,6.5e-6	!coefficient of linear expansion
+
+K,1,-32.197527542968942,-8.627301503417357,8.662721801408509  !nodal coordinate
+K,2,-16.666666666666664,0.000000000000000,13.457856974930934  !nodal coordinate
+K,3,-32.197527542968942,-8.627301503417357,-9.622504486493764  !nodal coordinate
+K,4,-16.666666666666664,0.000000000000000,-0.959782685085255  !nodal coordinate
+K,5,-50.000000000000000,0.000000000000000,0.000000000000000  !nodal coordinate
+K,6,-23.570226039551585,-23.570226039551578,8.662721801408509  !nodal coordinate
+K,7,-14.433756729740644,-8.333333333333330,13.457856974930934  !nodal coordinate
+K,8,-23.570226039551585,-23.570226039551578,-9.622504486493764  !nodal coordinate
+K,9,-14.433756729740644,-8.333333333333330,-0.959782685085255  !nodal coordinate
+K,10,-43.301270189221938,-24.999999999999996,0.000000000000000  !nodal coordinate
+K,11,-8.627301503417367,-32.197527542968942,8.662721801408509  !nodal coordinate
+K,12,-8.333333333333336,-14.433756729740642,13.457856974930934  !nodal coordinate
+K,13,-8.627301503417367,-32.197527542968942,-9.622504486493764  !nodal coordinate
+K,14,-8.333333333333336,-14.433756729740642,-0.959782685085255  !nodal coordinate
+K,15,-25.000000000000011,-43.301270189221931,0.000000000000000  !nodal coordinate
+K,16,8.627301503417348,-32.197527542968942,8.662721801408509  !nodal coordinate
+K,17,-0.000000000000005,-16.666666666666664,13.457856974930934  !nodal coordinate
+K,18,8.627301503417348,-32.197527542968942,-9.622504486493764  !nodal coordinate
+K,19,-0.000000000000005,-16.666666666666664,-0.959782685085255  !nodal coordinate
+K,20,-0.000000000000014,-50.000000000000000,0.000000000000000  !nodal coordinate
+K,21,23.570226039551574,-23.570226039551596,8.662721801408509  !nodal coordinate
+K,22,8.333333333333327,-14.433756729740647,13.457856974930934  !nodal coordinate
+K,23,23.570226039551574,-23.570226039551596,-9.622504486493764  !nodal coordinate
+K,24,8.333333333333327,-14.433756729740647,-0.959782685085255  !nodal coordinate
+K,25,24.999999999999982,-43.301270189221945,0.000000000000000  !nodal coordinate
+K,26,32.197527542968942,-8.627301503417378,8.662721801408509  !nodal coordinate
+K,27,14.433756729740640,-8.333333333333341,13.457856974930934  !nodal coordinate
+K,28,32.197527542968942,-8.627301503417378,-9.622504486493764  !nodal coordinate
+K,29,14.433756729740640,-8.333333333333341,-0.959782685085255  !nodal coordinate
+K,30,43.301270189221924,-25.000000000000028,0.000000000000000  !nodal coordinate
+K,31,32.197527542968956,8.627301503417339,8.662721801408509  !nodal coordinate
+K,32,16.666666666666668,-0.000000000000010,13.457856974930934  !nodal coordinate
+K,33,32.197527542968956,8.627301503417339,-9.622504486493764  !nodal coordinate
+K,34,16.666666666666668,-0.000000000000010,-0.959782685085255  !nodal coordinate
+K,35,50.000000000000014,-0.000000000000031,0.000000000000000  !nodal coordinate
+K,36,23.570226039551599,23.570226039551567,8.662721801408509  !nodal coordinate
+K,37,14.433756729740649,8.333333333333323,13.457856974930934  !nodal coordinate
+K,38,23.570226039551599,23.570226039551567,-9.622504486493764  !nodal coordinate
+K,39,14.433756729740649,8.333333333333323,-0.959782685085255  !nodal coordinate
+K,40,43.301270189221952,24.999999999999972,0.000000000000000  !nodal coordinate
+K,41,8.627301503417387,32.197527542968942,8.662721801408509  !nodal coordinate
+K,42,8.333333333333345,14.433756729740638,13.457856974930934  !nodal coordinate
+K,43,8.627301503417387,32.197527542968942,-9.622504486493764  !nodal coordinate
+K,44,8.333333333333345,14.433756729740638,-0.959782685085255  !nodal coordinate
+K,45,25.000000000000039,43.301270189221917,0.000000000000000  !nodal coordinate
+K,46,-8.627301503417328,32.197527542968949,8.662721801408509  !nodal coordinate
+K,47,0.000000000000015,16.666666666666664,13.457856974930934  !nodal coordinate
+K,48,-8.627301503417328,32.197527542968949,-9.622504486493764  !nodal coordinate
+K,49,0.000000000000015,16.666666666666664,-0.959782685085255  !nodal coordinate
+K,50,0.000000000000044,50.000000000000000,0.000000000000000  !nodal coordinate
+K,51,-23.570226039551557,23.570226039551610,8.662721801408509  !nodal coordinate
+K,52,-8.333333333333318,14.433756729740653,13.457856974930934  !nodal coordinate
+K,53,-23.570226039551557,23.570226039551610,-9.622504486493764  !nodal coordinate
+K,54,-8.333333333333318,14.433756729740653,-0.959782685085255  !nodal coordinate
+K,55,-24.999999999999957,43.301270189221967,0.000000000000000  !nodal coordinate
+K,56,-32.197527542968935,8.627301503417396,8.662721801408509  !nodal coordinate
+K,57,-14.433756729740635,8.333333333333348,13.457856974930934  !nodal coordinate
+K,58,-32.197527542968935,8.627301503417396,-9.622504486493764  !nodal coordinate
+K,59,-14.433756729740635,8.333333333333348,-0.959782685085255  !nodal coordinate
+K,60,-43.301270189221910,25.000000000000050,0.000000000000000  !nodal coordinate
+
+L,   1,   3  !line
+L,   2,   4  !line
+L,   1,   5  !line
+L,   1,  10  !line
+L,   3,   5  !line
+L,   3,  10  !line
+L,   3,   8  !line
+L,   1,   2  !line
+L,   1,   7  !line
+L,   1,   4  !line
+L,   1,   9  !line
+L,   4,   9  !line
+L,   2,   7  !line
+L,   6,   8  !line
+L,   7,   9  !line
+L,   6,  10  !line
+L,   6,  15  !line
+L,   8,  10  !line
+L,   8,  15  !line
+L,   8,  13  !line
+L,   6,   7  !line
+L,   6,  12  !line
+L,   6,   9  !line
+L,   6,  14  !line
+L,   9,  14  !line
+L,   7,  12  !line
+L,  11,  13  !line
+L,  12,  14  !line
+L,  11,  15  !line
+L,  11,  20  !line
+L,  13,  15  !line
+L,  13,  20  !line
+L,  13,  18  !line
+L,  11,  12  !line
+L,  11,  17  !line
+L,  11,  14  !line
+L,  11,  19  !line
+L,  14,  19  !line
+L,  12,  17  !line
+L,  16,  18  !line
+L,  17,  19  !line
+L,  16,  20  !line
+L,  16,  25  !line
+L,  18,  20  !line
+L,  18,  25  !line
+L,  18,  23  !line
+L,  16,  17  !line
+L,  16,  22  !line
+L,  16,  19  !line
+L,  16,  24  !line
+L,  19,  24  !line
+L,  17,  22  !line
+L,  21,  23  !line
+L,  22,  24  !line
+L,  21,  25  !line
+L,  21,  30  !line
+L,  23,  25  !line
+L,  23,  30  !line
+L,  23,  28  !line
+L,  21,  22  !line
+L,  21,  27  !line
+L,  21,  24  !line
+L,  21,  29  !line
+L,  24,  29  !line
+L,  22,  27  !line
+L,  26,  28  !line
+L,  27,  29  !line
+L,  26,  30  !line
+L,  26,  35  !line
+L,  28,  30  !line
+L,  28,  35  !line
+L,  28,  33  !line
+L,  26,  27  !line
+L,  26,  32  !line
+L,  26,  29  !line
+L,  26,  34  !line
+L,  29,  34  !line
+L,  27,  32  !line
+L,  31,  33  !line
+L,  32,  34  !line
+L,  31,  35  !line
+L,  31,  40  !line
+L,  33,  35  !line
+L,  33,  40  !line
+L,  33,  38  !line
+L,  31,  32  !line
+L,  31,  37  !line
+L,  31,  34  !line
+L,  31,  39  !line
+L,  34,  39  !line
+L,  32,  37  !line
+L,  36,  38  !line
+L,  37,  39  !line
+L,  36,  40  !line
+L,  36,  45  !line
+L,  38,  40  !line
+L,  38,  45  !line
+L,  38,  43  !line
+L,  36,  37  !line
+L,  36,  42  !line
+L,  36,  39  !line
+L,  36,  44  !line
+L,  39,  44  !line
+L,  37,  42  !line
+L,  41,  43  !line
+L,  42,  44  !line
+L,  41,  45  !line
+L,  41,  50  !line
+L,  43,  45  !line
+L,  43,  50  !line
+L,  43,  48  !line
+L,  41,  42  !line
+L,  41,  47  !line
+L,  41,  44  !line
+L,  41,  49  !line
+L,  44,  49  !line
+L,  42,  47  !line
+L,  46,  48  !line
+L,  47,  49  !line
+L,  46,  50  !line
+L,  46,  55  !line
+L,  48,  50  !line
+L,  48,  55  !line
+L,  48,  53  !line
+L,  46,  47  !line
+L,  46,  52  !line
+L,  46,  49  !line
+L,  46,  54  !line
+L,  49,  54  !line
+L,  47,  52  !line
+L,  51,  53  !line
+L,  52,  54  !line
+L,  51,  55  !line
+L,  51,  60  !line
+L,  53,  55  !line
+L,  53,  60  !line
+L,  53,  58  !line
+L,  51,  52  !line
+L,  51,  57  !line
+L,  51,  54  !line
+L,  51,  59  !line
+L,  54,  59  !line
+L,  52,  57  !line
+L,  56,  58  !line
+L,  57,  59  !line
+L,  56,  60  !line
+L,   5,  56  !line
+L,  58,  60  !line
+L,   5,  58  !line
+L,   3,  58  !line
+L,  56,  57  !line
+L,   2,  56  !line
+L,  56,  59  !line
+L,   4,  56  !line
+L,   4,  59  !line
+L,   2,  57  !line
+
+*dim,area,,156
+area(1)=6.690364e-02 !cross sectional area
+area(2)=2.987599e-02 !cross sectional area
+area(3)=2.207192e-03 !cross sectional area
+area(4)=2.024078e-03 !cross sectional area
+area(5)=5.319217e-03 !cross sectional area
+area(6)=1.089770e-03 !cross sectional area
+area(7)=5.962614e-04 !cross sectional area
+area(8)=1.770856e-03 !cross sectional area
+area(9)=3.553616e-03 !cross sectional area
+
+sectype,1,link  !specify section type
+secdata,area(1)   !specify section data
+seccontrol,,0       !only in tension(1) both tension and compression(0) 
+sectype,2,link  !specify section type
+secdata,area(2)   !specify section data
+seccontrol,,0       !only in tension(1) both tension and compression(0) 
+sectype,3,link  !specify section type
+secdata,area(3)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,4,link  !specify section type
+secdata,area(4)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,5,link  !specify section type
+secdata,area(5)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,6,link  !specify section type
+secdata,area(6)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,7,link  !specify section type
+secdata,area(7)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,8,link  !specify section type
+secdata,area(8)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+sectype,9,link  !specify section type
+secdata,area(9)   !specify section data
+seccontrol,,1       !only in tension(1) both tension and compression(0) 
+
+!define element type
+lsel,s,,,1  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,2  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,3  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,4  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,5  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,6  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,7  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,8  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,9  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,10  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,11  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,12  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,13  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,14  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,15  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,16  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,17  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,18  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,19  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,20  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,21  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,22  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,23  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,24  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,25  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,26  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,27  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,28  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,29  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,30  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,31  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,32  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,33  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,34  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,35  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,36  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,37  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,38  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,39  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,40  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,41  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,42  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,43  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,44  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,45  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,46  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,47  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,48  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,49  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,50  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,51  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,52  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,53  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,54  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,55  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,56  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,57  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,58  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,59  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,60  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,61  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,62  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,63  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,64  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,65  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,66  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,67  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,68  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,69  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,70  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,71  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,72  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,73  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,74  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,75  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,76  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,77  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,78  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,79  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,80  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,81  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,82  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,83  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,84  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,85  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,86  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,87  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,88  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,89  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,90  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,91  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,92  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,93  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,94  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,95  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,96  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,97  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,98  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,99  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,100  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,101  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,102  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,103  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,104  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,105  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,106  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,107  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,108  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,109  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,110  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,111  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,112  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,113  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,114  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,115  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,116  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,117  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,118  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,119  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,120  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,121  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,122  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,123  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,124  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,125  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,126  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,127  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,128  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,129  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,130  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,131  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,132  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,133  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,134  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,135  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,136  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,137  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,138  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,139  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,140  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,141  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,142  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,143  !select element
+latt,1,,1,,,,9  !specify section area
+lsel,s,,,144  !select element
+latt,2,,1,,,,1  !specify section area
+lsel,s,,,145  !select element
+latt,2,,1,,,,2  !specify section area
+lsel,s,,,146  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,147  !select element
+latt,1,,1,,,,3  !specify section area
+lsel,s,,,148  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,149  !select element
+latt,1,,1,,,,4  !specify section area
+lsel,s,,,150  !select element
+latt,1,,1,,,,5  !specify section area
+lsel,s,,,151  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,152  !select element
+latt,1,,1,,,,6  !specify section area
+lsel,s,,,153  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,154  !select element
+latt,1,,1,,,,7  !specify section area
+lsel,s,,,155  !select element
+latt,1,,1,,,,8  !specify section area
+lsel,s,,,156  !select element
+latt,1,,1,,,,9  !specify section area
+
+*dim,prestress,,156
+ prestress(1)=-3238163.953603  !prestress
+ prestress(2)=-2325860.884317  !prestress
+ prestress(3)=122350000.000000  !prestress
+ prestress(4)=122350000.000000  !prestress
+ prestress(5)=122350000.000000  !prestress
+ prestress(6)=122350000.000000  !prestress
+ prestress(7)=122350000.000000  !prestress
+ prestress(8)=122350000.000000  !prestress
+ prestress(9)=122350000.000000  !prestress
+ prestress(10)=122350000.000000  !prestress
+ prestress(11)=122350000.000000  !prestress
+ prestress(12)=122350000.000000  !prestress
+ prestress(13)=122350000.000000  !prestress
+ prestress(14)=-3238163.953603  !prestress
+ prestress(15)=-2325860.884317  !prestress
+ prestress(16)=122350000.000000  !prestress
+ prestress(17)=122350000.000000  !prestress
+ prestress(18)=122350000.000000  !prestress
+ prestress(19)=122350000.000000  !prestress
+ prestress(20)=122350000.000000  !prestress
+ prestress(21)=122350000.000000  !prestress
+ prestress(22)=122350000.000000  !prestress
+ prestress(23)=122350000.000000  !prestress
+ prestress(24)=122350000.000000  !prestress
+ prestress(25)=122350000.000000  !prestress
+ prestress(26)=122350000.000000  !prestress
+ prestress(27)=-3238163.953603  !prestress
+ prestress(28)=-2325860.884317  !prestress
+ prestress(29)=122350000.000000  !prestress
+ prestress(30)=122350000.000000  !prestress
+ prestress(31)=122350000.000000  !prestress
+ prestress(32)=122350000.000000  !prestress
+ prestress(33)=122350000.000000  !prestress
+ prestress(34)=122350000.000000  !prestress
+ prestress(35)=122350000.000000  !prestress
+ prestress(36)=122350000.000000  !prestress
+ prestress(37)=122350000.000000  !prestress
+ prestress(38)=122350000.000000  !prestress
+ prestress(39)=122350000.000000  !prestress
+ prestress(40)=-3238163.953603  !prestress
+ prestress(41)=-2325860.884317  !prestress
+ prestress(42)=122350000.000000  !prestress
+ prestress(43)=122350000.000000  !prestress
+ prestress(44)=122350000.000000  !prestress
+ prestress(45)=122350000.000000  !prestress
+ prestress(46)=122350000.000000  !prestress
+ prestress(47)=122350000.000000  !prestress
+ prestress(48)=122350000.000000  !prestress
+ prestress(49)=122350000.000000  !prestress
+ prestress(50)=122350000.000000  !prestress
+ prestress(51)=122350000.000000  !prestress
+ prestress(52)=122350000.000000  !prestress
+ prestress(53)=-3238163.953603  !prestress
+ prestress(54)=-2325860.884317  !prestress
+ prestress(55)=122350000.000000  !prestress
+ prestress(56)=122350000.000000  !prestress
+ prestress(57)=122350000.000000  !prestress
+ prestress(58)=122350000.000000  !prestress
+ prestress(59)=122350000.000000  !prestress
+ prestress(60)=122350000.000000  !prestress
+ prestress(61)=122350000.000000  !prestress
+ prestress(62)=122350000.000000  !prestress
+ prestress(63)=122350000.000000  !prestress
+ prestress(64)=122350000.000000  !prestress
+ prestress(65)=122350000.000000  !prestress
+ prestress(66)=-3238163.953603  !prestress
+ prestress(67)=-2325860.884317  !prestress
+ prestress(68)=122350000.000000  !prestress
+ prestress(69)=122350000.000000  !prestress
+ prestress(70)=122350000.000000  !prestress
+ prestress(71)=122350000.000000  !prestress
+ prestress(72)=122350000.000000  !prestress
+ prestress(73)=122350000.000000  !prestress
+ prestress(74)=122350000.000000  !prestress
+ prestress(75)=122350000.000000  !prestress
+ prestress(76)=122350000.000000  !prestress
+ prestress(77)=122350000.000000  !prestress
+ prestress(78)=122350000.000000  !prestress
+ prestress(79)=-3238163.953603  !prestress
+ prestress(80)=-2325860.884317  !prestress
+ prestress(81)=122350000.000000  !prestress
+ prestress(82)=122350000.000000  !prestress
+ prestress(83)=122350000.000000  !prestress
+ prestress(84)=122350000.000000  !prestress
+ prestress(85)=122350000.000000  !prestress
+ prestress(86)=122350000.000000  !prestress
+ prestress(87)=122350000.000000  !prestress
+ prestress(88)=122350000.000000  !prestress
+ prestress(89)=122350000.000000  !prestress
+ prestress(90)=122350000.000000  !prestress
+ prestress(91)=122350000.000000  !prestress
+ prestress(92)=-3238163.953603  !prestress
+ prestress(93)=-2325860.884317  !prestress
+ prestress(94)=122350000.000000  !prestress
+ prestress(95)=122350000.000000  !prestress
+ prestress(96)=122350000.000000  !prestress
+ prestress(97)=122350000.000000  !prestress
+ prestress(98)=122350000.000000  !prestress
+ prestress(99)=122350000.000000  !prestress
+ prestress(100)=122350000.000000  !prestress
+ prestress(101)=122350000.000000  !prestress
+ prestress(102)=122350000.000000  !prestress
+ prestress(103)=122350000.000000  !prestress
+ prestress(104)=122350000.000000  !prestress
+ prestress(105)=-3238163.953603  !prestress
+ prestress(106)=-2325860.884317  !prestress
+ prestress(107)=122350000.000000  !prestress
+ prestress(108)=122350000.000000  !prestress
+ prestress(109)=122350000.000000  !prestress
+ prestress(110)=122350000.000000  !prestress
+ prestress(111)=122350000.000000  !prestress
+ prestress(112)=122350000.000000  !prestress
+ prestress(113)=122350000.000000  !prestress
+ prestress(114)=122350000.000000  !prestress
+ prestress(115)=122350000.000000  !prestress
+ prestress(116)=122350000.000000  !prestress
+ prestress(117)=122350000.000000  !prestress
+ prestress(118)=-3238163.953603  !prestress
+ prestress(119)=-2325860.884317  !prestress
+ prestress(120)=122350000.000000  !prestress
+ prestress(121)=122350000.000000  !prestress
+ prestress(122)=122350000.000000  !prestress
+ prestress(123)=122350000.000000  !prestress
+ prestress(124)=122350000.000000  !prestress
+ prestress(125)=122350000.000000  !prestress
+ prestress(126)=122350000.000000  !prestress
+ prestress(127)=122350000.000000  !prestress
+ prestress(128)=122350000.000000  !prestress
+ prestress(129)=122350000.000000  !prestress
+ prestress(130)=122350000.000000  !prestress
+ prestress(131)=-3238163.953603  !prestress
+ prestress(132)=-2325860.884317  !prestress
+ prestress(133)=122350000.000000  !prestress
+ prestress(134)=122350000.000000  !prestress
+ prestress(135)=122350000.000000  !prestress
+ prestress(136)=122350000.000000  !prestress
+ prestress(137)=122350000.000000  !prestress
+ prestress(138)=122350000.000000  !prestress
+ prestress(139)=122350000.000000  !prestress
+ prestress(140)=122350000.000000  !prestress
+ prestress(141)=122350000.000000  !prestress
+ prestress(142)=122350000.000000  !prestress
+ prestress(143)=122350000.000000  !prestress
+ prestress(144)=-3238163.953603  !prestress
+ prestress(145)=-2325860.884317  !prestress
+ prestress(146)=122350000.000000  !prestress
+ prestress(147)=122350000.000000  !prestress
+ prestress(148)=122350000.000000  !prestress
+ prestress(149)=122350000.000000  !prestress
+ prestress(150)=122350000.000000  !prestress
+ prestress(151)=122350000.000000  !prestress
+ prestress(152)=122350000.000000  !prestress
+ prestress(153)=122350000.000000  !prestress
+ prestress(154)=122350000.000000  !prestress
+ prestress(155)=122350000.000000  !prestress
+ prestress(156)=122350000.000000  !prestress
+
+!line mesh 
+ LSEL,ALL 
+ LESIZE,ALL,,,1
+LMESH,ALL
+finish
+
+!First solve for self-equilibrium）
+/SOLU
+ANTYPE,0 
+NLGEO!consider large deformation 
+SSTIF,ON	!prestress stiffness  
+NSUBST,100	!Substep 
+AUTOTS,ON	!Automatic time stepping 
+  OUTRES,ALL,ALL 	!Output result 
+
+DK,5,UX
+DK,5,UY
+DK,5,UZ
+DK,10,UX
+DK,10,UY
+DK,10,UZ
+DK,15,UX
+DK,15,UY
+DK,15,UZ
+DK,20,UX
+DK,20,UY
+DK,20,UZ
+DK,25,UX
+DK,25,UY
+DK,25,UZ
+DK,30,UX
+DK,30,UY
+DK,30,UZ
+DK,35,UX
+DK,35,UY
+DK,35,UZ
+DK,40,UX
+DK,40,UY
+DK,40,UZ
+DK,45,UX
+DK,45,UY
+DK,45,UZ
+DK,50,UX
+DK,50,UY
+DK,50,UZ
+DK,55,UX
+DK,55,UY
+DK,55,UZ
+DK,60,UX
+DK,60,UY
+DK,60,UZ
+
+*DO,J,1,156	!Prestress in initial state
+	INISTATE,DEFINE,J,,,,PRESTRESS(J)
+*ENDDO
+
+ALLSEL,ALL
+SOLVE
+FINISH
+
+!Post analysis
+/POST1
+PLDISP !Plot deformed shape
+ALLSEL,ALL
