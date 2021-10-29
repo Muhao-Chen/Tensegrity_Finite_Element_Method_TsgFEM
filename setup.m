@@ -10,7 +10,7 @@ clear all;
 close all;
 clc;
 % add the function libraries
-addpath( genpath('Function_Library') );
+addpath( genpath('Function_library') );
 % add the Software Verification and Examples
 addpath( genpath('Software_Verification_and_Examples') );
 % add User Guide
