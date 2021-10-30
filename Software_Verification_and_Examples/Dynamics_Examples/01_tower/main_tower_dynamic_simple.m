@@ -79,7 +79,7 @@ pinned_X=(1:3)'; pinned_Y=(1:3)'; pinned_Z=(1:3)';
 
 %% Group information
 %generate group index
-gr={[1:3];[4:6];[7:9];[10:12];[13:15];[16:18]};     % number of elements in one group
+gr={(1:3);(4:6);(7:9);(10:12);(13:15);(16:18)};     % number of elements in one group
 % gr=[];                     %if no group is used
 Gp=tenseg_str_gp(gr,C);    %generate group matrix
 
