@@ -31,8 +31,8 @@ tf=1;                   % final time of dynamic simulation
 out_dt=0.001;            % output data interval(approximately, not exatly)
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
-savedata=1;             % save data or not (1) yes (0)no
-savevideo=1;            % make video(1) or not(0)
+savedata=0;             % save data or not (1) yes (0)no
+savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 
 %% N C of the structure
