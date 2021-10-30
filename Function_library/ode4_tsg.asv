@@ -21,7 +21,6 @@ function data_out = ode4_tsg(odefun,tspan,y0,data_in)
 %     and plots the first component of the solution.
 %%
 global l f n f_int l_int n_d stress strain
-silentMode=0;
 data_out=data_in;  %initialize output data
 out_tspan=data_in.out_tspan;
 ne=data_in.ne;
@@ -70,18 +69,16 @@ for i = 2:N
     yi = Y(:,i-1);
     F(:,1) = feval(odefun,ti,yi,data_in);
     if  sum(out_tspan==ti)
-        if silentMode=0
-            %         disp(ti);
-            disp(['Current time: ',sprintf('%.5f',ti)]);
-        end
+        disp(ti);
+% disp(['Current time: ',sprintf('%.5f',ti)]);
         data_out.t_t(:,out_tspan==ti)=f;      %member force
         data_out.n_t(:,out_tspan==ti)=n;
-        data_out.l_t(:,out_tspan==ti)=l;
-        data_out.nd_t(:,out_tspan==ti)=n_d;
-        data_out.stress_t(:,out_tspan==ti)=stress;
-        data_out.strain_t(:,out_tspan==ti)=strain;
+        data_out.l_t(:,out_tspan==ti)=l; 
+        data_out.nd_t(:,out_tspan==ti)=n_d; 
+        data_out.stress_t(:,out_tspan==ti)=stress; 
+        data_out.strain_t(:,out_tspan==ti)=strain; 
     end
-    f_int=f; l_int=l;               %store the force and length(for plastic calculation)
+        f_int=f; l_int=l;               %store the force and length(for plastic calculation)
     F(:,2) = feval(odefun,ti+0.5*hi,yi+0.5*hi*F(:,1),data_in);
     F(:,3) = feval(odefun,ti+0.5*hi,yi+0.5*hi*F(:,2),data_in);
     F(:,4) = feval(odefun,tspan(i),yi+hi*F(:,3),data_in);
