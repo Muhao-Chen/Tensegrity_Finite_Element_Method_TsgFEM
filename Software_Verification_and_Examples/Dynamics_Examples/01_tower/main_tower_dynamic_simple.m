@@ -12,7 +12,7 @@
 % [3] dynamic simulation
 
 %EXAMPLE
-clc; clear all; close all;
+clc; clear; close all;
 % Global variable
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties: multielastic, plastic.

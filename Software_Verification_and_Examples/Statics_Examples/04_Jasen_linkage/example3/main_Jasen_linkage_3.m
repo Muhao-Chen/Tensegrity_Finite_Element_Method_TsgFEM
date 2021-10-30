@@ -9,7 +9,7 @@ clc;clearvars;close all;
 % global l  Eb Es
 
 %EXAMPLE
-clc; clear all; close all;
+clc; clear ; close all;
 % Global variable
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Wood','Steel_string');
 material{1}='linear_elastic'; % index for material properties:'linear_elastic' multielastic plastic
