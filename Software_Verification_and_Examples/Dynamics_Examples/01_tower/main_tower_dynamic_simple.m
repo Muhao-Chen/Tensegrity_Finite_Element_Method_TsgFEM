@@ -25,7 +25,7 @@ c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
 % dynamic analysis set
-amplitude=50;            % amplitude of external force of ground motion 
+amplitude=50;            % amplitude of external force of ground motion
 period=0.5;             %period of seismic
 
 dt=0.001;               % time step in dynamic simulation
@@ -37,7 +37,7 @@ saveimg=1;              % save image or not (1) yes (0)no
 savedata=1;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
-% move_ground=0;          % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0) 
+% move_ground=0;          % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.
@@ -124,7 +124,7 @@ num_plt=1:3;        % number of modes to plot
 %% input data for dynamic analysis
 % time step
 if auto_dt
-dt=pi/(8*max(omega)); 	% time step dt is 1/8 of the smallest period, guarantee convergence in solving ODE
+    dt=pi/(8*max(omega)); 	% time step dt is 1/8 of the smallest period, guarantee convergence in solving ODE
 end
 tspan=0:dt:tf;
 out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data time span
@@ -153,15 +153,15 @@ data.tf=tf;data.dt=dt;data.tspan=tspan;data.out_tspan=out_tspan;
 output_vibration(dz_a_t(1,:)','tjx.txt');
 
 %% plot external force information
-tenseg_plot_exforce(Ib,tspan,w_t,[4:6],dnb_t,dnb_d_t,dnb_dd_t,[1],saveimg);
+tenseg_plot_exforce(Ib,tspan,w_t,(4:6),dnb_t,dnb_d_t,dnb_dd_t,(1),saveimg);
 
 %% dynamic analysis
 % solve dynamic equation
 data_out=dynamic_solver(data);        %solve ODE of dynamic equation
 % time history of structure
 t_t=data_out.t_t;   %time history of members' force
-n_t=data_out.n_t;   %time history of nodal coordinate 
-l_t=data_out.l_t;   %time history of members' length 
+n_t=data_out.n_t;   %time history of nodal coordinate
+l_t=data_out.l_t;   %time history of members' length
 nd_t=data_out.nd_t;   %time history of nodal velocity
 
 %% save output data
@@ -169,7 +169,7 @@ if savedata==1
     save (['FEM_tower_simple',material{1},'.mat']);
 end
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(out_tspan,t_t(7:8,:),{'element 7','element 8'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
@@ -183,5 +183,5 @@ tenseg_plot_result(out_tspan,l_t(7:8,:),{'element 7','element 8'},{'Time (s)','L
 name=['tower','tf_',num2str(tf),material{1},num2str(material{2})];
 tenseg_video(n_t,C_b,C_s,[],50,name,savevideo,R3Ddata);
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
