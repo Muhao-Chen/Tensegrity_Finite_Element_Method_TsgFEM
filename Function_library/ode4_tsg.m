@@ -21,7 +21,7 @@ function data_out = ode4_tsg(odefun,tspan,y0,data_in)
 %     and plots the first component of the solution.
 %%
 global l f n f_int l_int n_d stress strain
-silentMode=0;
+silentMode=0; useWaitbar=1;
 data_out=data_in;  %initialize output data
 out_tspan=data_in.out_tspan;
 ne=data_in.ne;
@@ -64,15 +64,22 @@ data_out.t_t=zeros(ne,numel(out_tspan));
 data_out.n_t=zeros(3*nn,numel(out_tspan));
 data_out.l_t=zeros(ne,numel(out_tspan));
 Y(:,1) = y0;
+if silentMode==0&useWaitbar==1
+wb= waitbar(0,'Please wait...');
+end
 for i = 2:N
     ti = tspan(i-1);
     hi = h(i-1);
     yi = Y(:,i-1);
     F(:,1) = feval(odefun,ti,yi,data_in);
     if  sum(out_tspan==ti)
-        if silentMode=0
+        if silentMode==0
+            if useWaitbar==1
+                waitbar(i/N,wb,['Current time: ',sprintf('%.5f',ti),'s']);
+            else
+                disp(['Current time: ',sprintf('%.5f',ti)]);
+            end
             %         disp(ti);
-            disp(['Current time: ',sprintf('%.5f',ti)]);
         end
         data_out.t_t(:,out_tspan==ti)=f;      %member force
         data_out.n_t(:,out_tspan==ti)=n;
@@ -87,6 +94,7 @@ for i = 2:N
     F(:,4) = feval(odefun,tspan(i),yi+hi*F(:,3),data_in);
     Y(:,i) = yi + (hi/6)*(F(:,1) + 2*F(:,2) + 2*F(:,3) + F(:,4));
 end
+close(wb)
 %% calculate the time history data
 % %initialize time history data
 % data_out.t_t=zeros(ne,numel(out_tspan));
