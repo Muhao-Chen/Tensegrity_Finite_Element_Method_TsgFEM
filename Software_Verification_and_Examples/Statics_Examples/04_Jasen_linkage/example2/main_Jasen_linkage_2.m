@@ -128,7 +128,7 @@ data.substep=substep;    % substep
 data_out=static_solver(data);        %solve equilibrium using mNewton method
 
 %% Plot final configuration
-tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end))
+tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
 t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
@@ -144,7 +144,7 @@ tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'
 tenseg_plot_result(1:substep,n_t([3*8-2,3*8-1],:),{'8X','8Y'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
 
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end))
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 
 %% make video of the dynamic
 name=['Jasen_machanism3','tf_',num2str(tf),material{1}];
