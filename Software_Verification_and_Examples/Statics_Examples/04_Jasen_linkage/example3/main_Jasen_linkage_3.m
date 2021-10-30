@@ -75,8 +75,8 @@ Gp=tenseg_str_gp(gr,C);    %generate group matrix
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[1];                 % number of groups with designed force
-fd=[0];              % force in bar is given as -1000
+index_gp=1;                 % number of groups with designed force
+fd=0;              % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 
 %% cross sectional design
@@ -110,7 +110,7 @@ num_plt=1:2;        % number of modes to plot
 %% external force, forced motion of nodes, shrink of strings
 % calculate external force and 
 ind_w=[];w=[];
-ind_dnb=[(kron(0:5,[1 1])*8+2)*3+kron(ones(1,6),[-2,-1])]'; dnb0=zeros(12,1);
+ind_dnb=((kron(0:5,[1 1])*8+2)*3+kron(ones(1,6),[-2,-1]))'; dnb0=zeros(12,1);
 ind_dl0=[]; dl0=[];
 [w_t,dnb_t,l0_t,Ia_new,Ib_new]=tenseg_load_prestress(substep,ind_w,w,ind_dnb,dnb0,ind_dl0,dl0,l0,b,gravity,[0;9.8;0],C,mass);
 theta1=pi/2; theta2=7/6*pi; theta3=11/6*pi;

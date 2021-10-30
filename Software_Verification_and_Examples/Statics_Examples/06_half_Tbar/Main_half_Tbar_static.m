@@ -77,7 +77,7 @@ n_g=size(Gp,2);            %number of group for elements
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[1];                 % number of groups with designed force
+index_gp=1;                 % number of groups with designed force
 fd=-50;              % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 

@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % Steps of static calculation:
 % 1.Specify material properties
@@ -16,7 +16,7 @@
 % 8.Mass matrix and damping matrix and Modal analysis (optional)
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
-% 11. Plot and make video, output data to TECPLOT(optional) 
+% 11. Plot and make video, output data to TECPLOT(optional)
 clc;clearvars;close all;
 
 % Specify material properties
@@ -41,16 +41,21 @@ gravity=0;              % consider gravity 1 for yes, 0 for no
 % Manually specify node positions of a tensegrity tower.
 R=10; h=30; p=3;        % radius; height; number of edge
 beta=180*(0.5-1/p); 	% rotation angle
-for i=1:p               % nodal coordinate matrix N
-    N(:,i)=R*[cos(2*pi*(i-1)/p),sin(2*pi*(i-1)/p),0];
-end
-for i=p+1:2*p
-    N(:,i)=[R*cos(2*pi*(i-1)/p+beta*pi/180),R*sin(2*pi*(i-1)/p+beta*pi/180),h];
-end
-for i=2*p+1:3*p
-    N(:,i)=[R*cos(2*pi*(i-1)/p+2*beta*pi/180),R*sin(2*pi*(i-1)/p+2*beta*pi/180),2*h];
-end
-
+% for i=1:p               % nodal coordinate matrix N
+%     N(:,i)=R*[cos(2*pi*(i-1)/p),sin(2*pi*(i-1)/p),0];
+% end
+% for i=p+1:2*p
+%     N(:,i)=[R*cos(2*pi*(i-1)/p+beta*pi/180),R*sin(2*pi*(i-1)/p+beta*pi/180),h];
+% end
+% for i=2*p+1:3*p
+%     N(:,i)=[R*cos(2*pi*(i-1)/p+2*beta*pi/180),R*sin(2*pi*(i-1)/p+2*beta*pi/180),2*h];
+% end
+angle1=2*pi*((1:p)-1)./p;
+N=R*[cos(angle1); sin(angle1); zeros(1,p)];
+angle2=2*pi*((1:p)-1)./p+beta*pi/180;
+N=[N,[R*[cos(angle2); sin(angle2)]; h*ones(1,p)]];
+angle3=2*pi*((1:p)-1)./p+2*beta*pi/180;
+N=[N,[R*[cos(angle3); sin(angle3)]; 2*h*ones(1,p)]];
 % Manually specify connectivity indices.
 C_b_in = [1 5;2 6;3 4;5 9;6 7;4 8];   % This is indicating the bar connection
 % Convert the above matrices into full connectivity matrices.
@@ -110,10 +115,10 @@ num_plt=1:2;        % number of modes to plot
 
 %% external force, forced motion of nodes, shrink of strings
 ind_w=4*3-2;w=9*1000;
-ind_dnb=[3*[7:9]']; dnb0=5*ones(3,1);
+ind_dnb=3*(7:9)'; dnb0=5*ones(3,1);
 ind_dl0=1; dl0=-0.3;
 [w_t,dnb_t,l0_t,Ia_new,Ib_new]=tenseg_load_prestress(substep,ind_w,w,ind_dnb,dnb0,ind_dl0,dl0,l0,b,gravity,[0;9.8;0],C,mass);
-% calculate external force and 
+% calculate external force and
 % ind_w=[];w=[];
 % ind_dnb=1*3-2; dnb0=0.5;
 % ind_dl0=[]; dl0=[];
@@ -143,7 +148,7 @@ t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
 N_out=data_out.N_out;
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(1:substep,t_t([1;7;13],:),{'bar','horizontal string','vertical string'},{'Load step','Force (N)'},'plot_member_force.png',saveimg);
 %% Plot nodal coordinate curve X Y
 tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},'plot_coordinate.png',saveimg);
@@ -159,5 +164,5 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevi
 % tenseg_video(n_t,C_b,C_s,[],min(substep,50),name,savevideo,R3Ddata);
 
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);

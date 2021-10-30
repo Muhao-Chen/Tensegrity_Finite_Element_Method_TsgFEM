@@ -41,7 +41,7 @@ tenseg_plot(N,C_b,C_s);
 title('Cable dome');
 
 %% Boundary constraints
-pinned_X=([5:5:60])'; pinned_Y=([5:5:60])'; pinned_Z=([5:5:60])';
+pinned_X=(5:5:60)'; pinned_Y=(5:5:60)'; pinned_Z=(5:5:60)';
 [Ia,Ib,a,b]=tenseg_boundary(pinned_X,pinned_Y,pinned_Z,nn);
 
 %% Group information
@@ -61,7 +61,7 @@ Gp=tenseg_str_gp(gr2_t,C);    %generate group matrix
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[6];                   % number of groups with designed force
+index_gp=6;                   % number of groups with designed force
 fd=20^2/3*1000;                        % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 

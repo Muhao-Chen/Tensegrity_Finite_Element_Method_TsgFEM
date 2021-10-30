@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 clc;clearvars;close all;
 % global l  Eb Es
@@ -32,17 +32,17 @@ gravity=0;              % consider gravity 1 for yes, 0 for no
 % Manually specify node positions (accurate).
 N0=[   38.0000   38.0000   -8.7357  -39.6678         0  -19.4476   17.0047   30.3109
     7.8000   22.8000   40.5702   -5.8717         0  -39.6874  -35.4306  -82.5894
-         0         0         0         0         0         0         0         0];
-     N0(1,:)=N0(1,:)-38;
-     N1=N0;N1(3,:)=-5*ones(1,8);
-      N2=N0;N2(3,:)=-10*ones(1,8);
-      N=[N0,N1,N2];
+    0         0         0         0         0         0         0         0];
+N0(1,:)=N0(1,:)-38;
+N1=N0;N1(3,:)=-5*ones(1,8);
+N2=N0;N2(3,:)=-10*ones(1,8);
+N=[N0,N1,N2];
 % N=kron([1 1 1],N0);
 
 % Manually specify connectivity indices.
 C_s_in=[];  % This is indicating that string connection
 C_b_in0 = [1 2;2 3;3 4;3 5;4 5;4 6;5 7;6 7;6 8;7 8;2 7];  % Similarly, this is saying bar 1 connects node 1 to node 2,
-C_b_in=[C_b_in0; C_b_in0+8; C_b_in0+16];   
+C_b_in=[C_b_in0; C_b_in0+8; C_b_in0+16];
 % Convert the above matrices into full connectivity matrices.
 C_b = tenseg_ind2C(C_b_in,N);
 C_s = tenseg_ind2C(C_s_in,N);
@@ -58,9 +58,9 @@ pinned_X=([1 5 9 13 17 21])'; pinned_Y=([1 5 9 13 17 21])'; pinned_Z=(1:nn)';
 
 %% generate group index for tensegrity torus structure
 gr=[];
-Gp=tenseg_str_gp(gr,C);    %generate group matrix 
+Gp=tenseg_str_gp(gr,C);    %generate group matrix
 
-%% self-stress design 
+%% self-stress design
 %Calculate equilibrium matrix and member length
 [A_1a,A_1ag,A_2a,A_2ag,l,l_gp]=tenseg_equilibrium_matrix1(N,C,Gp,Ia);
 
@@ -71,8 +71,8 @@ Gp=tenseg_str_gp(gr,C);    %generate group matrix
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[1];                 % number of groups with designed force
-fd=[0];              % force in bar is given as -1000
+index_gp=1;                 % number of groups with designed force
+fd=0;              % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 
 %% cross sectional design
@@ -104,7 +104,7 @@ num_plt=1:2;        % number of modes to plot
 [V_mode,omega]=tenseg_mode(Ia,C,C_b,C_s,N(:),E,A,l0,M,num_plt,saveimg);
 
 %% external force, forced motion of nodes, shrink of strings
-% calculate external force and 
+% calculate external force and
 ind_w=[];w=[];
 ind_dnb=[2*3-2;2*3-1;10*3-2;10*3-1;18*3-2;18*3-1]; dnb0=zeros(6,1);
 ind_dl0=[]; dl0=[];
@@ -137,7 +137,7 @@ N_out=data_out.N_out;
 %% input file of ANSYS
 ansys_input_gp(N_out{1},C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'Jasen linkage full size');
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
@@ -151,7 +151,7 @@ name=['Jasen_machanism3','tf_',num2str(tf),material{1}];
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,60],[-80,80,-85,50,-30,30],min(substep,50),name,savevideo,material{2})
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
 return
@@ -187,5 +187,5 @@ for n = 1:substep
     tenseg_savegif_forever(name);
     hold off;
 end
-close 
+close
 

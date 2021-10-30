@@ -5,7 +5,7 @@
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
-% [1] structure design (calculate equilibrium matrix, group matrix,prestress 
+% [1] structure design (calculate equilibrium matrix, group matrix,prestress
 % mode, minimal mass design).
 % [2] modal analysis (calculate tangent stiffness matrix, material stiffness,
 % geometry stiffness, generalized eigenvalue analysis).
@@ -25,7 +25,7 @@ c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
 % dynamic analysis set
-amplitude=50;           % amplitude of external force of ground motion 
+amplitude=50;           % amplitude of external force of ground motion
 period=0.5;             % period of seismic
 
 dt=1e-5;                % time step in dynamic simulation
@@ -37,12 +37,12 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
-% move_ground=0;        % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0) 
+% move_ground=0;        % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.
 L = 1;
-th1 = -atan(1/2); 
+th1 = -atan(1/2);
 N = [L/4 0 0;L/4 0 L;-L/4 0 0;-L/4 0 L;
     0 -L/2 3*L/4;0 L/2 3*L/4;0 -L/2 L/4;0 L /2 L/4;
     L/2 -L/4 L/2;-L/2 -L/4 L/2;L/2 L/4 L/2;-L/2 L/4 L/2]';
@@ -51,8 +51,8 @@ N(3,:)=N(3,:)+2;
 % N = [cos(th2) -sin(th2) 0;sin(th2) cos(th2) 0;0 0 1]*N;
 C_b_in = [1 2;3 4;5 6;7 8;9 10;11 12];
 C_s_in = [2 5;2 6;2 9;2 11;4 5;4 6;4 10;4 12;
-          1 7;1 8;1 9;1 11;3 7;3 8;3 10;3 12;
-          5 9;5 10;7 9;7 10;6 11;6 12;8 11;8 12];
+    1 7;1 8;1 9;1 11;3 7;3 8;3 10;3 12;
+    5 9;5 10;7 9;7 10;6 11;6 12;8 11;8 12];
 % Convert the above matrices into full connectivity matrices.
 C_b = tenseg_ind2C(C_b_in,N);%%
 C_s = tenseg_ind2C(C_s_in,N);
@@ -83,7 +83,7 @@ Gp=tenseg_str_gp(gr,C);    % generate group matrix
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[1];                   % number of groups with designed force
+index_gp=1;                   % number of groups with designed force
 fd=-1e5;                        % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 
@@ -114,7 +114,7 @@ num_plt=7:9; % mode index to plot
 %% input data for dynamic analysis
 % time step
 if auto_dt
-dt=pi/(8*max(omega)); % time step dt is 1/8 of the smallest period, guarantee convergence in solving ODE
+    dt=pi/(8*max(omega)); % time step dt is 1/8 of the smallest period, guarantee convergence in solving ODE
 end
 tspan=0:dt:tf;
 
@@ -127,7 +127,7 @@ out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data t
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'vib_force',gravity,C,mass,3*(4:9)-2,50,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'vib_nodes',gravity,C,mass,3*(1:3)-2,50,period);
 w_t='w_t_ground_force';         % external force given in a script
-dnb_t=zeros(b,1);dnb_d_t=zeros(b,1);dnb_dd_t=zeros(b,1); % zero forced motion 
+dnb_t=zeros(b,1);dnb_d_t=zeros(b,1);dnb_dd_t=zeros(b,1); % zero forced motion
 
 % give initial speed of free coordinates
 n0a_d=4*kron(ones(numel(a)/3,1),[0;0;-1]); %initial speed in X direction
@@ -148,8 +148,8 @@ data.tf=tf;data.dt=dt;data.tspan=tspan;data.out_tspan=out_tspan;
 data_out=dynamic_solver(data);        %solve ODE of dynamic equation
 % time history of structure
 t_t=data_out.t_t;   %time history of members' force
-n_t=data_out.n_t;   %time history of nodal coordinate 
-l_t=data_out.l_t;   %time history of members' length 
+n_t=data_out.n_t;   %time history of nodal coordinate
+l_t=data_out.l_t;   %time history of members' length
 nd_t=data_out.nd_t;   %time history of nodal coordinate
 
 %% save output data
@@ -157,7 +157,7 @@ if savedata==1
     save (['FEM_lander_',material{1},'.mat']);
 end
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(out_tspan,t_t(7:8,:),{'element 7','element 8'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
@@ -185,14 +185,14 @@ if savevideo==1
         tenseg_plot(reshape(n_t(:,p),3,[]),C_b,C_s,99);hold on
         axis(axislim)
         [X,Y] = meshgrid(-0.8:0.05:0.8,-0.5:0.05:1);
- Z = -0.1*ones(size(X));
-surf(X,Y,Z,'MeshStyle','none','FaceColor','c');
-surf(X,Y,Z);
+        Z = -0.1*ones(size(X));
+        surf(X,Y,Z,'MeshStyle','none','FaceColor','c');
+        surf(X,Y,Z);
         tenseg_savegif_forever(name);
         hold off;
     end
     close
 end
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);

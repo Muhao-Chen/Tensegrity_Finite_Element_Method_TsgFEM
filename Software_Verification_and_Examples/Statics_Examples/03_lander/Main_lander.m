@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % Steps of static calculation:
 % 1.Specify material properties
@@ -16,7 +16,7 @@
 % 8.Mass matrix and damping matrix and Modal analysis (optional)
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
-% 11. Plot and make video, output data to TECPLOT(optional) 
+% 11. Plot and make video, output data to TECPLOT(optional)
 clc;clearvars;close all;
 
 % Specify material properties
@@ -40,7 +40,7 @@ gravity=0;              % consider gravity 1 for yes, 0 for no
 %% N C of the structure
 % Manually specify node positions of double layer prism.
 L = 1;
-th1 = -atan(1/2); 
+th1 = -atan(1/2);
 N = [L/4 0 0;L/4 0 L;-L/4 0 0;-L/4 0 L;
     0 -L/2 3*L/4;0 L/2 3*L/4;0 -L/2 L/4;0 L /2 L/4;
     L/2 -L/4 L/2;-L/2 -L/4 L/2;L/2 L/4 L/2;-L/2 L/4 L/2]';
@@ -49,8 +49,8 @@ N(3,:)=N(3,:)+2;
 % N = [cos(th2) -sin(th2) 0;sin(th2) cos(th2) 0;0 0 1]*N;
 C_b_in = [1 2;3 4;5 6;7 8;9 10;11 12];
 C_s_in = [2 5;2 6;2 9;2 11;4 5;4 6;4 10;4 12;
-          1 7;1 8;1 9;1 11;3 7;3 8;3 10;3 12;
-          5 9;5 10;7 9;7 10;6 11;6 12;8 11;8 12];
+    1 7;1 8;1 9;1 11;3 7;3 8;3 10;3 12;
+    5 9;5 10;7 9;7 10;6 11;6 12;8 11;8 12];
 % Convert the above matrices into full connectivity matrices.
 C_b = tenseg_ind2C(C_b_in,N);%%
 C_s = tenseg_ind2C(C_s_in,N);
@@ -81,7 +81,7 @@ Gp=tenseg_str_gp(gr,C);    % generate group matrix
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[1];                   % number of groups with designed force
+index_gp=1;                   % number of groups with designed force
 fd=-1e5;                        % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 
@@ -107,7 +107,7 @@ num_plt=7:9; % mode index to plot
 [V_mode,omega]=tenseg_mode(Ia,C,C_b,C_s,N(:),E,A,l0,M,num_plt,saveimg);
 
 %% external force, forced motion of nodes, shrink of strings
-% calculate external force and 
+% calculate external force and
 ind_w=[];w=[];
 ind_dnb=[]; dnb0=[];
 % ind_dl0=[1;2]; dl0=[1;1];   %extent rest length of bar
@@ -137,7 +137,7 @@ t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
 N_out=data_out.N_out;
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'plot_member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
@@ -157,5 +157,5 @@ name=['lander',material{1},num2str(material{2})];
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[45,30],[],min(substep,30),name,savevideo,material{2})
 
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);

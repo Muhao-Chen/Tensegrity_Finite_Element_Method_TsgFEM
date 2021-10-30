@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % Steps of static calculation:
 % 1.Specify material properties
@@ -16,7 +16,7 @@
 % 8.Mass matrix and damping matrix and Modal analysis (optional)
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
-% 11. Plot and make video, output data to TECPLOT(optional) 
+% 11. Plot and make video, output data to TECPLOT(optional)
 clc;clearvars;close all;
 
 % Specify material properties
@@ -39,10 +39,10 @@ gravity=0;              % consider gravity 1 for yes, 0 for no
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.
-    angle = pi/180*20;
-    sizes=4;
-    q=1;
-    [N,C_b,C_s]=three_d_bar([0,0,0],[6,0,0],q,angle);
+angle = pi/180*20;
+sizes=4;
+q=1;
+[N,C_b,C_s]=three_d_bar([0,0,0],[6,0,0],q,angle);
 C=[C_b;C_s];
 [ne,nn]=size(C);        % ne:No.of element;nn:No.of node
 % Plot the structure to make sure it looks right
@@ -50,12 +50,12 @@ tenseg_plot(N,C_b,C_s);
 title('Expanded octahedron');
 
 %% Boundary constraints
-pinned_X=([1])'; pinned_Y=([1,2])'; pinned_Z=([1,2])';
+pinned_X=[1]'; pinned_Y=[1,2]'; pinned_Z=[1,2]';
 [Ia,Ib,a,b]=tenseg_boundary(pinned_X,pinned_Y,pinned_Z,nn);
 
 %% Group information
 %generate group index
-gr={[1:6];[7:9];10};       % number of elements in one group           
+gr={(1:6);(7:9);10};       % number of elements in one group
 Gp=tenseg_str_gp(gr,C);    % generate group matrix
 
 %% self-stress design
@@ -69,7 +69,7 @@ Gp=tenseg_str_gp(gr,C);    % generate group matrix
 w0=zeros(numel(N),1); w0a=Ia'*w0;
 
 %prestress design
-index_gp=[3];                   % number of groups with designed force
+index_gp=3;                   % number of groups with designed force
 fd=1e4;                        % force in bar is given as -1000
 [q_gp,t_gp,q,t]=tenseg_prestress_design(Gp,l,l_gp,A_1ag,V2,w0a,index_gp,fd);    %prestress design
 
@@ -95,7 +95,7 @@ num_plt=7:9; % mode index to plot
 [V_mode,omega]=tenseg_mode(Ia,C,C_b,C_s,N(:),E,A,l0,M,num_plt,saveimg,1);
 
 %% external force, forced motion of nodes, shrink of strings
-% calculate external force and 
+% calculate external force and
 ind_w=[];w=[];
 ind_dnb=[]; dnb0=[];
 ind_dl0=[10;7;8;9]; dl0=[-5;3;3;3];   %extent rest length of bar
@@ -124,10 +124,10 @@ t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
 N_out=data_out.N_out;
 l_t=data_out.l_out;
-%% plot member force 
+%% plot member force
 tenseg_plot_result(1:substep,t_t([1;7;10],:),{'bar','horizontal string','vertical string'},{'Load step','Force (N)'},'plot_member_force.png',saveimg);
 
-%% plot member length 
+%% plot member length
 tenseg_plot_result(1:substep,l_t([1;7;10],:),{'bar','horizontal string','vertical string'},{'Load step','Length (m)'},'plot_member_length.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
@@ -146,5 +146,5 @@ name=['3d_Dbar','tf_',num2str(tf),material{1},num2str(material{2})];
 tenseg_video(n_t,C_b,C_s,[],min(substep,50),name,savevideo,R3Ddata);
 % tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],3,[],min(substep,30),name,savevideo,material{2})
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
