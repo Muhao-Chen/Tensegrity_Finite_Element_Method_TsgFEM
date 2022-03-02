@@ -194,5 +194,5 @@ if savevideo==1
     close
 end
 
-%% linearized dynaimcs
+%% linearized dynamics
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
