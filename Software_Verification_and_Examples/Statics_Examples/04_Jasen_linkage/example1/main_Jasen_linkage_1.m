@@ -21,7 +21,7 @@ hollow_solid=0;          % use hollow bar or solid bar in minimal mass design (1
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=100;                                     %ºÉÔØ×Ó²½
+substep=100;                                     %ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
@@ -160,24 +160,24 @@ return
 %% plot member force and node coordinate
 figure
 plot(1:substep,t_t(1,:),'k-o',1:substep,t_t(2,:),'k-^',1:substep,t_t(3,:),'k-v','linewidth',1.5);
-legend('Ñ¹¸Ë','1Ë÷','2Ë÷')
-xlabel('ºÉÔØ×Ó²½','fontsize',14);
-ylabel('ÄÚÁ¦/N','fontsize',14)
-% saveas(gcf,'1»·Ë÷ÄÚÁ¦.png');
+legend('Ñ¹ï¿½ï¿½','1ï¿½ï¿½','2ï¿½ï¿½')
+xlabel('ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½','fontsize',14);
+ylabel('ï¿½ï¿½ï¿½ï¿½/N','fontsize',14)
+% saveas(gcf,'1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.png');
 
 z_whd1=n_t(10,:)-n_t(10,1);
 z_nhd1=n_t(11,:)-n_t(11,1);
 figure
 plot(1:substep,z_whd1,'k-o',1:substep,z_nhd1,'k-^','linewidth',1.5);
 legend('4X','4Y')
-xlabel('ºÉÔØ×Ó²½','fontsize',14);
-ylabel('Î»ÒÆ/m','fontsize',14)
-% saveas(gcf,'1½ÚµãÎ»ÒÆ.png');
+xlabel('ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½','fontsize',14);
+ylabel('Î»ï¿½ï¿½/m','fontsize',14)
+% saveas(gcf,'1ï¿½Úµï¿½Î»ï¿½ï¿½.png');
 
 
 %% plot structure configuration
 tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end))
-% saveas(gcf,'1×îÖÕÐÎÌ¬.png');
+% saveas(gcf,'1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬.png');
 
 figure(99);
 name=['half_Tbar_'];
