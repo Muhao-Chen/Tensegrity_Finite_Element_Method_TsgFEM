@@ -179,7 +179,7 @@ ylabel('λ��/m','fontsize',14)
 tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end))
 % saveas(gcf,'1������̬.png');
 
-figure(99);
+figure();
 name=['half_Tbar_'];
 set(gcf,'Position',get(0,'ScreenSize'));
 for n = 1:substep
