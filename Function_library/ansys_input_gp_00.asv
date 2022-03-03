@@ -123,6 +123,7 @@ fprintf(fid11,'*DO,J,1,%d\n    *GET,PRESTRESS(J),ELEM,J,ETAB,MSTRESS\n*ENDDO\n',
 
 fprintf(fid11,'\n');
 %% second solve
+% fprintf(fid11,'!第二次求解（荷载）\n/SOLU\nANTYPE,0 \nNLGEOM,ON!考虑大变形 \nSSTIF,ON	!考虑应力刚化 \nNSUBST,100	!设置荷载步的子步数 \nAUTOTS,ON	!自动荷载步 \nOUTRES,ALL,ALL 	!输出控制 \n');
 fprintf(fid11,'!Second solve for external force\n/SOLU\nANTYPE,0 \nNLGEOM,ON!consider large deformation \nSSTIF,ON	!prestress stiffness \nNSUBST,100	!Automatic time stepping \nAUTOTS,ON	!Automatic time stepping \nOUTRES,ALL,ALL 	!Output result \n');
 fprintf(fid11,'\n');
 
@@ -134,12 +135,14 @@ for i=1:numel(ind_dn)
     fprintf(fid11,'DK,%d,U%c,%f\n',ceil(ind_dn(i)/3),char(88+mod(ind_dn(i)+2,3)),dn0(i));
 end
 %% prestress and solve
+% fprintf(fid11,'*DO,J,1,%d	!数据填入预应力数组\n	INISTATE,DEFINE,J,,,,PRESTRESS(J)\n*ENDDO\n',ne);
 fprintf(fid11,'*DO,J,1,%d	!Prestress in initial state\n	INISTATE,DEFINE,J,,,,PRESTRESS(J)\n*ENDDO\n',ne);
 fprintf(fid11,'\n');
 fprintf(fid11,'ALLSEL,ALL\nSOLVE\nFINISH\n');
 
 fprintf(fid11,'\n');
 %% post1
+% fprintf(fid11,'!后处理\n/POST1\nPLDISP !显示变形后的图形\nALLSEL,ALL  !显示内力云图\nETABLE,MFORCE,SMISC,1\nPLLS,MFORCE,MFORCE,0.4\n');
 fprintf(fid11,'!Post analysis\n/POST1\nPLDISP !Plot deformed configuration\nALLSEL,ALL  !Contour plot for force\nETABLE,MFORCE,SMISC,1\nPLLS,MFORCE,MFORCE,0.4\n');
 
 fclose(fid11);
