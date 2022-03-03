@@ -64,7 +64,7 @@ data_out.t_t=zeros(ne,numel(out_tspan));
 data_out.n_t=zeros(3*nn,numel(out_tspan));
 data_out.l_t=zeros(ne,numel(out_tspan));
 Y(:,1) = y0;
-if silentMode==0&useWaitbar==1
+if silentMode==0 && useWaitbar==1
 wb= waitbar(0,'Please wait...');
 end
 for i = 2:N

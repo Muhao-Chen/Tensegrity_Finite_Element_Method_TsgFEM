@@ -10,10 +10,10 @@ function [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,type,grav
 %   gravity: 1 for considering gravity, 0 for not considering
 %   acc: acceleration vector of gravity, for example [0;0;9.8] 
 %	type: a string containing the type of external force, including:
-%           'impluse':exerted to free coordinate
+%           'impulse':exerted to free coordinate
 %           'step',
 %           'ramp',
-%           'vib_force'£ºsinusoidal wave vibration exerted to free coordinate
+%           'vib_force'ï¿½ï¿½sinusoidal wave vibration exerted to free coordinate
 %           'vib_nodes':sinusoidal wave vibration exerted to pinned coordinate
 %   a: index of free coordinates
 %   b: index of pinned coordinates

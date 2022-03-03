@@ -6,8 +6,7 @@
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 
 %% Add all necessary functions to MATLAB path%% set up the workspace
-clear all;
-close all;
+clear;
 clc;
 % add the function libraries
 addpath( genpath('Function_library') );
