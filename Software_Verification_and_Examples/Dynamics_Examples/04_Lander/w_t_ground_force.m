@@ -4,10 +4,10 @@
 % Example external force script
 %
 % This script is run at each time step in the simulation, allowing you to
-% specify w in terms of n, Ndot,etc
+% specify w in terms of n, Ndot, etc.
 
 % To illustrate, this is setting an external force on each node that
-%    opposes the velocity of the node
+%    opposes the velocity of the node.
 
 %     mb = 1;
 %     ms = 0;
@@ -24,7 +24,7 @@
 %     end
 G=-M*kron(ones(size(M,1)/3,1),[0;0;9.8]);
 
-ground_stiffness=1e6; 
+ground_stiffness=1e6;
 ground_damping = 1e4;
 w1=zeros(size(n));
 n_z=n(3:3:end);
@@ -35,5 +35,3 @@ n_z_ngtv(find(n_z>0))=0;
 nd_z_ngtv(find(n_z>0))=0;
 w1(3:3:end)=-(ground_stiffness*n_z_ngtv+ground_damping*nd_z_ngtv);
 w=w1+G;
-
-
