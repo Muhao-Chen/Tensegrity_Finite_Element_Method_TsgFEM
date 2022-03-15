@@ -49,18 +49,18 @@ plot(data_b1(1,:),data_b1(2,:),'k-o','linewidth',1.5)
 grid on;
 axis([-0.03,0.03,-1.2*max(stress_b),1.2*max(stress_b)]);
 xlabel('Strain','fontsize',14);
-ylabel('应力/Pa','fontsize',14);
-title('杆');
-% saveas(gcf,'1压杆本构.png');
+ylabel('Stress/Pa','fontsize',14);
+title('string');
+% saveas(gcf,'bar_constitutive.png');
 
 figure
 plot(data_s1(1,:),data_s1(2,:),'k-o','linewidth',1.5)
 grid on;
 axis([-0.015,0.025,-1.2*max(stress_s),1.2*max(stress_s)]);
 xlabel('Strain','fontsize',14);
-ylabel('应力/Pa','fontsize',14);
-title('索');
-% saveas(gcf,'1拉索本构.png');
+ylabel('Stress/Pa','fontsize',14);
+title('string');
+% saveas(gcf,'string_constitutive.png');
 %% plot the modulus-strain curve
 % E-strain
 figure
