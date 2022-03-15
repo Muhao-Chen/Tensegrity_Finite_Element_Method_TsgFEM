@@ -14,7 +14,7 @@ function output_vibration(data,name)
 %%
 fid11=fopen(name,'w');
 for i=1:numel(data)
-    fprintf(fid11,'%25.25f  \n',data(i));
+    fprintf(fid11,'%25.25f \n',data(i));
 end
 fclose(fid11);
 end
