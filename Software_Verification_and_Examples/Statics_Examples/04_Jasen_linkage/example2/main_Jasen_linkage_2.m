@@ -154,3 +154,6 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,60],[-80,80,-85,50,-30,30
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
+%% plot structure configuration
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end))
+

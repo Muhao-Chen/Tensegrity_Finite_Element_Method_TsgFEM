@@ -4,7 +4,7 @@ finish
 /clear 
 /filename,tower  
 /title,the analysis of tower  
-!Unit:m£¬N£¬Pa£¬s
+!Unit:mï¼ŒNï¼ŒPaï¼Œs
 
 /prep7
 !specify element type 
@@ -329,7 +329,7 @@ latt,,,1,,,,33  !specify section area
 LMESH,ALL
 finish
 
-!First solve for self-equilibrium£©
+!First solve for self-equilibriumï¼‰
 /SOLU
 ANTYPE,0 
 NLGEO!consider large deformation 
