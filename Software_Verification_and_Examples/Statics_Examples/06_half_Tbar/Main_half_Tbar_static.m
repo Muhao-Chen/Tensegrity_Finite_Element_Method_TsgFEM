@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % Steps of static calculation:
 % 1.Specify material properties
@@ -16,7 +16,8 @@
 % 8.Mass matrix and damping matrix and Modal analysis (optional)
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
-% 11. Plot and make video, output data to TECPLOT(optional) 
+% 11. Plot and make video, output data to TECPLOT(optional)
+%%
 clc;clear;close all;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Q345_blin','Q345_blin');
@@ -46,7 +47,7 @@ N = [n1 n2 n3 n4 ];
 % Manually specify connectivity indices.
 C_s_in=[1 4;3 4];  % This is indicating that string connection
 C_b_in = [2 4];  % Similarly, this is saying bar 1 connects node 1 to node 2,
-    
+
 % Convert the above matrices into full connectivity matrices.
 C_b = tenseg_ind2C(C_b_in,N);
 C_s = tenseg_ind2C(C_s_in,N);
@@ -62,10 +63,10 @@ pinned_X=(1:3)'; pinned_Y=(1:4)'; pinned_Z=(1:3)';
 
 %% generate group index for tensegrity torus structure
 gr=[];                     %group index, it is a cell containing vectors, each vector contains # of members in the same group
-Gp=tenseg_str_gp(gr,C);    %generate group matrix 
+Gp=tenseg_str_gp(gr,C);    %generate group matrix
 n_g=size(Gp,2);            %number of group for elements
 
-%% self-stress design 
+%% self-stress design
 %Calculate equilibrium matrix and member length
 [A_1a,A_1ag,A_2a,A_2ag,l,l_gp]=tenseg_equilibrium_matrix1(N,C,Gp,Ia);
 
@@ -133,19 +134,19 @@ if savedata==1
     save (['half_Tbar_',num2str(material{1}),'_slack_',num2str(material{2})]);
 end
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'plot_member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
 tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},'plot_coordinate.png',saveimg);
 
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end))
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end));
 
 %% make video of the dynamic
 name=['half_Tbar_',num2str(material{1}),'_slack_',num2str(material{2})];
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
-tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,0],[-1,1,-1,1,-1,1],min(substep,30),name,savevideo,material{2})
+tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,0],[-1,1,-1,1,-1,1],min(substep,30),name,savevideo,material{2});
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
