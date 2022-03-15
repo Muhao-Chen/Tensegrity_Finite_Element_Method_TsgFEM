@@ -21,7 +21,7 @@ hollow_solid=0;    % use hollow bar or solid bar in minimal mass design (1)hollo
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=100;                                     %ºÉÔØ×Ó²½
+substep=100;                                     %substep
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no

@@ -155,38 +155,3 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[-80,80,-85,50,0,70],min(s
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
-return
-%% following code is not used
-%% plot member force and node coordinate
-figure
-plot(1:substep,t_t(1,:),'k-o',1:substep,t_t(2,:),'k-^',1:substep,t_t(3,:),'k-v','linewidth',1.5);
-legend('ѹ��','1��','2��')
-xlabel('�����Ӳ�','fontsize',14);
-ylabel('����/N','fontsize',14)
-% saveas(gcf,'1��������.png');
-
-z_whd1=n_t(10,:)-n_t(10,1);
-z_nhd1=n_t(11,:)-n_t(11,1);
-figure
-plot(1:substep,z_whd1,'k-o',1:substep,z_nhd1,'k-^','linewidth',1.5);
-legend('4X','4Y')
-xlabel('�����Ӳ�','fontsize',14);
-ylabel('λ��/m','fontsize',14)
-% saveas(gcf,'1�ڵ�λ��.png');
-
-
-%% plot structure configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end));
-% saveas(gcf,'1������̬.png');
-
-figure();
-name=['half_Tbar_'];
-set(gcf,'Position',get(0,'ScreenSize'));
-for n = 1:substep
-    tenseg_plot_catenary( N_out{n},C_b,C_s,99,[],[0,0],[],[],l0_t(index_s,n));hold on
-    xlim([-1,1]); ylim([-3.5,3.5]); zlim([-1,1]);
-    tenseg_savegif_forever(name);
-    hold off;
-end
-close
-
