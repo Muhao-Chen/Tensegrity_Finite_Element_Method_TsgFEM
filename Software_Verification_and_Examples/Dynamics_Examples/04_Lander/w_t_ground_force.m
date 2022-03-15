@@ -22,10 +22,10 @@
 %             W = W+W1;
 %         end
 %     end
-G=-M*kron(ones(size(M,1)/3,1),[0;0;9.8]);
+G=-M*kron(ones(size(M,1)/3,1),[0;0;9.8]); % gravity matrix
 
-ground_stiffness=1e6;
-ground_damping = 1e4;
+ground_stiffness=1e6; % Ground stiffness
+ground_damping = 1e4; % Ground damping
 w1=zeros(size(n));
 n_z=n(3:3:end);
 nd_z=n_d(3:3:end);

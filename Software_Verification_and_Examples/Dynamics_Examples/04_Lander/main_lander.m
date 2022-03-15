@@ -10,6 +10,9 @@
 % [2] modal analysis (calculate tangent stiffness matrix, material stiffness,
 % geometry stiffness, generalized eigenvalue analysis).
 % [3] dynamics simulation.
+% The ground surface model is described as a second order dynamics equation
+% in "w_t_ground_force.m".
+%%
 
 %EXAMPLE
 clc;clear;close all;
