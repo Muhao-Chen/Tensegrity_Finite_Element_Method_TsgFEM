@@ -26,7 +26,7 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
-
+tf = 1/substep;         % simulation time step
 %% N C of the structure
 % Manually specify node positions (accurate).
 N0=[   38.0000   38.0000   -8.7357  -39.6678         0  -19.4476   17.0047   30.3109
@@ -143,12 +143,12 @@ tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'
 % tenseg_plot_result(1:substep,n_t([3*8-2,3*8-1],:),{'8X','8Y'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
 
 %% Plot final configuration
-% tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
+% tenseg_plot_catenary(reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 
 %% make video of the dynamic
 name=['Jasen_machanism3','tf_',num2str(tf),material{1}];
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
-tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,0,1],[-120,40,-85,50,-30,30],min(substep,50),name,savevideo,material{2})
+tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,0,1],[-120,40,-85,50,-30,30],min(substep,50),name,savevideo,material{2});
 
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);

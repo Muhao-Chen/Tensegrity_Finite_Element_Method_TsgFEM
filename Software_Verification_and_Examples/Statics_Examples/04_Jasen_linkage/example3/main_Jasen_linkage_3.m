@@ -5,7 +5,7 @@
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %% EXAMPLE
-clc; clear ; close all;
+clc; clear; close all;
 % Global variable
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Wood','Steel_string');
 material{1}='linear_elastic'; % index for material properties:'linear_elastic' multielastic plastic
@@ -23,7 +23,7 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
-
+tf = 1/substep;         % simulation time step
 %% N C of the structure
 % Manually specify node positions (accurate).
 d_z=10;
@@ -157,7 +157,7 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,sa
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
 %% plot structure configuration
-% tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
+% tenseg_plot_catenary(reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
 %
 % figure(99);
