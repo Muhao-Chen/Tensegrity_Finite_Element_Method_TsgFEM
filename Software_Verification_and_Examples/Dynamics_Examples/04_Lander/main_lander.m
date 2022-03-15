@@ -96,7 +96,7 @@ index_s=setdiff(1:ne,index_b);	% index of strings
 R3Ddata.Bradius=0.01*interp1([min(radius),max(radius)],[0.2,0.8],r_b);
 R3Ddata.Sradius=0.01*interp1([min(radius),max(radius)],[0.2,0.8],r_s);
 R3Ddata.Nradius=0.01*ones(nn,1);
-tenseg_plot(N,C_b,C_s,[],[],[],'Double layer prism',R3Ddata);
+tenseg_plot(N,C_b,C_s,[],[],[],'Tensegrity Lander',R3Ddata);
 
 %% input file of ANSYS
 ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'lander');
@@ -121,7 +121,7 @@ tspan=0:dt:tf;
 out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data time span
 
 % calculate external force and forced motion of nodes
-[w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'impluse',gravity,[0;0;9.8],C,mass,3*(4:9)-1,0,period);
+[~,~,~,~,dz_a_t]=tenseg_ex_force(tspan,a,b,'impluse',gravity,[0;0;9.8],C,mass,3*(4:9)-1,0,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'step',gravity,C,mass,3*(4:9)-2,1e5,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'ramp',gravity,C,mass,3*(4:9),-1e6,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'vib_force',gravity,C,mass,3*(4:9)-2,50,period);
