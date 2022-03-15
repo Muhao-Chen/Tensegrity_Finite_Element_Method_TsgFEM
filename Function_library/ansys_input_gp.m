@@ -47,28 +47,23 @@ if language==0
     fprintf(fid11,'!specify string material property \n mp,ex,2,eg	!Youngs modulus \n mp,prxy,2,0.3	!Poisson ratio\n mp,dens,2,%d	!Material density\nmp,alpx,2,6.5e-6	!coefficient of linear expansion\n\n',rho_b);
 
     %% nodal coordinates,connectivity
-
     for i=1:nn
-
         fprintf(fid11,'K,%d,%17.15f,%17.15f,%17.15f  !nodal coordinate\n',i,N_xyz_nn(i,:));
     end
     fprintf(fid11,'\n');
     for i=1:ne
-
         fprintf(fid11,'L,%4d,%4d  !line\n',El_123_nn(i,:));
     end
     fprintf(fid11,'\n');
     %% area
     fprintf(fid11,'*dim,area,,%d\n',ne);
     for i=1:ng
-
         fprintf(fid11,'area(%d)=%4d !cross sectional area\n',i,A_gp(i));
     end
     fprintf(fid11,'\n');
 
     for i=1:ng
         fprintf(fid11,'sectype,%d,link  !specify section type\nsecdata,area(%d)   !specify section data\nseccontrol,,%d       !only in tension(1) both tension and compression(0) \n',i,i,max(i==index_s_gp));
-
     end
     fprintf(fid11,'\n');
     %% specify cross sectional area
@@ -103,9 +98,7 @@ if language==0
     for i=1:numel(b)
         fprintf(fid11,'DK,%d,U%c\n',ceil(b(i)/3),char(88+mod(b(i)+2,3)));
     end
-
     fprintf(fid11,'\n');
-
     %% prestress and solve
     fprintf(fid11,'*DO,J,1,%d	!Prestress in initial state\n	INISTATE,DEFINE,J,,,,PRESTRESS(J)\n*ENDDO\n',ne);
     fprintf(fid11,'\n');
@@ -114,14 +107,12 @@ if language==0
     fprintf(fid11,'\n');
     %% post1
     fprintf(fid11,'!Post analysis\n/POST1\nPLDISP !Plot deformed shape\nALLSEL,ALL\n');
-
 else
 
 
     %%
     fprintf(fid11,'!输出节点坐标，拓扑关系，截面积，预应力\n\n');
     fprintf(fid11,'finish\n/clear \n/filename,tower  \n/title,the analysis of tower  \n!单位m，N，Pa，s\n\n');
-
     %%  material properties
     fprintf(fid11,'/prep7\n');
     fprintf(fid11,'!定义单元类型 \n et,1,link180 \n \n');
@@ -145,7 +136,6 @@ else
         fprintf(fid11,'area(%d)=%4d !截面积\n',i,A_gp(i));
     end
     fprintf(fid11,'\n');
-
     for i=1:ng
         fprintf(fid11,'sectype,%d,link  !定义截面类型为杆\nsecdata,area(%d)   !定义杆截面几何数据\nseccontrol,,%d       !定义只拉不压（1）可拉可压（0）\n',i,i,max(i==index_s_gp));
     end
@@ -193,11 +183,9 @@ else
     fprintf(fid11,'*DO,J,1,%d	!数据填入预应力数组\n	INISTATE,DEFINE,J,,,,PRESTRESS(J)\n*ENDDO\n',ne);
     fprintf(fid11,'\n');
     fprintf(fid11,'ALLSEL,ALL\nSOLVE\nFINISH\n');
-
     fprintf(fid11,'\n');
     %% post1
     fprintf(fid11,'!后处理\n/POST1\nPLDISP !显示变形后的图形\nALLSEL,ALL  !显示内力云图\nETABLE,MFORCE,SMISC,1\nPLLS,MFORCE,MFORCE,0.4\n',ne);
-
 end
 fclose(fid11);
 end

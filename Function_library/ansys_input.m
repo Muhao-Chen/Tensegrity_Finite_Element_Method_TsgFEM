@@ -24,7 +24,6 @@ fprintf(fid11,'!定义基本参数(数据) \n es=76000e6 \n eg=2.06e11 \nfd=2.15e08 \nfy
 fprintf(fid11,'!定义材料特性(数据) \n mp,ex,1,es	!定义弹性模量 \n mp,prxy,1,0.3	!定义主泊松比\n mp,dens,1,7870	!定义质量密度\nmp,alpx,1,6.5e-6	!定义线膨胀系数\n\n');
 fprintf(fid11,'!定义材料特性(数据) \n mp,ex,2,eg	!定义弹性模量 \n mp,prxy,2,0.3	!定义主泊松比\n mp,dens,2,7870	!定义质量密度\nmp,alpx,2,6.5e-6	!定义线膨胀系数\n\n');
 %% nodal coordinates,connectivity
-
 for i=1:nn
     fprintf(fid11,'K,%d,%17.15f,%17.15f,%17.15f  !节点坐标\n',i,N_xyz_nn(i,:));
 end
@@ -33,14 +32,13 @@ for i=1:ne
     fprintf(fid11,'L,%4d,%4d  !创建线\n',El_123_nn(i,:));
 end
 fprintf(fid11,'\n');
-%% area
+%% Area
 fprintf(fid11,'*dim,area,,%d\n',ne);
 for i=1:ne
     fprintf(fid11,'area(%d)=%4d !截面积\n',i,A(i));
 end
 fprintf(fid11,'\n');
 %  fprintf(fid11,'*DO,J,1,%d\n sectype,J,link  !定义截面类型为杆\nsecdata,area(J)	!定义杆截面几何数据\nseccontrol,,%d	!定义只拉不压（1）可拉可压（0）\n*ENDDO\n',ne,max(i==index_s));
-
 for i=1:ne
     fprintf(fid11,'sectype,%d,link  !定义截面类型为杆\nsecdata,area(%d)   !定义杆截面几何数据\nseccontrol,,%d       !定义只拉不压（1）可拉可压（0）\n',i,i,max(i==index_s));
 end
