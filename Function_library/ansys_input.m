@@ -23,7 +23,6 @@ fid11=fopen(name,'w');
  fprintf(fid11,'!定义基本参数(数据) \n es=76000e6 \n eg=2.06e11 \nfd=2.15e08 \nfy=2.35e08 \n ft=1.57e09 \n ratio1=0.85 \nratio2=0.70\n');
  fprintf(fid11,'!定义材料特性(数据) \n mp,ex,1,es	!定义弹性模量 \n mp,prxy,1,0.3	!定义主泊松比\n mp,dens,1,7870	!定义质量密度\nmp,alpx,1,6.5e-6	!定义线膨胀系数\n\n');
  fprintf(fid11,'!定义材料特性(数据) \n mp,ex,2,eg	!定义弹性模量 \n mp,prxy,2,0.3	!定义主泊松比\n mp,dens,2,7870	!定义质量密度\nmp,alpx,2,6.5e-6	!定义线膨胀系数\n\n');
-
 %% nodal coordinates,connectivity
 
  for i=1:nn

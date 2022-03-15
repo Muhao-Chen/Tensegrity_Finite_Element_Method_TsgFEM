@@ -1,7 +1,7 @@
 function K_t=tenseg_stiff_matx2(C,n,E,A,l0,S)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % This function is to calculate stiffness matrix of tensegrity or clustered
 % tensegrity.
@@ -33,10 +33,3 @@ Kg=kron(C'*diag(q)*C,eye(3));
 % symmetric
 K_t=Kg+(Ke+Ke')/2;     % this is to guarantee symmetric real matrix
 end
-
-
-
-
-
- 
-

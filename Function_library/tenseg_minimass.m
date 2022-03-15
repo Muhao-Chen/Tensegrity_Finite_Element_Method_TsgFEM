@@ -52,11 +52,10 @@ E=[Ind_b,Ind_s]*[Eb*ones(numel(index_b),1);Es*ones(numel(index_s),1)];        %Y
 
 %  members' force & rest length
 l0=E.*A.*l./(t+E.*A);
-% density vector 
+% density vector
 rho=zeros(ne,1);
 rho(index_b)=rho_b;
 rho(index_s)=rho_s;
 % mass matrix
 mass=rho.*A.*l0;           % mass vector
 end
-

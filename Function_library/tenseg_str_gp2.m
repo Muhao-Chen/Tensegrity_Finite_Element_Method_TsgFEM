@@ -1,9 +1,9 @@
 function Gp=tenseg_str_gp2(gr,C)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
-% This function transfer the group infomation, gr, into group matrix Gp, 
+% This function transfer the group infomation, gr, into group matrix Gp,
 % this is method 2.
 %
 % Inputs:
@@ -12,13 +12,13 @@ function Gp=tenseg_str_gp2(gr,C)
 %	C: the connectivity matrix
 % Outputs:
 %	Gp: group matrix, ne(number of elements) rows, ng(number of groups) columns
-%% 
+%%
 Gp=eye(size(C,1));
 E=eye(size(C,1));
 Gp1=[];
 med=[]; %intermidiate variable
 % %% method 1
-% 
+%
 % if ~isempty(gr)
 %    for i=1:numel(gr)       % this is to combine members in one group
 % Gp(:,gr{i}(1))=sum(E(:,gr{i}),2);
@@ -34,7 +34,7 @@ med=[]; %intermidiate variable
 % for i=1:size(gr,1)
 %     num=[num,gr{i}];
 % end
-% 
+%
 % if ~isempty(gr)
 % for i=1:size(gr,1)
 %     s=sum(E(:,gr{i}),2);
@@ -46,12 +46,12 @@ med=[]; %intermidiate variable
 
 %% method 3
 if ~isempty(gr)
-   for i=1:numel(gr)       % this is to combine members in one group
-   med=[med,sum(E(:,gr{i}),2)];    
-   end
-      for i=1:numel(gr)         % set duplicate columns into 0
-Gp(:,gr{i}(1:end))=0*Gp(:,gr{i}(1:end));
-   end
+    for i=1:numel(gr)       % this is to combine members in one group
+        med=[med,sum(E(:,gr{i}),2)];
+    end
+    for i=1:numel(gr)         % set duplicate columns into 0
+        Gp(:,gr{i}(1:end))=0*Gp(:,gr{i}(1:end));
+    end
 end
 Gp=[med,Gp];
 % delete zero column

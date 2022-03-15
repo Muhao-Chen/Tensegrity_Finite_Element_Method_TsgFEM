@@ -1,10 +1,10 @@
 function [U1,U2,V1,V2,S]=tenseg_svd(A_1ag)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % This function do the singular value decomposition of equilibrium matrix
-% 
+%
 % Inputs:
 %	A_1a: equilibrium matrix with constraints, force density as variable,
 %	this variable can be changed to  A_1ag, A_2a, A_2ag

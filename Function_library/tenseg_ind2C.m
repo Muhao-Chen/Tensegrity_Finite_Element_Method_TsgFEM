@@ -4,7 +4,7 @@ function [ C_mat ] = tenseg_ind2C( C_ind,Nodes )
 %
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 % [ C_mat ] = TENSEG_IND2C( C_ind, Nodes ) creates a connectivity matrix
 % from input index notation array and node matrix.
@@ -32,15 +32,14 @@ C_mat = zeros(n,nmembers);
 
 
 for i=1:nmembers % Go through each member
-	
-	% Get indices for start and end points
-	side1=C_ind(i,1);
-	side2=C_ind(i,2);
-	
-	% Put -1 at index for start point, 1 at index for end point
-	C_mat(side1, i) = -1;
-	C_mat(side2, i) = 1;
+
+    % Get indices for start and end points
+    side1=C_ind(i,1);
+    side2=C_ind(i,2);
+
+    % Put -1 at index for start point, 1 at index for end point
+    C_mat(side1, i) = -1;
+    C_mat(side2, i) = 1;
 end
 C_mat = C_mat';
-
 end

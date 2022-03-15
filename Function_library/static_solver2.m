@@ -7,9 +7,8 @@ function data_out=static_solver2(data)
 % converge to stable equilibrium, considering substep.
 %%
 global E A l0 Ia Ib C w ne Xb Xa dXa f_int l_int
-% minimize total energy? (1: use, 0: not use) it's time consuming
-use_energy=1;
-
+% minimize total energy? (1: use, 0: not use). 1 is time consuming.
+use_energy = 1;
 %% input data
 C=data.C;
 ne=data.ne;
@@ -111,11 +110,11 @@ for k=1:substep
         K_taa=Ia'*K_t*Ia;
         
         %modify the stiffness matrix
-        [V_mode,D]=eig(K_taa);                       %刚度矩阵特征根
-        d=diag(D);                            %eigen value
-        lmd=min(d);                     %刚度矩阵最小特征根
+        [V_mode,D]=eig(K_taa);                       % eigenvalues of the stiffness matrix
+        d=diag(D);                            %eigenvalues
+        lmd=min(d);                     % the smallest eigenvalue
         if lmd>0
-            Km=K_taa+u*eye(size(K_taa)); %修正的刚度矩阵
+            Km=K_taa+u*eye(size(K_taa)); % modified stiffness matrix
         else
             Km=K_taa+(abs(lmd)+u)*eye(size(K_taa));
         end
@@ -183,7 +182,6 @@ for k=1:substep
     
     
     %% output data
-    
     data_out.N_out{k}=reshape(X,3,[]);
     data_out.n_out(:,k)=X;
     %     data_out.l_out(:,k)=l;

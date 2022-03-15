@@ -20,7 +20,7 @@ if isempty(axislim)
     nx_t=n_t(1:3:end); min_x=min(min(nx_t));max_x=max(max(nx_t));d_x=max_x-min_x+5e-2;
     ny_t=n_t(2:3:end); min_y=min(min(ny_t));max_y=max(max(ny_t));d_y=max_y-min_y+5e-2;
     nz_t=n_t(3:3:end); min_z=min(min(nz_t));max_z=max(max(nz_t));d_z=max_z-min_z+5e-1;
-    
+
     d=max(max(n_t))-min(min(n_t));
     axislim=[min_x-0.2*d_x,max_x+0.2*d_x,min_y-0.2*d_y,max_y+0.2*d_y,min_z-0.2*d_z,max_z+0.2*d_z];
 end
@@ -30,7 +30,7 @@ if nargin ==7 % no radius
 end
 
 if savevideo==1
-%     figure(99);
+    %     figure(99);
     hf=figure;
     %     set(gcf,'Position',get(0,'ScreenSize')); % full screen
     for p = 1:floor(size(n_t,2)/num):size(n_t,2)
@@ -40,7 +40,7 @@ if savevideo==1
         %         [N,C_b,C_s] = tenseg_delete_extra_nodes(delete_index,N,C_b,C_s);
         tenseg_plot(N,C_b,C_s,hf,[],[],[],R3Ddata);hold on
         set(gcf,'color','w');
-        axis(axislim)
+        axis(axislim);
         tenseg_savegif_forever(name);
         hold off;
     end

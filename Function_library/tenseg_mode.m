@@ -48,7 +48,7 @@ end
 
 for i=1:numel(num_plt)
     f1=figure;
-    title=({['mode ',num2str(num_plt(i))];['f=',num2str(omega(num_plt(i)),'%.4f'),'Hz']});
+    title=({['Mode',num2str(num_plt(i))];['f=',num2str(omega(num_plt(i)),'%.4f'),'Hz']});
     %plot buckling mode
     tenseg_plot(N+ampli*max(l0)*reshape(Ia*V_mode(:,num_plt(i)),3,[]),C_b,C_s,f1,[],[],title);
     tenseg_plot_dash(N,C_b,C_s,f1,[],[],title);
@@ -58,7 +58,6 @@ for i=1:numel(num_plt)
         saveas(gcf,['Mode',num2str(num_plt(i)),'.png']);
     end
 end
-
 %%  plot 3 mode in one figure
 % f2=figure;
 % for i=1:numel(plt)

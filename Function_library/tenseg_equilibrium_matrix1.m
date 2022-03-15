@@ -34,4 +34,3 @@ A_1ag=A_1a*Gp;                                   % equilibrium matrix in group c
 A_2a=A_1a*diag(l.^-1);                           % equilibrium matrix
 A_2ag=A_2a*Gp;                                   % equilibrium matrix in group constraints
 end
-

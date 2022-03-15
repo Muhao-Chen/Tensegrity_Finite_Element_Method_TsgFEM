@@ -21,24 +21,16 @@ q_bar=E_bar*A_bar*(inv(l0_bar)-inv(l_bar));      %force density
 %     dqdn(j,:)=X'*kron((C(j,:))'*C(j,:),eye(3));
 % end
 % dqdn=E_bar*A_bar*(l_bar)^-3*dqdn;
-% 
+%
 % K_t=kron(C'*q_bar*C,eye(3))+...
 %     kron(C',eye(3))*diag(kron(C,eye(3))*X)*kron(eye(ne),ones(3,1))*dqdn;
 
 % K_taa=Ia'*K_t*Ia;
-%% 
+%%
 B=N*C';
 K=cell(ne,1);
 for i=1:ne
-K{i,1}=q_bar(i,i)*eye(3)+E_bar(i,i)*A_bar(i,i)*l_bar(i,i)^(-3)*B(:,i)*B(:,i)';
+    K{i,1}=q_bar(i,i)*eye(3)+E_bar(i,i)*A_bar(i,i)*l_bar(i,i)^(-3)*B(:,i)*B(:,i)';
 end
 K_t=kron(C',eye(3))*blkdiag(K{:})*kron(C,eye(3));
-
 end
-
-
-
-
-
- 
-

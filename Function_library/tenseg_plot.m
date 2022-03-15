@@ -122,12 +122,12 @@ if ~isempty(C_b)
         bar_start_nodes(:,j) = N(:,C_b(j,:)==-1);
         bar_end_nodes(:,j) = N(:,C_b(j,:)==1);
     end
-    
+
     if ~isempty(R3Ddata) && isfield(R3Ddata,'Bradius') % 3D plot
         for j = 1:size(C_b,1)
             [LatFace, UpFace, DwFace] = PlotCylinderObject(bar_start_nodes(:,j),bar_end_nodes(:,j),...
                 R3Ddata.Bradius(j),nsurfpatches); % Lateral, upper, and down surface of cylinder representing a bar
-            
+
             surf(LatFace.x, LatFace.y, LatFace.z, 'MeshStyle','row','FaceColor',BarSurfColor, ...
                 'FaceLighting','gouraud', 'AmbientStrength',LightAmbientStrength);
             hold on
@@ -163,12 +163,12 @@ if ~isempty(C_s)
         string_start_nodes(:,j) = N(:,C_s(j,:)==-1);
         string_end_nodes(:,j) = N(:,C_s(j,:)==1);
     end
-    
+
     if ~isempty(R3Ddata) && isfield(R3Ddata,'Sradius') % 3D plot
         for j = 1:size(C_s,1)
             [LatFace, UpFace, DwFace] = PlotCylinderObject(string_start_nodes(:,j),string_end_nodes(:,j),...
                 R3Ddata.Sradius(j),nsurfpatches); % Lateral, upper, and down surface of cylinder representing a string
-            
+
             surf(LatFace.x, LatFace.y, LatFace.z, 'MeshStyle','row','FaceColor',StringSurfColor, ...
                 'FaceLighting','gouraud', 'AmbientStrength',LightAmbientStrength);
             hold on
@@ -183,7 +183,7 @@ if ~isempty(C_s)
         quiver3(string_start_nodes(1,:),string_start_nodes(2,:),string_start_nodes(3,:),S(1,:),S(2,:),S(3,:),'red.','Autoscale','off','LineWidth',StringWidth);
         hold on
     end
-    
+
     % Write string labels
     if LabelStrings == 1
         for i = 1:size(S,2)
