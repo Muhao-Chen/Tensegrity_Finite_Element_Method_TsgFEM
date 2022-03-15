@@ -10,11 +10,11 @@ global E A l0 Ia Ib C w ne Xb Xa dXa
 use_energy = 0;
 
 switch nargin
-    case 2
-        slack = 0;
-        plastic=0;
     case 1
         substep = 1;
+        slack = 0;
+        plastic=0;
+    case 2
         slack = 0;
         plastic=0;
 end
@@ -38,7 +38,6 @@ if  isfield(data,'w')
 else
     w_t=linspace(0,0,substep);
 end
-
 % dXb=data.dXb;
 if  isfield(data,'dXb')
     if size(data.dXb,2)==substep
@@ -65,8 +64,6 @@ end
 X0=data.N(:);
 data_out=data;     %initialize output data
 data_out.E_out=E0*ones(1,substep);
-
-
 %% calculate equilibrium
 X=X0;               %initialize configuration
 Xb0=Ib'*X;           %pinned node
@@ -170,8 +167,6 @@ for k=1:substep
     %             E=E0;              %use initial young's muldus
     %         end
     %     end
-
-
     %% output data
     data_out.N_out{k}=reshape(X,3,[]);
     data_out.n_out(:,k)=X;
