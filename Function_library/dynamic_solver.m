@@ -1,7 +1,7 @@
 function data_out=dynamic_solver(data_in)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % This function solve dynamic equations using Runge_Kuta method.
 %
@@ -9,7 +9,7 @@ function data_out=dynamic_solver(data_in)
 %	data_in: data structure describing simulation task
 %		[].N: initial node positions
 %		[].Ia: transform matrix to get free nodal coordinate
-%		[].tspan: time series 
+%		[].tspan: time series
 % Outputs:
 %	History: data structure containing simulation results
 %		[].n_t: %time history of nodal coordinate
