@@ -55,7 +55,7 @@ C=[C_b;C_s];
 [ne,nn]=size(C);% ne:No.of element;nn:No.of node
 
 % Plot the structure to make sure it looks right
-tenseg_plot(N,C_b,C_s);
+% tenseg_plot(N,C_b,C_s);
 
 %% Boundary constraints
 pinned_X=(1:3)'; pinned_Y=(1:4)'; pinned_Z=(1:3)';
@@ -89,7 +89,7 @@ index_s=setdiff(1:ne,index_b);	% index of strings
 R3Ddata.Bradius=interp1([min(radius),max(radius)],[0.002,0.008],r_b);
 R3Ddata.Sradius=interp1([min(radius),max(radius)],[0.002,0.008],r_s);
 R3Ddata.Nradius=0.01*ones(nn,1);
-tenseg_plot(N,C_b,C_s,[],[],[],'Double layer prism',R3Ddata);
+tenseg_plot(N,C_b,C_s,[],[],[],'2 string 1 bar',R3Ddata);
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix
