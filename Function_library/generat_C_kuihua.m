@@ -10,13 +10,13 @@ C_b_in_unit = [[1:m]',[m+1:2*m]'];  % Bar connectivity index
 % Convert above index notation into actual connectivity matrices
 C_b2unit = tenseg_ind2C(C_b_in_unit,N);
 
-u=2*m+1;           % # of nodes in a unit
-C_s_in_unit1=[1 u   % 2 top 2 diagonal 1 circlur
+u=2*m+1;            % # of nodes in a unit
+C_s_in_unit1=[1 u   % 2 top, 2 diagonal, 1 circlur
     1 2*u
     m+1 u
     m+1 2*u
-    m+1 m+1+u];%strings of the first loop
-C_s_in_temp=[1 2  % strings of inner loop
+    m+1 m+1+u];   % strings in the first loop
+C_s_in_temp=[1 2  % strings in the inner loop
     1 2+u
     1 m+2
     1 m+2+u
@@ -25,9 +25,9 @@ C_s_in_temp=[1 2  % strings of inner loop
     3 2+u
     m+3 2
     m+3 2+u
-    m+3 m+3+u];%2 top 2 diagonal 1 circlur 2 top 2 diagonal 1 circlur
+    m+3 m+3+u];% 2 top, 2 diagonal, 1 circlur, 2 top, 2 diagonal, 1 circlur
 
-if rem(m,2)==1     %odd m
+if rem(m,2)==1     % odd m
     C_s_in_unit=[C_s_in_unit1;[kron(2*[0:(m-1)/2-1]',ones(10,2))+kron(ones((m-1)/2,1),C_s_in_temp)]];
     C_s_in_unit=[C_s_in_unit;m,m+u];     % top circular strings
 elseif m==2

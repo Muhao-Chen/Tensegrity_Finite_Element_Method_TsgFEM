@@ -8,7 +8,6 @@ function data_out=equilibrium_solver(data,substep,slack,plastic)
 global E A l0 Ia Ib C w ne Xb Xa dXa
 % minimize total energy? (1: use, 0: not use). Using 1 is time consuming.
 use_energy = 0;
-
 switch nargin
     case 1
         substep = 1;

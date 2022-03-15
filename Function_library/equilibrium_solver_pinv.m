@@ -23,13 +23,13 @@ u=1e-1;
 for i=1:1e3
     Xa=Ia'*X;
 
-    l=sqrt(sum((reshape(X,3,[])*C').^2))'; %bar length
-    q=E.*A.*(1./l0-1./l);      %force density
+    l=sqrt(sum((reshape(X,3,[])*C').^2))'; % bar length
+    q=E.*A.*(1./l0-1./l);      % force density
     q_bar=diag(q);
 
-    K=kron(C'*q_bar*C,eye(3));                      %stiffness matrix
-    Fp=w-K*X;                                       %unbalanced force
-    % norm(Ia'*Fp);                                  %see the norm of unbalanced force
+    K=kron(C'*q_bar*C,eye(3));                       % stiffness matrix
+    Fp=w-K*X;                                        % unbalanced force
+    % norm(Ia'*Fp);                                  % check the norm of unbalanced force
     if norm(Ia'*Fp)<1e-6
         break
     end
