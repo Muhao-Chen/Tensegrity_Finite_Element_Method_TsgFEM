@@ -36,10 +36,14 @@ end
 G=(gravity)*-0.5*kron(abs(C)'*mass,acc);
 %initialize force and displacement data
 w_t=zeros(size(G,1),size(tspan,2));     % initialize w_t
-dnb_t=zeros(numel(b),numel(tspan));              %move boundary nodes
+dnb_t=zeros(numel(b),numel(tspan));              % move boundary nodes
 dnb_d_t=zeros(numel(b),numel(tspan));
 dnb_dd_t=zeros(numel(b),numel(tspan));
 dz_a_t=[];
+% free nodes
+dna_t=zeros(numel(a),numel(tspan));              % free nodes
+dna_d_t=zeros(numel(a),numel(tspan));
+dna_dd_t=zeros(numel(a),numel(tspan));
 
 switch type
     case 'impluse'
