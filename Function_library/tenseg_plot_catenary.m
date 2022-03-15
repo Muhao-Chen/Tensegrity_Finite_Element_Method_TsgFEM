@@ -1,5 +1,5 @@
 function [fig_out] = tenseg_plot_catenary( N,C_b,C_s,fig_handle,highlight_nodes,view_vec, PlotTitle, R3Ddata,ls_0)
-% This function is modified from Goyal, R., Chen, M., Majji, M. and Skelton, R., 2019. MOTES: Modeling of Tensegrity Structures. Journal of Open Source Software, 4(42), p.1613. 
+% This function is modified from Goyal, R., Chen, M., Majji, M. and Skelton, R., 2019. MOTES: Modeling of Tensegrity Structures. Journal of Open Source Software, 4(42), p.1613.
 % The code license is Mozilla Public License, v. 2.0.
 % The source code is from the following link:
 % https://github.com/ramaniitrgoyal92/Modeling_of_Tensegrity_Structures_MOTES/blob/master/Function_Library/tenseg_plot.m%
@@ -25,9 +25,7 @@ function [fig_out] = tenseg_plot_catenary( N,C_b,C_s,fig_handle,highlight_nodes,
 %
 % Example:
 %	tenseg_plot(N,C_b,C_b)
-
 % Handle optional arguments
-
 %% Object size options (for line plots)
 BarWidth = 3; % Width of bar lines
 StringWidth = 1; % Width of string lines
@@ -120,12 +118,12 @@ if ~isempty(C_b)
         bar_start_nodes(:,j) = N(:,C_b(j,:)==-1);
         bar_end_nodes(:,j) = N(:,C_b(j,:)==1);
     end
-    
+
     if ~isempty(R3Ddata) && isfield(R3Ddata,'Bradius') % 3D plot
         for j = 1:size(C_b,1)
             [LatFace, UpFace, DwFace] = PlotCylinderObject(bar_start_nodes(:,j),bar_end_nodes(:,j),...
                 R3Ddata.Bradius(j),nsurfpatches); % Lateral, upper, and down surface of cylinder representing a bar
-            
+
             surf(LatFace.x, LatFace.y, LatFace.z, 'MeshStyle','row','FaceColor',BarSurfColor, ...
                 'FaceLighting','gouraud', 'AmbientStrength',LightAmbientStrength);
             hold on
@@ -137,8 +135,8 @@ if ~isempty(C_b)
             hold on
         end
     else % Normal line plot
-            quiver3(bar_start_nodes(1,:),bar_start_nodes(2,:),bar_start_nodes(3,:),B(1,:),B(2,:),B(3,:),'black.','Autoscale','off','LineWidth',BarWidth)       
-            hold on
+        quiver3(bar_start_nodes(1,:),bar_start_nodes(2,:),bar_start_nodes(3,:),B(1,:),B(2,:),B(3,:),'black.','Autoscale','off','LineWidth',BarWidth)
+        hold on
     end
     % Write bar labels
     if LabelBars == 1
@@ -161,12 +159,12 @@ if ~isempty(C_s)
         string_start_nodes(:,j) = N(:,C_s(j,:)==-1);
         string_end_nodes(:,j) = N(:,C_s(j,:)==1);
     end
-    
+
     if ~isempty(R3Ddata) && isfield(R3Ddata,'Sradius') % 3D plot
         for j = 1:size(C_s,1)
             [LatFace, UpFace, DwFace] = PlotCylinderObject(string_start_nodes(:,j),string_end_nodes(:,j),...
                 R3Ddata.Sradius(j),nsurfpatches); % Lateral, upper, and down surface of cylinder representing a string
-            
+
             surf(LatFace.x, LatFace.y, LatFace.z, 'MeshStyle','row','FaceColor',StringSurfColor, ...
                 'FaceLighting','gouraud', 'AmbientStrength',LightAmbientStrength);
             hold on
@@ -178,16 +176,16 @@ if ~isempty(C_s)
             hold on
         end
     else % Normal line plot
-%         quiver3(string_start_nodes(1,:),string_start_nodes(2,:),string_start_nodes(3,:),S(1,:),S(2,:),S(3,:),'red.','Autoscale','off','LineWidth',StringWidth);
-%plot catenary string
+        %         quiver3(string_start_nodes(1,:),string_start_nodes(2,:),string_start_nodes(3,:),S(1,:),S(2,:),S(3,:),'red.','Autoscale','off','LineWidth',StringWidth);
+        %plot catenary string
         for j = 1:size(S,2)
             [x,y,z] = catenary_3D(string_start_nodes(:,j), string_end_nodes(:,j),ls_0(j),50);
             line(x,y,z,'Color','red','linewidth',1)
             hold on
         end
-            
+
     end
-    
+
     % Write string labels
     if LabelStrings == 1
         for i = 1:size(S,2)
@@ -248,4 +246,5 @@ set(gca,'ticklength',1.2*get(gca,'ticklength'))
 if ~isempty(R3Ddata) % 3D object changes
     camlight('headlight');
     camproj('perspective');
+end
 end

@@ -19,4 +19,3 @@ switch lumped
         M=1/6*kron((abs(C)'*diag(mass)*abs(C)+diag(diag(abs(C)'*diag(mass)*abs(C)))),eye(3));
 end
 end
-
