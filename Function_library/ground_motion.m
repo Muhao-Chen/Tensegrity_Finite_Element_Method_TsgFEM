@@ -4,12 +4,12 @@ function [dz_d_t,dz_v_t,dz_a_t]=ground_motion(amplitude,period,tspan,X,Y,Z)
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % This function output the time history of acceleration,velocity,displacement
-% of ground motion, given the amplitude and period of a sinusoidal wave 
+% of ground motion, given the amplitude and period of a sinusoidal wave
 %
 % Inputs:
-%   amplitude: 
+%   amplitude:
 %	period
-%   X: group motion in X direction 
+%   X: group motion in X direction
 %	Y: group motion in Y direction
 %	Z: group motion in Z direction
 %
@@ -22,4 +22,3 @@ dz_d_t=[1;0;0]*amplitude/(2*pi/period)^2*sin(2*pi/period*tspan);                
 dz_v_t=-[1;0;0]*amplitude/(2*pi/period)*cos(2*pi/period*tspan);    % velocity of ground motion (time serises)
 dz_a_t=[1;0;0]*amplitude*sin(2*pi/period*tspan);    % acceleration of ground motion (time serises)
 end
-

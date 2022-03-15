@@ -8,8 +8,8 @@ function [consti_data,Eb,Es]=material_info()
 %% input the info of bars
 % strain_b1=[0.001267,0.00157,0.02480,0.033,0.06,0.07,0.08];  % strain of bar Q345 
 % stress_b1=1e6*[261,273,288.6,313.6,398.5,0,0];              % stress of bar Q345
-strain_b1=[1456e-6,23301e-6];  % strain of bar Q345  双线性
-stress_b1=1e6*[300,435];              % stress of bar Q345   双线性
+strain_b1=[1456e-6,23301e-6];  % strain of bar Q345  multi-linear
+stress_b1=1e6*[300,435];              % stress of bar Q345   multi-linear
 
 data_b0=[strain_b1;stress_b1];            %material info for strain>0
 data_b1=[-fliplr(data_b0),[0;0],data_b0];         %bar info from strain to stress
