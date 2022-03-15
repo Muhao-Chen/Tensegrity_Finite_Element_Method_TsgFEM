@@ -1,11 +1,11 @@
 function [fig_out] = tenseg_plot_dash( N,C_b,C_s,fig_handle,highlight_nodes,view_vec, PlotTitle, R3Ddata)
-% This function is modified from Goyal, R., Chen, M., Majji, M. and Skelton, R., 2019. MOTES: Modeling of Tensegrity Structures. Journal of Open Source Software, 4(42), p.1613. 
+% This function is modified from Goyal, R., Chen, M., Majji, M. and Skelton, R., 2019. MOTES: Modeling of Tensegrity Structures. Journal of Open Source Software, 4(42), p.1613.
 % The code license is Mozilla Public License, v. 2.0.
 % The source code is here:
 % https://github.com/ramaniitrgoyal92/Modeling_of_Tensegrity_Structures_MOTES/blob/master/Function_Library/tenseg_plot.m
 % [fig_out] = TENSEG_PLOT( N,C_b,C_s,fig_handle,highlight_nodes,view_vec )
 % creates a rough visualization figure for a given tensegrity structure,
-% use dash line to plot 
+% use dash line to plot
 %
 % Inputs:
 %	N: node matrix (3 x n array for n nodes)
@@ -121,12 +121,12 @@ if ~isempty(C_b)
         bar_start_nodes(:,j) = N(:,C_b(j,:)==-1);
         bar_end_nodes(:,j) = N(:,C_b(j,:)==1);
     end
-    
+
     if ~isempty(R3Ddata) && isfield(R3Ddata,'Bradius') % 3D plot
         for j = 1:size(C_b,1)
             [LatFace, UpFace, DwFace] = PlotCylinderObject(bar_start_nodes(:,j),bar_end_nodes(:,j),...
                 R3Ddata.Bradius(j),nsurfpatches); % Lateral, upper, and down surface of cylinder representing a bar
-            
+
             surf(LatFace.x, LatFace.y, LatFace.z, 'MeshStyle','row','FaceColor',BarSurfColor, ...
                 'FaceLighting','gouraud', 'AmbientStrength',LightAmbientStrength);
             hold on
@@ -162,12 +162,12 @@ if ~isempty(C_s)
         string_start_nodes(:,j) = N(:,C_s(j,:)==-1);
         string_end_nodes(:,j) = N(:,C_s(j,:)==1);
     end
-    
+
     if ~isempty(R3Ddata) && isfield(R3Ddata,'Sradius') % 3D plot
         for j = 1:size(C_s,1)
             [LatFace, UpFace, DwFace] = PlotCylinderObject(string_start_nodes(:,j),string_end_nodes(:,j),...
                 R3Ddata.Sradius(j),nsurfpatches); % Lateral, upper, and down surface of cylinder representing a string
-            
+
             surf(LatFace.x, LatFace.y, LatFace.z, 'MeshStyle','row','FaceColor',StringSurfColor, ...
                 'FaceLighting','gouraud', 'AmbientStrength',LightAmbientStrength);
             hold on
@@ -182,7 +182,7 @@ if ~isempty(C_s)
         quiver3(string_start_nodes(1,:),string_start_nodes(2,:),string_start_nodes(3,:),S(1,:),S(2,:),S(3,:),'red.','Autoscale','off','LineWidth',StringWidth,'linestyle','--');
         hold on
     end
-    
+
     % Write string labels
     if LabelStrings == 1
         for i = 1:size(S,2)
@@ -243,4 +243,5 @@ set(gca,'ticklength',1.2*get(gca,'ticklength'))
 if ~isempty(R3Ddata) % 3D object changes
     camlight('headlight');
     camproj('perspective');
+end
 end
