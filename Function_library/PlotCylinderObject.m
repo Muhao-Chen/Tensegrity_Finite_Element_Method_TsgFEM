@@ -11,7 +11,6 @@ function [LatFace, UpFace, DwFace] = PlotCylinderObject(p1,p2,r,nsurfpatches)
 % lateral (LatFace), upper (UpFace), and down (DwFace) of a cylinder
 % LatFace.x, LatFace.y, LatFace.z: Coordinates of lateral cylinder surface
 % Same for UpFace, DwFace
-%
 % p1: Start point of cylinder
 % p2: End point of cylinder
 % r: Radius of cylinder

@@ -9,7 +9,7 @@ function [E,f,q] = nonlinear_solver(data,Xb0,w_t,dXb_t,l0_t,E,p_s,p_e,subsubstep
 % minimize total energy? (1: use, 0: not use) it's time consuming
 %%
 global Ia Ib C w ne Xb Xa dXa f_int l_int
-use_energy=0;
+use_energy = 0;
 %% Data
 C=data.C;
 ne=data.ne;
