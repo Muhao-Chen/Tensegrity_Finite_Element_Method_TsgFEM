@@ -3,7 +3,6 @@
 ### **Welcome to **TsgFEM** software!**
 
 #### General Information
- 
 Our group focuses on the research of integrating structure and control design. We design structures based on the tensegrity paradigm to meet the specified objectives. These objectives can vary from minimizing the structure's mass to controlling the structure to meet specific performance. This software is intended to study the statics and dynamics of tensegrity systems based on FEM. The authors would like to make this open-source software to help other researchers interested in this field.
 
 This software aims to facilitate the statics and dynamics of Tensegrity systems based on FEM.
