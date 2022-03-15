@@ -15,6 +15,6 @@ function [data_b1,data_b2]=blin_consti_data(Eb,sigma_b)
 %% material
 strain_b1=[sigma_b/Eb,2];
 stress_b1=[sigma_b,sigma_b];
-[data_b1,data_b2,Eb,sigma_b]=point2consti_data(strain_b1,stress_b1);
+[data_b1,data_b2,~,~]=point2consti_data(strain_b1,stress_b1);
 end
 
