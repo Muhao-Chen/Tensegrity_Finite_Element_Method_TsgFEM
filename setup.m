@@ -1,4 +1,4 @@
-%% ^_^ Welcome to Tensegrity Finite Element Method(TsgFEM) software! ^_^ %%
+%% ^_^ Welcome to Tensegrity Finite Element Method (TsgFEM) software! ^_^ %%
 % SETUP file to be run only the first time
 %
 % /* This Source Code Form is subject to the terms of the Mozilla Public
