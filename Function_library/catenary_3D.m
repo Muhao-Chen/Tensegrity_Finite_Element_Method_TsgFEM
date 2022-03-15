@@ -14,7 +14,7 @@ minGrad	= 1e-10;     % minimum norm of gradient
 minVal	= 1e-8;      % minimum norm of sag function
 stepDec	= 0.5;       % factor for decreasing stepsize
 minStep	= 1e-9;		 % minimum step size
-minHoriz	= 1e-3;		 % minumum horizontal distance
+minHoriz	= 1e-3;	 % minumum horizontal distance
 %% transform a 3D problem to 2D problem
 a=[0,A(3)];
 b=[norm(A(1:2)-B(1:2)),B(3)];

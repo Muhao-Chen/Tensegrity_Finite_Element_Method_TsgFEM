@@ -189,8 +189,6 @@ else
         end
     end
     fprintf(fid11,'\n');
-
-
     %% prestress and solve
     fprintf(fid11,'*DO,J,1,%d	!数据填入预应力数组\n	INISTATE,DEFINE,J,,,,PRESTRESS(J)\n*ENDDO\n',ne);
     fprintf(fid11,'\n');
