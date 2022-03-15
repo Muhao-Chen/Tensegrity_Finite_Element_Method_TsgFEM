@@ -41,10 +41,10 @@ dnb_d_t=zeros(numel(b),numel(tspan));
 dnb_dd_t=zeros(numel(b),numel(tspan));
 dz_a_t=[];
 % free nodes
-dna_t=zeros(numel(a),numel(tspan));              % free nodes
-dna_d_t=zeros(numel(a),numel(tspan));
-dna_dd_t=zeros(numel(a),numel(tspan));
-
+% dna_t=zeros(numel(a),numel(tspan));              % free nodes
+% dna_d_t=zeros(numel(a),numel(tspan));
+% dna_dd_t=zeros(numel(a),numel(tspan));
+% n_n = [a;b];
 switch type
     case 'impluse'
         w_t(c_index,tspan<0.05)=amplitude*20;        % impluse load in c_index
@@ -56,8 +56,8 @@ switch type
         w_t(c_index,:)=amplitude*ones(numel(c_index),1)*linspace(0,1,size(tspan,2));  % load in c_index
         w_t=w_t+G*ones(size(tspan));            % add gravity force
     case 'vib_force'
-        dz_d_t=-amplitude/(2*pi/period)^2*sin(2*pi/period*tspan);    % displacement of ground motion (time serises)
-        dz_v_t=-amplitude/(2*pi/period)*cos(2*pi/period*tspan);    % velocity of ground motion (time serises)
+        %         dz_d_t=-amplitude/(2*pi/period)^2*sin(2*pi/period*tspan);    % displacement of ground motion (time serises)
+        %         dz_v_t=-amplitude/(2*pi/period)*cos(2*pi/period*tspan);    % velocity of ground motion (time serises)
         dz_a_t=amplitude*sin(2*pi/period*tspan);    % acceleration of ground motion (time serises)
 
         w_0=-0.5*kron(abs(C)'*mass,[1;1;1]*dz_a_t);        %load in c_index
@@ -85,4 +85,3 @@ switch type
     case 'self_define'
 end
 end
-
