@@ -29,14 +29,14 @@ if isempty(axislim)
 end
 
 if savevideo==1
-    figure;
-    set(gcf,'Position',get(0,'ScreenSize'));          %full screen
+    figure(6);
+    %     set(gcf,'Position',get(0,'ScreenSize'));          %full screen
     for p = 1:floor(size(n_t,2)/num):size(n_t,2)
         switch slack
             case 0
-                tenseg_plot(reshape(n_t(:,p),3,[]),C_b,C_s,99,[],view_vec,[],R3Ddata);hold on
+                tenseg_plot(reshape(n_t(:,p),3,[]),C_b,C_s,6,[],view_vec,[],R3Ddata);hold on
             case 1
-                tenseg_plot_catenary( reshape(n_t(:,p),3,[]),C_b,C_s,99,[],view_vec,[],R3Ddata,l0_t(index_s,p));hold on
+                tenseg_plot_catenary( reshape(n_t(:,p),3,[]),C_b,C_s,6,[],view_vec,[],R3Ddata,l0_t(index_s,p));hold on
         end
         set(gcf,'color','w');
         axis(axislim)

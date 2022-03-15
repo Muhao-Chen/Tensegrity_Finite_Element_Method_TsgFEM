@@ -50,7 +50,7 @@ C=[C_b;C_s];
 [ne,nn]=size(C);% ne:No.of element;nn:No.of node
 
 % Plot the structure to make sure it looks right
-tenseg_plot(N,C_b,C_s);
+% tenseg_plot(N,C_b,C_s);
 
 %% Boundary constraints
 pinned_X=(kron(ones(1,6),[1,5])+kron(0:5,[8 8]))'; pinned_Y=(kron(ones(1,6),[1,5])+kron(0:5,[8 8]))'; pinned_Z=(1:nn)';
@@ -130,7 +130,7 @@ data.substep=substep;    % substep
 data_out=static_solver(data);        %solve equilibrium using mNewton method
 
 %% Plot final configuration
-tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
+% tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
 t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
@@ -143,10 +143,10 @@ ansys_input_gp(N_out{1},C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),
 tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(1:substep,n_t([3*8-2,3*8-1],:),{'8X','8Y'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
+% tenseg_plot_result(1:substep,n_t([3*8-2,3*8-1],:),{'8X','8Y'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
 
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],R3Ddata,l0_t(index_s,end));
+% tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],R3Ddata,l0_t(index_s,end));
 
 %% make video of the dynamic
 name=['Jasen_machanism3','tf_',num2str(tf),material{1}];
@@ -157,7 +157,7 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,sa
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
 %% plot structure configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
+% tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
 %
 % figure(99);
