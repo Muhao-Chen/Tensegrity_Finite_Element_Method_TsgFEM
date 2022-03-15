@@ -17,8 +17,7 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional) 
-clc;clearvars;close all;
-
+clc;clear;close all;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Q345_blin','Q345_blin');
 material{1}='linear_elastic'; % index for material properties:linear_elastic; multielastic; plastic
@@ -30,7 +29,7 @@ thick=6e-3;        % thickness of hollow bar
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=100;                                     %ºÉÔØ×Ó²½
+substep=100;                                     % load steps
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
