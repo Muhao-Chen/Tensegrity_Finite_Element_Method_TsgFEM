@@ -4,6 +4,7 @@
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+%%
 clc;clear;close all;
 % global l  Eb Es
 %EXAMPLE
@@ -12,14 +13,13 @@ clc; clear ; close all;
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Wood','Steel_string');
 material{1}='linear_elastic'; % index for material properties:'linear_elastic' multielastic plastic
 material{2}=0; % index for considering slack of string (1) for yes,(0) for no (for compare with ANSYS)
-
 % cross section design cofficient
 thick=6e-3;        % thickness of hollow bar
-hollow_solid=0;          % use hollow bar or solid bar in minimal mass design (1)hollow (0)solid
+hollow_solid=0;    % use hollow bar or solid bar in minimal mass design (1)hollow (0)solid
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=100;                                     %substep
+substep=100;            % substep
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
@@ -113,16 +113,16 @@ dnb_t(ind_dnb,:)=l0(1)*[cos(linspace(0,-2*pi,substep)+theta)-cos(theta);sin(lins
 % input data
 data.N=N; data.C=C; data.ne=ne; data.nn=nn; data.Ia=Ia_new; data.Ib=Ib_new;
 data.E=E; data.A=A; data.l0=l0; data.index_b=index_b; data.index_s=index_s;
-data.consti_data=consti_data;   data.material=material; %constitue info
-data.w_t=w_t;  % external force
-data.dnb_t=dnb_t;% forced movement of pinned nodes
-data.l0_t=l0_t;% forced movement of pinned nodes
+data.consti_data=consti_data;   data.material=material; % constitue info
+data.w_t=w_t;     % external force
+data.dnb_t=dnb_t; % forced movement of pinned nodes
+data.l0_t=l0_t;   % forced movement of pinned nodes
 data.substep=substep;    % substep
 
 % nonlinear analysis
-data_out=static_solver(data);        %solve equilibrium using mNewton method
-t_t=data_out.t_out;          %member force in every step
-n_t=data_out.n_out;          %nodal coordinate in every step
+data_out=static_solver(data);        % solve equilibrium using mNewton method
+t_t=data_out.t_out;          % member force in every step
+n_t=data_out.n_out;          % nodal coordinate in every step
 N_out=data_out.N_out;
 
 %% Plot final configuration

@@ -57,27 +57,22 @@ N=[N,[R*[cos(angle3); sin(angle3)]; 2*h*ones(1,p)]];
 C_b_in = [1 5;2 6;3 4;5 9;6 7;4 8];   % This is indicating the bar connection
 % Convert the above matrices into full connectivity matrices.
 C_b = tenseg_ind2C(C_b_in,N);
-
 % Manually specify connectivity indices.
 C_s_in = [4 5;5 6;6 4;7 8;8 9;9 7;1 4;2 5;3 6;4 7;5 8;6 9];  % This is indicating the string connection
 % Convert the above matrices into full connectivity matrices.
 C_s = tenseg_ind2C(C_s_in,N);
-
 C=[C_b;C_s];
 [ne,nn]=size(C);        % ne:No.of element;nn:No.of node
-
 % Plot the structure to make sure it looks right
 tenseg_plot(N,C_b,C_s);
 title('Double layer prism');
 %% Boundary constraints
 pinned_X=(1:3)'; pinned_Y=(1:3)'; pinned_Z=(1:3)';
 [Ia,Ib,a,b]=tenseg_boundary(pinned_X,pinned_Y,pinned_Z,nn);
-
 %% Group information
 %generate group index
 gr={(1:3);(4:6);(7:9);(10:12);(13:15);(16:18)};     % number of elements in one group
 Gp=tenseg_str_gp(gr,C);    %generate group matrix
-
 %% self-stress design
 %Calculate equilibrium matrix and member length
 [A_1a,A_1ag,A_2a,A_2ag,l,l_gp]=tenseg_equilibrium_matrix1(N,C,Gp,Ia);
@@ -140,11 +135,9 @@ data_out=static_solver2(data);        %solve equilibrium using mNewton method
 
 % data_out=static_solver(data);        %solve equilibrium using mNewton method
 % data_out{i}=equilibrium_solver_pinv(data);        %solve equilibrium using mNewton method
-
 t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
 N_out=data_out.N_out;
-
 %% plot member force
 tenseg_plot_result(1:substep,t_t([1;7;13],:),{'bar','horizontal string','vertical string'},{'Load step','Force (N)'},'plot_member_force.png',saveimg);
 %% Plot nodal coordinate curve X Y
@@ -159,7 +152,5 @@ end
 name=['tower_',material{1},'_slack_',num2str(material{2})];
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2});
 % tenseg_video(n_t,C_b,C_s,[],min(substep,50),name,savevideo,R3Ddata);
-
-
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
