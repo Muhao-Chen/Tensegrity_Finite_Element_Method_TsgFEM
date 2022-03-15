@@ -30,7 +30,6 @@ function [fig_out] = tenseg_plot_catenary( N,C_b,C_s,fig_handle,highlight_nodes,
 BarWidth = 3; % Width of bar lines
 StringWidth = 1; % Width of string lines
 NodeSize = 18; % Size of node marker
-
 %% Labeling options
 % Write labels? (1: show, 0: suppress)
 LabelNodes = 0;
