@@ -10,13 +10,13 @@
 % [2] modal analysis(calculate tangent stiffness matrix, material
 % stiffness, geometry stiffness, generalized eigenvalue analysis)
 % [3] dynamic simulation
-
+%%
 %EXAMPLE
 clc;clear;close all;
 % Global variable
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
-material{1}='linear_elastic'; % index for material properties: multielastic, plastic.
-material{2}=1; % index for considering slack of string (1) for yes,(0) for no (for compare with ANSYS)
+material{1}='linear_elastic'; % index for material properties: linear_elastic, multielastic, plastic.
+material{2}=1; % index for considering slack of string (1) for yes,(0) for no (for comparision with ANSYS)
 
 % cross section design cofficient
 thick=6e-3;        % thickness of hollow bar
@@ -26,7 +26,7 @@ c_s=0.1;           % coefficient of safty of strings 0.3
 
 % dynamic analysis set
 amplitude=50;            % amplitude of external force of ground motion
-period=0.5;             %period of seismic
+period=0.5;             % period of seismic signal
 
 dt=0.001;               % time step in dynamic simulation
 auto_dt=0;              % use(1 or 0) auto time step, converengency is guaranteed if used
