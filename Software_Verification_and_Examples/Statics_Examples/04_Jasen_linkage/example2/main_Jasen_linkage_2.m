@@ -21,7 +21,7 @@ hollow_solid=0;          % use hollow bar or solid bar in minimal mass design (1
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=100;                                     %substep
+substep=100;            % substep
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
@@ -125,13 +125,13 @@ data.l0_t=l0_t;% forced movement of pinned nodes
 data.substep=substep;    % substep
 
 % nonlinear analysis
-data_out=static_solver(data);        %solve equilibrium using mNewton method
+data_out=static_solver(data);        % solve equilibrium using mNewton method
 
 %% Plot final configuration
 tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
-t_t=data_out.t_out;          %member force in every step
-n_t=data_out.n_out;          %nodal coordinate in every step
+t_t=data_out.t_out;          % member force in every step
+n_t=data_out.n_out;          % nodal coordinate in every step
 N_out=data_out.N_out;
 
 %% input file of ANSYS
@@ -153,8 +153,6 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,60],[-80,80,-85,50,-30,30
 
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
-
-
 
 %% plot structure configuration
 tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));

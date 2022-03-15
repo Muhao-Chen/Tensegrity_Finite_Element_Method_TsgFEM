@@ -3,12 +3,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
-% * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
-
-clc;clear;close all;
-% global l  Eb Es
-
-%EXAMPLE
+% * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+%% EXAMPLE
 clc; clear ; close all;
 % Global variable
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Wood','Steel_string');
@@ -33,20 +29,20 @@ gravity=0;              % consider gravity 1 for yes, 0 for no
 d_z=10;
 N0=[   38.0000   38.0000   -8.7357  -39.6678         0  -19.4476   17.0047   30.3109
     7.8000   22.8000   40.5702   -5.8717         0  -39.6874  -35.4306  -82.5894
-         0         0         0         0         0         0         0         0];
-     N0(1,:)=N0(1,:)-38;
-     N1=N0;N1(3,:)=-d_z*ones(1,8);N1(1,:)=-N1(1,:);
-     N2=N0;N2(3,:)=-2*d_z*ones(1,8);
-     N3=N0;N3(3,:)=-3*d_z*ones(1,8);N3(1,:)=-N3(1,:);
-     N4=N0;N4(3,:)=-4*d_z*ones(1,8);
-     N5=N0;N5(3,:)=-5*d_z*ones(1,8);N5(1,:)=-N5(1,:);
-     N=[N0,N1,N2,N3,N4,N5];
+    0         0         0         0         0         0         0         0];
+N0(1,:)=N0(1,:)-38;
+N1=N0;N1(3,:)=-d_z*ones(1,8);N1(1,:)=-N1(1,:);
+N2=N0;N2(3,:)=-2*d_z*ones(1,8);
+N3=N0;N3(3,:)=-3*d_z*ones(1,8);N3(1,:)=-N3(1,:);
+N4=N0;N4(3,:)=-4*d_z*ones(1,8);
+N5=N0;N5(3,:)=-5*d_z*ones(1,8);N5(1,:)=-N5(1,:);
+N=[N0,N1,N2,N3,N4,N5];
 % N=kron([1 1 1],N0);
 
 % Manually specify connectivity indices.
 C_s_in=[];  % This is indicating that string connection
 C_b_in0 = [1 2;2 3;3 4;3 5;4 5;4 6;5 7;6 7;6 8;7 8;2 7];  % Similarly, this is saying bar 1 connects node 1 to node 2,
-C_b_in=[C_b_in0; C_b_in0+8; C_b_in0+16; C_b_in0+24; C_b_in0+32; C_b_in0+40];   
+C_b_in=[C_b_in0; C_b_in0+8; C_b_in0+16; C_b_in0+24; C_b_in0+32; C_b_in0+40];
 % Convert the above matrices into full connectivity matrices.
 C_b = tenseg_ind2C(C_b_in,N);
 C_s = tenseg_ind2C(C_s_in,N);
@@ -62,9 +58,9 @@ pinned_X=(kron(ones(1,6),[1,5])+kron(0:5,[8 8]))'; pinned_Y=(kron(ones(1,6),[1,5
 
 %% generate group index for tensegrity torus structure
 gr=[];
-Gp=tenseg_str_gp(gr,C);    %generate group matrix 
+Gp=tenseg_str_gp(gr,C);    %generate group matrix
 
-%% self-stress design 
+%% self-stress design
 %Calculate equilibrium matrix and member length
 [A_1a,A_1ag,A_2a,A_2ag,l,l_gp]=tenseg_equilibrium_matrix1(N,C,Gp,Ia);
 
@@ -108,7 +104,7 @@ num_plt=1:2;        % number of modes to plot
 [V_mode,omega]=tenseg_mode(Ia,C,C_b,C_s,N(:),E,A,l0,M,num_plt,saveimg);
 
 %% external force, forced motion of nodes, shrink of strings
-% calculate external force and 
+% calculate external force and
 ind_w=[];w=[];
 ind_dnb=((kron(0:5,[1 1])*8+2)*3+kron(ones(1,6),[-2,-1]))'; dnb0=zeros(12,1);
 ind_dl0=[]; dl0=[];
@@ -143,7 +139,7 @@ N_out=data_out.N_out;
 %% input file of ANSYS
 ansys_input_gp(N_out{1},C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'Jasen linkage full size');
 
-%% plot member force 
+%% plot member force
 tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'member_force.png',saveimg);
 
 %% Plot nodal coordinate curve X Y
@@ -157,13 +153,13 @@ name=['Jasen_machanism3','tf_',num2str(tf),material{1}];
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,savevideo,material{2});
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
 %% plot structure configuration
 tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
-% 
+%
 % figure(99);
 % name='half_Tbar_11';
 % % set(gcf,'Position',get(0,'ScreenSize'));
@@ -171,15 +167,15 @@ tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(i
 %     tenseg_plot_catenary(N_out{n},C_b,C_s,99,[],[0,0,1],[],[],l0_t(index_s,n));hold on
 %     xlim([-120,120]); ylim([-85,60]);
 %     %     zlim([-1,1]);
-%     
+%
 %     xlabel('X (m)','Interpreter','latex');
 %     ylabel('Y (m)','Interpreter','latex');
 %     %     zlabel('Z (m)','Interpreter','latex');
 %     set(gca,'fontsize', 12,'linewidth',1.15);
 %     set(gca,'ticklength',1.2*get(gca,'ticklength'));
-%     
+%
 %         tenseg_savegif_forever(name);
 %     hold off;
 % end
-% close 
-% 
+% close
+%
