@@ -3,7 +3,7 @@ function [A_lin,B_lin]=tenseg_lin_mtrx(C,n,E,A,l0,M,D,Ia,A_1a)
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
-% This function calculate the linearized dynamic modal linearized model x_dot=A_lin*x+B_lin*u, 
+% This function calculate the linearized dynamic modal linearized model x_dot=A_lin*x+B_lin*u,
 % in which x=[dna;dna_d]; u=[dfa;dl0]; dfa is the force in free nodal coordinates
 %
 % Inputs:
@@ -29,6 +29,6 @@ K_l0a=-A_1a*diag(E.*A.*l0.^(-2));     % sensitive matrix of rest length
 % K_l0=A_1;                           % sensitive matrix of force density
 % linearized model x_dot=Ax+B*u, in which x=[dna;dna_d]; u=[dfa;dl0]; dfa is the force in free nodal coordinates
 A_lin=[zeros(size(Ia,2)),eye(size(Ia,2));-M_aa\K_Taa,-M_aa\D_aa];
-B_lin=[zeros(size(Ia,2),size(Ia,2)+numel(l0));inv(M_aa),-M_aa\K_l0a];   
+B_lin=[zeros(size(Ia,2),size(Ia,2)+numel(l0));inv(M_aa),-M_aa\K_l0a];
 end
 

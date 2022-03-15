@@ -5,12 +5,12 @@ function [E,stress]=stress_strain(consti_data,index_b,index_s,strain,material)
 %
 % This function calculates young's modulus and stress, given material properties, strain.
 % multielastic, plastic, slack of string can be considered
-%  Input£º consti_date: constitutive data of bar and string 
-%           index_b,index_s: number of bar and string 
+%  Input£º consti_date: constitutive data of bar and string
+%           index_b,index_s: number of bar and string
 %           strain
-%           slack: consider material nonlinear(1 for yes,0 for no)  
+%           slack: consider material nonlinear(1 for yes,0 for no)
 % Output:  E young's modulus
-%          stress 
+%          stress
 %%
 global Eb Es f_int l_int l0 A
 %% extract data of material
@@ -31,7 +31,7 @@ switch material{1}
         %interplot stress
         stress(index_b)= strain(index_b)*Eb;
         stress(index_s)= strain(index_s)*Es;
-        
+
     case 'multielastic'
         %interplot stress
         stress(index_b)= interp1(data_b1(1,:), data_b1(2,:), strain(index_b),'linear','extrap');
@@ -45,13 +45,13 @@ switch material{1}
         stress(index_s)= interp1(data_s1(1,:), data_s1(2,:), strain(index_s),'linear','extrap');
         %     E(index_s)= interp1(data_s2(1,:), data_s2(2,:), strain(index_s),'previous',data_s2(2,end));
         %interplot stress of bar(plastic)
-%         Et=interp1(data_b2(1,:), data_b2(2,:), data_b2(1,end),'previous',data_b2(2,end));
+        %         Et=interp1(data_b2(1,:), data_b2(2,:), data_b2(1,end),'previous',data_b2(2,end));
         Et=data_b2(2,size(data_b2,2)/2+2);      %Et is the young's modulus in plastic( bilinear kinetic plastic(BKIN))
         Ee=interp1(data_b2(1,:), data_b2(2,:), 0,'previous',data_b2(2,end));
         strain_int=(l_int-l0)./l0;
         stress_int=f_int./A;
         stress_b=stress_int(index_b)+Ee*(strain(index_b)-strain_int(index_b));
-        
+
         stress_b=min([stress_b,interp1(data_b1(1,(size(data_b1,2)+3)/2:(size(data_b1,2)+5)/2), data_b1(2,(size(data_b1,2)+3)/2:(size(data_b1,2)+5)/2), strain(index_b),'linear','extrap')],[],2);
         stress_b=max([stress_b,interp1(data_b1(1,(size(data_b1,2)-3)/2:(size(data_b1,2)-1)/2), data_b1(2,(size(data_b1,2)-3)/2:(size(data_b1,2)-1)/2), strain(index_b),'linear','extrap')],[],2);
         %         stress_b( find(stress_b>interp1(data_b1(1,end-1:end), data_b1(2,end-1:end), strain(index_b),'linear','extrap')))=...
@@ -70,7 +70,7 @@ if material{2}==1     % 1 considering slack;0 not considering
     %         E(index_s)=Es;
     E(index_string_slack)=0;
     stress(index_string_slack)=0;      %reculate stress
-    
+
 end
 
 %     if multielastic==1
@@ -127,7 +127,4 @@ end
 %
 % %     E(index_b)= interp1(data_b2(1,:), data_b2(2,:), strain(index_s),'previous',data_b2(2,end));
 % end
-
-
-
 end

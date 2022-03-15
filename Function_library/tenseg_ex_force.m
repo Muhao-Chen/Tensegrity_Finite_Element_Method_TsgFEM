@@ -8,13 +8,13 @@ function [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,type,grav
 %
 % Inputs:
 %   gravity: 1 for considering gravity, 0 for not considering
-%   acc: acceleration vector of gravity, for example [0;0;9.8] 
+%   acc: acceleration vector of gravity, for example [0;0;9.8]
 %	type: a string containing the type of external force, including:
 %           'impulse':exerted to free coordinate
 %           'step',
 %           'ramp',
-%           'vib_force'��sinusoidal wave vibration exerted to free coordinate
-%           'vib_nodes':sinusoidal wave vibration exerted to pinned coordinate
+%           'vib_force': sinusoidal wave vibration exerted to free coordinate
+%           'vib_nodes': sinusoidal wave vibration exerted to pinned coordinate
 %   a: index of free coordinates
 %   b: index of pinned coordinates
 %   c_index: coordinate index in external force or movement, a vector
@@ -55,29 +55,29 @@ switch type
         dz_d_t=-amplitude/(2*pi/period)^2*sin(2*pi/period*tspan);    % displacement of ground motion (time serises)
         dz_v_t=-amplitude/(2*pi/period)*cos(2*pi/period*tspan);    % velocity of ground motion (time serises)
         dz_a_t=amplitude*sin(2*pi/period*tspan);    % acceleration of ground motion (time serises)
-        
+
         w_0=-0.5*kron(abs(C)'*mass,[1;1;1]*dz_a_t);        %load in c_index
         w_t(c_index,:)=w_0(c_index,:);
         w_t=w_t+G*ones(size(tspan));            % add gravity force
 
         %    [dz_d_t,dz_v_t,dz_a_t]=ground_motion(amplitude,period,tspan,1,0,0);
         %    [w_t,dnb_t,dnb_d_t,dnb_dd_t]=tenseg_earthquake(G,C,mass,b,dz_d_t,dz_v_t,dz_a_t,move_ground);
-        
+
     case 'vib_nodes'
         w_t=w_t+G*ones(size(tspan));            % add gravity force
         % displacement, velocity, acceleration of ground
         dz_d_t=-amplitude/(2*pi/period)^2*sin(2*pi/period*tspan);    % displacement of ground motion (time serises)
         dz_v_t=-amplitude/(2*pi/period)*cos(2*pi/period*tspan);    % velocity of ground motion (time serises)
         dz_a_t=amplitude*sin(2*pi/period*tspan);    % acceleration of ground motion (time serises)
-        
+
         dnb_t0=kron(ones(numel(b),1),[1;1;1]*dz_d_t);              %move boundary nodes
         dnb_d_t0=kron(ones(numel(b),1),[1;1;1]*dz_v_t);    %velocity of moved boundary nodes
         dnb_dd_t0=kron(ones(numel(b),1),[1;1;1]*dz_a_t);   %acceleration of moved boundary nodes
-        
+
         dnb_t(c_index,:)=dnb_t0(c_index,:);
         dnb_d_t(c_index,:)=dnb_d_t0(c_index,:);
         dnb_dd_t(c_index,:)=dnb_dd_t0(c_index,:);
-       
+
     case 'self_define'
 end
 end

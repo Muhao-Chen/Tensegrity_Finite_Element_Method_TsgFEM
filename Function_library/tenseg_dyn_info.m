@@ -47,12 +47,13 @@ nb=Ib'*n0+dnb;
 n=Ia*na+Ib*nb;
 n_d=Ia*na_d+Ib*nb_d;
 l=sqrt(sum((reshape(n,3,[])*C').^2))'; %bar length
-    strain=(l-l0)./l0;        %strain of member
-    [E,sigma]=stress_strain(consti_data,index_b,index_s,strain,slack,plastic);
-    f=sigma.*A;         %member force
-    q=f./l;      %reculate force density
+strain=(l-l0)./l0;        %strain of member
+[E,sigma]=stress_strain(consti_data,index_b,index_s,strain,slack,plastic);
+f=sigma.*A;         %member force
+q=f./l;      %reculate force density
 %     q_bar=diag(q);
 %     K=kron(C'*q_bar*C,eye(3));                      %stiffness matrix
-% 
+%
 % na_dd=(Ia'*M*Ia)\(Ia'*(-K*n-D*n_d+w));      %dynamic equation
 % Yd=[na_d;na_dd];
+end

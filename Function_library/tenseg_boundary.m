@@ -6,9 +6,9 @@ function [Ia,Ib,a,b]=tenseg_boundary(pinned_X,pinned_Y,pinned_Z,nn)
 % This function calculate the free and pinned number of nodal coordinate,
 % as well as the transfer matrix of free and pinned coordinates
 % Inputs:
-%   pinned_X: number of nodes pinned in X direction  
-%	pinned_Y: number of nodes pinned in Y direction 
-%   pinned_Z: number of nodes pinned in Z direction 
+%   pinned_X: number of nodes pinned in X direction
+%	pinned_Y: number of nodes pinned in Y direction
+%   pinned_Z: number of nodes pinned in Z direction
 %
 % Outputs:
 %	Ia: transfer matrix of free coordinates
@@ -23,4 +23,3 @@ a=setdiff((1:3*nn)',b);  %index of free node direction
 Ia=I(:,a);  %free node index
 Ib=I(:,b);  %pinned nod index
 end
-

@@ -45,7 +45,7 @@ ind=floor(t/dt)+1;
 % nb_d=dnb_d_t(:,ind); %this is the velocity of fixed node
 % nb_dd=dnb_dd_t(:,ind); %this is the acceleration of fixed node
 
-% Get current pinned nodes displacement 
+% Get current pinned nodes displacement
 if ischar(dnb_t)
     run(dnb_t) % if dnb is a string, run that script
 elseif size(dnb_t,2)==1
@@ -54,7 +54,7 @@ else
     dnb = dnb_t(:,ind); % or dnb can be time-varying
 end
 
-% Get current pinned nodes velocity 
+% Get current pinned nodes velocity
 if ischar(dnb_d_t)
     run(dnb_d_t) % if dnb is a string, run that script
 elseif size(dnb_d_t,2)==1
@@ -63,7 +63,7 @@ else
     nb_d = dnb_d_t(:,ind); % or dnb can be time-varying
 end
 
-% Get current pinned nodes acceleration 
+% Get current pinned nodes acceleration
 if ischar(dnb_dd_t)
     run(dnb_dd_t) % if dnb is a string, run that script
 elseif size(dnb_dd_t,2)==1
@@ -98,3 +98,4 @@ K=kron(C'*q_bar*C,eye(3));                      %stiffness matrix
 
 na_dd=(Ia'*M*Ia)\(Ia'*(w-M*Ib*nb_dd-K*n-D*n_d));      %dynamic equation
 Yd=[na_d;na_dd];
+end
