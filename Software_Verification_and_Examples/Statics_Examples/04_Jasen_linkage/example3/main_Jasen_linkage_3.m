@@ -25,7 +25,7 @@ substep=100;                                     %substep
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
-savevideo=0;            % make video(1) or not(0)
+savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 
 %% N C of the structure
@@ -161,25 +161,25 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,sa
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
 %% plot structure configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end));
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
-
-figure(99);
-name='half_Tbar_11';
-% set(gcf,'Position',get(0,'ScreenSize'));
-for n = 1:substep
-    tenseg_plot_catenary(N_out{n},C_b,C_s,99,[],[0,0,1],[],[],l0_t(index_s,n));hold on
-    xlim([-120,120]); ylim([-85,60]);
-    %     zlim([-1,1]);
-    
-    xlabel('X (m)','Interpreter','latex');
-    ylabel('Y (m)','Interpreter','latex');
-    %     zlabel('Z (m)','Interpreter','latex');
-    set(gca,'fontsize', 12,'linewidth',1.15);
-    set(gca,'ticklength',1.2*get(gca,'ticklength'));
-    
-        tenseg_savegif_forever(name);
-    hold off;
-end
-close 
-
+% 
+% figure(99);
+% name='half_Tbar_11';
+% % set(gcf,'Position',get(0,'ScreenSize'));
+% for n = 1:substep
+%     tenseg_plot_catenary(N_out{n},C_b,C_s,99,[],[0,0,1],[],[],l0_t(index_s,n));hold on
+%     xlim([-120,120]); ylim([-85,60]);
+%     %     zlim([-1,1]);
+%     
+%     xlabel('X (m)','Interpreter','latex');
+%     ylabel('Y (m)','Interpreter','latex');
+%     %     zlabel('Z (m)','Interpreter','latex');
+%     set(gca,'fontsize', 12,'linewidth',1.15);
+%     set(gca,'ticklength',1.2*get(gca,'ticklength'));
+%     
+%         tenseg_savegif_forever(name);
+%     hold off;
+% end
+% close 
+% 
