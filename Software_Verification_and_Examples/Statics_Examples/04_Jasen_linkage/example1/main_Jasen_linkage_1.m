@@ -4,10 +4,8 @@
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
-clc;clearvars;close all;
+clc;clear;close all;
 % global l  Eb Es
-
 %EXAMPLE
 clc; clear ; close all;
 % Global variable

@@ -5,8 +5,7 @@
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 
-clc;clearvars;close all;
-% global l  Eb Es
+clc;clear;close all;% global l  Eb Es
 
 
 % Global variable
@@ -20,7 +19,7 @@ hollow_solid=0;          % use hollow bar or solid bar in minimal mass design (1
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=20;                                     %ºÉÔØ×Ó²½
+substep=20;                                     % load steps
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no

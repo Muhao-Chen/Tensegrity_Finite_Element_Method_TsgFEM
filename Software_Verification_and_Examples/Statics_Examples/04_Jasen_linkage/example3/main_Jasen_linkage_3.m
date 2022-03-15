@@ -5,7 +5,7 @@
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 
-clc;clearvars;close all;
+clc;clear;close all;
 % global l  Eb Es
 
 %EXAMPLE
@@ -134,7 +134,7 @@ data.substep=substep;    % substep
 data_out=static_solver(data);        %solve equilibrium using mNewton method
 
 %% Plot final configuration
-tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end))
+tenseg_plot_catenary(data_out.N_out{end},C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
 
 t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
@@ -150,18 +150,18 @@ tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'
 tenseg_plot_result(1:substep,n_t([3*8-2,3*8-1],:),{'8X','8Y'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
 
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],R3Ddata,l0_t(index_s,end))
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],R3Ddata,l0_t(index_s,end));
 
 %% make video of the dynamic
 name=['Jasen_machanism3','tf_',num2str(tf),material{1}];
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
-tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,savevideo,material{2})
+tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,savevideo,material{2});
 
 %% linearized dynaimcs 
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
 
 %% plot structure configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end))
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(index_s,end));
 
 
 figure(99);

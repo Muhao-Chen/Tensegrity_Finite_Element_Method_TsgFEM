@@ -17,7 +17,7 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
-clc;clearvars;close all;
+clc;clear;close all;
 
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
@@ -30,7 +30,7 @@ hollow_solid=0;    % use hollow bar or solid bar in minimal mass design (1)hollo
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 
-substep=100;                                     %ºÉÔØ×Ó²½
+substep=100;            % load steps
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
@@ -153,14 +153,14 @@ tenseg_plot_result(1:substep,t_t([1;7;13],:),{'bar','horizontal string','vertica
 %% Plot nodal coordinate curve X Y
 tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},'plot_coordinate.png',saveimg);
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end))
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 %% save output data
 if savedata==1
     save (['tower_static_',material{1},'.mat']);
 end
 %% make video of the dynamic
 name=['tower_',material{1},'_slack_',num2str(material{2})];
-tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2})
+tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2});
 % tenseg_video(n_t,C_b,C_s,[],min(substep,50),name,savevideo,R3Ddata);
 
 

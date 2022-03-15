@@ -17,8 +17,7 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
-clc;clearvars;close all;
-
+clc;clear;close all;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties:linear_elastic; multielastic; plastic
@@ -134,7 +133,7 @@ tenseg_plot_result(1:substep,l_t([1;7;10],:),{'bar','horizontal string','vertica
 tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},'plot_coordinate.png',saveimg);
 
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end))
+tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 
 %% save output data
 if savedata==1
