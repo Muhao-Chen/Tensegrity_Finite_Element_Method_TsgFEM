@@ -7,9 +7,8 @@ function data_out=static_solver2(data)
 % converge to stable equilibrium, considering substep.
 %%
 global E A l0 Ia Ib C w ne Xb Xa dXa f_int l_int
-% minimize total energy? (1: use, 0: not use) it's time consuming
-use_energy=1;
-
+% minimize total energy? (1: use, 0: not use). 1 is time consuming.
+use_energy = 1;
 %% input data
 C=data.C;
 ne=data.ne;

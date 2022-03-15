@@ -7,9 +7,8 @@ function data_out=static_solver(data)
 % converge to stable equilibrium, considering substep
 %%
 global E A l0 Ia Ib C w ne Xb Xa dXa f_int l_int
-% minimize total energy? (1: use, 0: not use) it's time consuming
-use_energy=1;
-
+% minimize total energy? (1: use, 0: not use). 1 is time consuming.
+use_energy = 1;
 %% input data
 C=data.C;
 ne=data.ne;
@@ -59,8 +58,6 @@ end
 X0=data.N(:);
 data_out=data;     % initialize output data
 data_out.E_out=E0*ones(1,substep);
-
-
 %% calculate equilibrium
 X=X0;               % initialize configuration
 Xb0=Ib'*X;           % pinned node
@@ -75,7 +72,6 @@ for k=1:substep
     l0=l0_t(:,k);         % forced enlongation of string
     disp(k);
     u=1e-1;
-
     %     X=[Ia';Ib']\[Xa;Xb];
     %     l=sqrt(sum((reshape(X,3,[])*C').^2))'; %bar length
     %     strain=(l-l0)./l0;        %strain of member
@@ -106,11 +102,11 @@ for k=1:substep
         K_taa=Ia'*K_t*Ia;
 
         %modify the stiffness matrix
-        [V_mode,D]=eig(K_taa);                       % eigenvalues of the stiffness matrix 
+        [V_mode,D]=eig(K_taa);                       % eigenvalues of the stiffness matrix
         d=diag(D);                            %eigenvalues
         lmd=min(d);                     % the smallest eigenvalue
         if lmd>0
-            Km=K_taa+u*eye(size(K_taa)); % modified stiffness matrix 
+            Km=K_taa+u*eye(size(K_taa)); % modified stiffness matrix
         else
             Km=K_taa+(abs(lmd)+u)*eye(size(K_taa));
         end
@@ -126,11 +122,11 @@ for k=1:substep
     end
 
     % change youngs mudulus if string slack
-    strain=(l-l0)./l0;        %strain of member
+    strain=(l-l0)./l0;        % strain of member
     [E,stress]=stress_strain(consti_data,index_b,index_s,strain,material);
     %     [E,sigma]=stress_strain(consti_data,index_b,index_s,strain,slack,plastic);
-    f=stress.*A;         %member force
-    q=f./l;      %reculate force density
+    f=stress.*A;         % member force
+    q=f./l;      % reculate force density
     num_slack(k+1)=numel(find(E==0));
     % if string slack, recalculate with more steps
     if num_slack(k+1)>num_slack(k)
@@ -150,8 +146,6 @@ for k=1:substep
             Xa=Xa+0.0*min(l)*real(mean(V_mode_sort(:,index_bk),2));    %add unstable mode if needed
         end
     end
-
-
     %     if slack
     %         if sum(q_i(index_s)<1e-6)
     %             index_slack=find(q_i(index_s)<0);
@@ -175,15 +169,13 @@ for k=1:substep
     %             E=E0;              %use initial young's muldus
     %         end
     %     end
-
-
     %% output data
     data_out.N_out{k}=reshape(X,3,[]);
     data_out.n_out(:,k)=X;
     data_out.l_out(:,k)=l;
     %     data_out.q_out(:,k)=q;
     %     data_out.E_out(:,k)=E;
-    data_out.t_out(:,k)=f;      %member force
+    data_out.t_out(:,k)=f;      % member force
     % data_out.V{k}=energy_cal(data_out);
     data_out.Fpn_out(k)=norm(Ia'*Fp);
 end
