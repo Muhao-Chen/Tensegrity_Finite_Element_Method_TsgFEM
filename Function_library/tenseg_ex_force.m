@@ -47,7 +47,7 @@ dna_dd_t=zeros(numel(a),numel(tspan));
 
 switch type
     case 'impluse'
-        w_t(c_index,find(tspan<0.05))=amplitude*20;        % impluse load in c_index
+        w_t(c_index,tspan<0.05)=amplitude*20;        % impluse load in c_index
         w_t=w_t+G*ones(size(tspan));            % add gravity force
     case 'step'
         w_t(c_index,:)=amplitude;        % load in c_index
