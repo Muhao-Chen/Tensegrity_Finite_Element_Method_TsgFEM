@@ -90,9 +90,7 @@ else
     x_left	= 1/2*(log((r_length+h)/(r_length-h))/sag-d);
     x_min		= a(1) - x_left;
     bias		= a(2) - cosh(x_left*sag)/sag;
-
     Y			= cosh((X-x_min)*sag)/sag + bias;
-
     %% transform from 2D to 3D
     x=ones(1,N)*A(1)+(B(1)-A(1))/norm(A(1:2)-B(1:2))*X;
     y=ones(1,N)*A(2)+(B(2)-A(2))/norm(A(1:2)-B(1:2))*X;
