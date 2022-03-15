@@ -5,7 +5,7 @@ function [consti_data,Eb,Es,sigma_b,sigma_s,rho_b,rho_s]=material_lib(bar_materi
 %
 % This function is a material library of bars and strings.
 % Bar material: Steel_Q345, Carbon_Rod, Steel, UHMWPE, Aluminum, Wood.
-% String material: Steel_string, Steel, UHMWPE, Aluminum, Rubber_band. 
+% String material: Steel_string, Steel, UHMWPE, Aluminum, Rubber_band.
 % If this library does not have the material one wants to analysis, please
 % make edits to this function directly.
 %
@@ -29,14 +29,14 @@ function [consti_data,Eb,Es,sigma_b,sigma_s,rho_b,rho_s]=material_lib(bar_materi
 global  Eb Es
 switch bar_material
     case 'Steel_Q345'
-%         rho_b = 7870;
+        %         rho_b = 7870;
         rho_b = 7870*50;    %amplified density
         strain_b1=[1456e-6,23301e-6,1];  % strain of bar Q345
         stress_b1=1e6*[300,435,435];              % stress of bar Q345
         [data_b1,data_b2,Eb,sigma_b]=point2consti_data(strain_b1,stress_b1);
     case 'Q345_blin'
         rho_b = 7870;
-        strain_b1=[1456e-6,23301e-6];  % strain of bar Q345 bilinear 
+        strain_b1=[1456e-6,23301e-6];  % strain of bar Q345 bilinear
         stress_b1=1e6*[300,435];              % stress of bar Q345
         [data_b1,data_b2,Eb,sigma_b]=point2consti_data(strain_b1,stress_b1);
     case 'Carbon_Rod'
@@ -49,8 +49,8 @@ switch bar_material
     case 'Steel'
         % -------------- Steel Properties for Bar -----------
         Eb = 200e09;
-                rho_b = 8000;
-%         rho_b = 80000;
+        rho_b = 8000;
+        %         rho_b = 80000;
         sigma_b = 300e06;
         [data_b1,data_b2]=blin_consti_data(Eb,sigma_b);
     case 'UHMWPE'
@@ -89,7 +89,7 @@ switch string_material
         [data_s1,data_s2]=blin_consti_data(Es,sigma_s);
     case 'Q345_blin'
         rho_s = 7870;
-        strain_s1=[1456e-6,23301e-6];  % strain of bar Q345 bilinear 
+        strain_s1=[1456e-6,23301e-6];  % strain of bar Q345 bilinear
         stress_s1=1e6*[300,435];              % stress of bar Q345
         [data_s1,data_s2,Es,sigma_s]=point2consti_data(strain_s1,stress_s1);
     case 'UHMWPE'
@@ -101,7 +101,7 @@ switch string_material
     case 'Aluminum'
         %---------------- Aluminum for Strings -------------------
         Es = 60e09;
-%         rho_s = 2700;
+        %         rho_s = 2700;
         rho_s = 2700*50;    %amplified density not real
         sigma_s = 110e06;
         [data_s1,data_s2]=blin_consti_data(Es,sigma_s);
@@ -121,4 +121,3 @@ consti_data.data_b2=data_b2;
 consti_data.data_s1=data_s1;
 consti_data.data_s2=data_s2;
 end
-

@@ -10,10 +10,10 @@ function output_vibration(data,name)
 %   data: a column vector containing acceleration of ground motion
 %   name: a string containing the name of output txt file
 % Outputs:
-%   a .txt file
+%   a.txt file
 %%
 fid11=fopen(name,'w');
-for i=1:numel(data)    
+for i=1:numel(data)
     fprintf(fid11,'%25.25f  \n',data(i));
 end
 fclose(fid11);
