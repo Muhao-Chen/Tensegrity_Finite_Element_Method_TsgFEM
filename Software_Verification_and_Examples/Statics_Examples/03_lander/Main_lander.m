@@ -38,7 +38,7 @@ savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 
 %% N C of the structure
-% Manually specify node positions of double layer prism.
+% Manually specify node positions of a lander.
 L = 1;
 th1 = -atan(1/2);
 N = [L/4 0 0;L/4 0 L;-L/4 0 0;-L/4 0 L;
@@ -58,7 +58,6 @@ C=[C_b;C_s];
 [ne,nn]=size(C);        % ne:No.of element;nn:No.of node
 % Plot the structure to make sure it looks right
 tenseg_plot(N,C_b,C_s);
-title('A tensegrity lander');
 
 %% Boundary constraints
 pinned_X=([])'; pinned_Y=([])'; pinned_Z=([])';
@@ -94,7 +93,7 @@ index_s=setdiff(1:ne,index_b);	% index of strings
 R3Ddata.Bradius=0.01*interp1([min(radius),max(radius)],[0.2,0.8],r_b);
 R3Ddata.Sradius=0.01*interp1([min(radius),max(radius)],[0.2,0.8],r_s);
 R3Ddata.Nradius=0.01*ones(nn,1);
-tenseg_plot(N,C_b,C_s,[],[],[],'Double layer prism',R3Ddata);
+tenseg_plot(N,C_b,C_s,[],[],[],'Tensegrity Lander',R3Ddata);
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix

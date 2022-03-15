@@ -14,10 +14,10 @@ C_b_1 = [];
 C_b_2 = [];
 % save test_C_b
 for i=1:length(C_b_in(:,1))
-%     temp1 = find(abs((chara-chara_in(i)))<0.001);
+    %     temp1 = find(abs((chara-chara_in(i)))<0.001);
     temp1 = find(chara==chara_in(i));
     temp2 = find(chara==chara_out(i));
-%     temp2 = find(abs((chara-chara_out(i)))<0.001)
+    %     temp2 = find(abs((chara-chara_out(i)))<0.001)
     C_b_1 = [C_b_1;temp1(1)];
     C_b_2 = [C_b_2;temp2(1)];
 end

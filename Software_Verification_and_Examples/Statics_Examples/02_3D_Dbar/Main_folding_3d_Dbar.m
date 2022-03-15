@@ -37,7 +37,7 @@ savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 
 %% N C of the structure
-% Manually specify node positions of double layer prism.
+% Manually specify node positions of a 3D D-Bar Unit.
 angle = pi/180*20;
 sizes=4;
 q=1;
@@ -46,7 +46,6 @@ C=[C_b;C_s];
 [ne,nn]=size(C);        % ne:No.of element;nn:No.of node
 % Plot the structure to make sure it looks right
 tenseg_plot(N,C_b,C_s);
-title('Expanded octahedron');
 
 %% Boundary constraints
 pinned_X=[1]'; pinned_Y=[1,2]'; pinned_Z=[1,2]';
@@ -81,7 +80,7 @@ index_s=setdiff(1:ne,index_b);	% index of strings
 R3Ddata.Bradius=0.03*interp1([min(radius),max(radius)],[0.6,2],r_b);
 R3Ddata.Sradius=0.03*interp1([min(radius),max(radius)],[0.6,2],r_s);
 R3Ddata.Nradius=0.05*ones(nn,1);
-tenseg_plot(N,C_b,C_s,[],[],[],'Double layer prism',R3Ddata);
+tenseg_plot(N,C_b,C_s,[],[],[],'3D D-Bar Unit',R3Ddata);
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix

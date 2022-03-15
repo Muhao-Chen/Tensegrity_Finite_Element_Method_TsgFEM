@@ -9,10 +9,10 @@ switch nargin
     case 5
         C_s_n  = [];
         C_b_n  = [];
-	case 4
-		C_s_n  = [];
+    case 4
+        C_s_n  = [];
         C_b_n  = [];
-		N = [];
+        N = [];
 end
 mid = (p1+p2)/2;
 size_r = tan(angle) * eulerdst(p1,p2)/2;
@@ -26,8 +26,8 @@ right_p = right_p';
 N = [N;p1;p2;up_p;left_p;right_p];
 [a,b] = size(C_b_n);
 if (a+b)~=0
-index_contain_p1_p2 = ismember(C_b_n,[p1 p2],'rows');
-C_b_n(index_contain_p1_p2,:) = [];
+    index_contain_p1_p2 = ismember(C_b_n,[p1 p2],'rows');
+    C_b_n(index_contain_p1_p2,:) = [];
 end
 % C_s_n = [C_b_n;p1 up_p;p1 right_p;p1 left_p;p2 up_p;p2 right_p;p2 left_p;p1 mid;mid p2;up_p left_p;left_p right_p;right_p up_p];
 % C_b_n = [C_s_n;up_p mid;right_p mid;left_p mid];
