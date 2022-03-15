@@ -2,8 +2,8 @@ function data_out=equilibrium_solver(data,substep,slack,plastic)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-%solve nonlinear equilibrium equations using modified Newton method
-%converge to stable equilibrium, considering substep
+% solve nonlinear equilibrium equations using modified Newton method
+% converge to stable equilibrium, considering substep
 %%
 global E A l0 Ia Ib C w ne Xb Xa dXa
 % minimize total energy? (1: use, 0: not use). Using 1 is time consuming.
@@ -13,10 +13,10 @@ switch nargin
     case 1
         substep = 1;
         slack = 0;
-        plastic=0;
+        plastic = 0;
     case 2
         slack = 0;
-        plastic=0;
+        plastic = 0;
 end
 %% input data
 C=data.C;
@@ -58,30 +58,30 @@ end
 if  isfield(data,'subsubstep')
     subsubstep=data.subsubstep;
 else
-    subsubstep=30;          %default ssubstep
+    subsubstep=30;          % default substep
 end
 
 X0=data.N(:);
-data_out=data;     %initialize output data
+data_out=data;     % initialize output data
 data_out.E_out=E0*ones(1,substep);
 %% calculate equilibrium
-X=X0;               %initialize configuration
-Xb0=Ib'*X;           %pinned node
+X=X0;                % initialize configuration
+Xb0=Ib'*X;           % pinned nodes
 E=E0;
-% lamda=linspace(0,1,substep);    %coefficient for substep
-num_slack=ne*zeros(substep+1,1);    %num of string slack
+% lamda=linspace(0,1,substep);      % coefficient for the substeps
+num_slack=ne*zeros(substep+1,1);    % number of the slack strings
 Xa=Ia'*X;
 cont=1;
 for k=1:substep
-    w=w_t(:,k);               %external force
-    Xb=Xb0+dXb_t(:,k);         %forced node displacement
-    l0=l0_t(:,k);         %forced enlongation of string
+    w=w_t(:,k);                % external force
+    Xb=Xb0+dXb_t(:,k);         % forced displacement of nodes
+    l0=l0_t(:,k);              % forced enlongation of the strings
     disp(k);
     u=1e-1;
     for i=1:1e3
         X=[Ia';Ib']\[Xa;Xb];
         l=sqrt(sum((reshape(X,3,[])*C').^2))'; % bar length
-        q=E.*A.*(1./l0-1./l);      % force density
+        q=E.*A.*(1./l0-1./l);                  % force density
         q_bar=diag(q);
 
         K=kron(C'*q_bar*C,eye(3));                      % stiffness matrix
@@ -98,9 +98,9 @@ for k=1:substep
         K_t=kron(C',eye(3))*blkdiag(Ki{:})*kron(C,eye(3));
         K_taa=Ia'*K_t*Ia;
 
-        %modify the stiffness matrix
-        [V_mode,D]=eig(K_taa);                       % eigenvalues of the stiffness matrix
-        d=diag(D);                            % eigenvalues
+        % modify the stiffness matrix
+        [V_mode,D]=eig(K_taa);          % eigenvalues of the stiffness matrix
+        d=diag(D);                      % eigenvalues
         lmd=min(d);                     % the smallest eigenvalue
         if lmd>0
             Km=K_taa+u*eye(size(K_taa)); % modified stiffness matrix
@@ -110,7 +110,7 @@ for k=1:substep
         dXa=Km\Fp_a;
 
         x=1;
-        % line search
+        % line search method
         if use_energy==1
             opt=optimset('TolX',1e-5);
             [x,V]=fminbnd(@energy,0,1,opt);
@@ -119,12 +119,12 @@ for k=1:substep
     end
 
     % change youngs mudulus if string slack
-    strain=(l-l0)./l0;        %strain of member
+    strain=(l-l0)./l0;        % strain of member
     [E,sigma]=stress_strain(consti_data,index_b,index_s,strain,slack,plastic);
-    f=sigma.*A;         %member force
-    q=f./l;      %reculate force density
+    f=sigma.*A;         % member force
+    q=f./l;      % reculate the force density
     num_slack(k+1)=numel(find(E==0));
-    % if string slack, recalculate with more steps
+    % if string slack, recalculate the process with more steps.
     if num_slack(k+1)>num_slack(k)
         p_s=k-1;
         p_e=k;
@@ -134,37 +134,37 @@ for k=1:substep
 
     if min(E)==0
         if cont<2
-            [d_sort,idx]=sort(d);               %sorted eigenvalue
-            D_sort=diag(d_sort);                  %sorted eigenvalue matrix
-            V_mode_sort=V_mode(:,idx);              %sorted eigenvector
-            index_bk=find(d_sort<1e-5);             %index for buckling mode
+            [d_sort,idx]=sort(d);                   % sorted eigenvalue
+            D_sort=diag(d_sort);                    % sorted eigenvalue matrix
+            V_mode_sort=V_mode(:,idx);              % sorted eigenvector
+            index_bk=find(d_sort<1e-5);             % index for buckling modes
             cont=cont+1;
         end
-        Xa=Xa+0.0*min(l)*real(mean(V_mode_sort(:,index_bk),2));    %add unstable mode if needed
+        Xa=Xa+0.0*min(l)*real(mean(V_mode_sort(:,index_bk),2));    % add unstable mode if needed
     end
 
 
     %     if slack
     %         if sum(q_i(index_s)<1e-6)
     %             index_slack=find(q_i(index_s)<0);
-    %             index_string_slack=index_s(index_slack);       %slack stings'number
+    %             index_string_slack=index_s(index_slack);       % slack stings'number
     %             % change youngs mudulus of slack string E_ss=0
     %             E=E0;
     %             E(index_string_slack)=0;
-    %             q=E.*A.*(1./l0-1./l);      %reculate force density
+    %             q=E.*A.*(1./l0-1./l);      % reculate force density
     %             q_bar=diag(q);
     %
     %             %give initial error in coordinate, prevent unstable solution
     %             if cont<3
-    %             [d_sort,idx]=sort(d);               %sorted eigenvalue
-    %             D_sort=diag(d_sort);                  %sorted eigenvalue matrix
-    %             V_mode_sort=V_mode(:,idx);              %sorted eigenvector
-    %             index_bk=find(d_sort<1e-5);             %index for buckling mode
+    %             [d_sort,idx]=sort(d);                   % sorted eigenvalue
+    %             D_sort=diag(d_sort);                    % sorted eigenvalue matrix
+    %             V_mode_sort=V_mode(:,idx);              % sorted eigenvector
+    %             index_bk=find(d_sort<1e-5);             % index for buckling mode
     %             cont=cont+1;
     %             end
-    %             Xa=Xa+0*min(l)*real(mean(V_mode_sort(:,index_bk),2));    %add unstable mode if needed
+    %             Xa=Xa+0*min(l)*real(mean(V_mode_sort(:,index_bk),2));    % add unstable mode if needed
     %         else
-    %             E=E0;              %use initial young's muldus
+    %             E=E0;              % use initial young's muldus
     %         end
     %     end
     %% output data
@@ -173,7 +173,7 @@ for k=1:substep
     %     data_out.l_out(:,k)=l;
     %     data_out.q_out(:,k)=q;
     %     data_out.E_out(:,k)=E;
-    data_out.t_out(:,k)=f;      %member force
+    data_out.t_out(:,k)=f;      % member force
     % data_out.V{k}=energy_cal(data_out);
     data_out.Fpn_out(k)=norm(Ia'*Fp);
 end
