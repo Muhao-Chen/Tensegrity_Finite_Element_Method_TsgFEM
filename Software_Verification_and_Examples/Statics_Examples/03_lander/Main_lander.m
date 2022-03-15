@@ -17,6 +17,7 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
+%%
 clc;clear;close all;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');

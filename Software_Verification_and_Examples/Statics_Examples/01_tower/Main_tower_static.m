@@ -17,26 +17,23 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
+%%
 clc;clear;close all;
-
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties:'linear_elastic'£¬ 'multielastic'£¬ 'plastic'
 material{2}=0; % index for considering slack of string (1) for yes,(0) for no (for compare with ANSYS)
-
 % cross section design cofficient
 thick=6e-3;        % thickness of hollow bar
 hollow_solid=0;    % use hollow bar or solid bar in minimal mass design (1)hollow (0)solid
 c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
-
 substep=100;            % load steps
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
-
 %% N C of the structure
 % Manually specify node positions of a tensegrity tower.
 R=10; h=30; p=3;        % radius; height; number of edge

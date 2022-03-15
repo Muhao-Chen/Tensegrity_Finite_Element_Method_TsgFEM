@@ -17,12 +17,12 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
+%%
 clc;clear;close all;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties:linear_elastic; multielastic; plastic
 material{2}=0; % index for considering slack of string (1) for yes,(0) for no (for compare with ANSYS)
-
 % cross section design cofficient
 thick=6e-3;        % thickness of hollow bar
 hollow_solid=0;          % use hollow bar or solid bar in minimal mass design (1)hollow (0)solid
