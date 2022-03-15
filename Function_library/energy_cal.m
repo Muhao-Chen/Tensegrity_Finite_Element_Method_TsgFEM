@@ -15,7 +15,7 @@ w=data.w;
 E=data.E;
 A=data.A;
 l0=data.l0;
-
+%% Compute l and V
 l=sqrt(sum((N*C').^2))'; % bar length vector
 V=0.5*(l-l0)'*diag(E.*A./l0)*(l-l0)-w'*n;  % The total potential enegry of the structure
 end
