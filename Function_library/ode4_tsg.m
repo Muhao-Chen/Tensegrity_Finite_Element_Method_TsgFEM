@@ -75,14 +75,14 @@ for i = 2:N
     if  sum(out_tspan==ti)
         if silentMode==0
             if useWaitbar==1
-                waitbar(i/N,wb,['Current time: ',sprintf('%.5f',ti),'s']);
+                waitbar(i/N,wb,['Current time: ',sprintf('%.5f',ti),'s']); % display a waitbar with the instant simulation clock
             else
-                disp(['Current time: ',sprintf('%.5f',ti)]);
+                disp(['Current time: ',sprintf('%.5f',ti)]); % display the simulation clock
             end
             % disp(ti);
         end
         data_out.t_t(:,out_tspan==ti)=f;      % member force
-        data_out.n_t(:,out_tspan==ti)=n;
+        data_out.n_t(:,out_tspan==ti)=n;      % nodal vector
         data_out.l_t(:,out_tspan==ti)=l;
         data_out.nd_t(:,out_tspan==ti)=n_d;
         data_out.stress_t(:,out_tspan==ti)=stress;
