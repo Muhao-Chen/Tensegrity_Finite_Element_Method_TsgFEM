@@ -107,7 +107,7 @@ data.M=M;data.D=D;
 data.tf=tf;data.dt=dt;data.tspan=tspan;data.out_tspan=out_tspan;
 
 %% plot external force information
-tenseg_plot_exforce(Ib,tspan,w_t,[2,3],dnb_t,dnb_d_t,dnb_dd_t,[1],saveimg);
+% tenseg_plot_exforce(Ib,tspan,w_t,[2,3],dnb_t,dnb_d_t,dnb_dd_t,[1],saveimg);
 
 %% dynamic analysis
 % solve dynamic equation

@@ -153,7 +153,7 @@ data.tf=tf;data.dt=dt;data.tspan=tspan;data.out_tspan=out_tspan;
 output_vibration(dz_a_t(1,:)','tjx.txt');
 
 %% plot external force information
-tenseg_plot_exforce(Ib,tspan,w_t,(4:6),dnb_t,dnb_d_t,dnb_dd_t,(1),saveimg);
+% tenseg_plot_exforce(Ib,tspan,w_t,(4:6),dnb_t,dnb_d_t,dnb_dd_t,(1),saveimg);
 
 %% dynamic analysis
 % solve dynamic equation

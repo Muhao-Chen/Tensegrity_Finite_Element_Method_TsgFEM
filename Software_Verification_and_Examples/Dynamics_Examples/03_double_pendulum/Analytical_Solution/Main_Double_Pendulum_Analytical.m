@@ -12,7 +12,7 @@ theta2 = 1*pi/4;
 t = linspace(0,5,50001);
 
 %% Solving ODE of a double pendulum
-options = odeset('RelTol',1e-16, 'AbsTol',1*1e-16*ones(4,1));
+options = odeset('RelTol',1e-12, 'AbsTol',1*1e-12*ones(4,1)); 
 [T,Y] = ode45(@(t,x) double_pendulum_dynamics(t,x,m1,L1,m2,L2),t, [theta1,theta2,0,0],options);
 
 %% Calculating joint coordinates for animation purposes
