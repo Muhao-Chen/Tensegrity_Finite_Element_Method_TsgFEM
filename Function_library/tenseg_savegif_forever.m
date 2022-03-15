@@ -3,12 +3,12 @@ function tenseg_savegif_forever(varargin,dt)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-% 
+%
 % This function will save the animation in the for loop as gif file.
 % How to use it?
-% 1. When use it, it has to be in for loop, the default name is ‘untitledgif.gif?;
-% 2. savegif('filename') will named the animation as ‘filename.gif?.
-% 3. savegif('filename.gif') will named the animation as ‘filename.gif?.
+% 1. When use it, it has to be in for loop, the default name is untitledgif.gif?;
+% 2. savegif('filename') will named the animation as filename.gif?.
+% 3. savegif('filename.gif') will named the animation as filename.gif?.
 % Note: please use 'clear all' to clean all the global variables when using this function.
 %%
 % warning off;
@@ -40,7 +40,7 @@ else
     end
     time=p(6);
 end
-f=getframe(gcf); % one may change this into gca 
+f=getframe(gcf); % one may change this into gca
 f=frame2im(f);
 [f,map]=rgb2ind(f,256);
 if iiii==0
