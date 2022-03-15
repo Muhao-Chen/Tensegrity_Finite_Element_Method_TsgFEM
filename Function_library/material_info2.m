@@ -11,7 +11,6 @@ function [consti_data,Eb,Es]=material_info2()
 % stress_b1=1e6*[261,273,288.6,313.6,398.5,0,0];              % stress of bar Q345
 strain_b1=[1456e-6,23301e-6,30301e-6];  % strain of bar Q345
 stress_b1=1e6*[300,435,435];              % stress of bar Q345
-
 data_b0=[strain_b1;stress_b1];            % material info for strain > 0
 data_b1=[-fliplr(data_b0),[0;0],data_b0];         % bar info from strain to stress
 stress_b=data_b1(2,:);
@@ -26,8 +25,6 @@ stress_s=1e6*[0,0,1223.5,1223.5];          % stress of string, steel cable
 % stress_s=2*1e6*[0,0,790.95,0,0];          % stress of string, steel cable
 % strain_s=[1,0,0.001267,0.00157,0.02480,0.033,0.06,0.07,0.08];  % strain of bar Q345
 % stress_s=4*1e6*[0,0,261,273,288.6,313.6,398.5,0,0];            % stress of bar Q345
-
-
 data_s1=[strain_s;stress_s];                        %string info from strain to stress
 data_s_E=diff(stress_s)./diff(strain_s);
 data_s_strain=strain_s(1:end-1);
