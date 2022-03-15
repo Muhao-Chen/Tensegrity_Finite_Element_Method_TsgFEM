@@ -8,6 +8,6 @@ function V=energy(x)
 global   A E l0 Ia Ib C Xa Xb dXa  w
 
 X=Ia*(Xa+x*dXa)+Ib*Xb;
-l=sqrt(sum((reshape(X,3,[])*C').^2))'; %bar length
+l=sqrt(sum((reshape(X,3,[])*C').^2))'; % bar length vector
 V=0.5*(l-l0)'*diag(E.*A./l0)*(l-l0)-w'*X;  % The total potential enegry of the structure
 end
