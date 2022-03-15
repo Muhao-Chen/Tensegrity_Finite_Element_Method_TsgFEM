@@ -59,7 +59,7 @@ neq = length(y0);
 N = length(tspan);
 Y = zeros(neq,N);
 F = zeros(neq,4);
-%initialize time history data
+% initialize time history data
 data_out.t_t=zeros(ne,numel(out_tspan));
 data_out.n_t=zeros(3*nn,numel(out_tspan));
 data_out.l_t=zeros(ne,numel(out_tspan));
@@ -79,9 +79,9 @@ for i = 2:N
             else
                 disp(['Current time: ',sprintf('%.5f',ti)]);
             end
-            %         disp(ti);
+            % disp(ti);
         end
-        data_out.t_t(:,out_tspan==ti)=f;      %member force
+        data_out.t_t(:,out_tspan==ti)=f;      % member force
         data_out.n_t(:,out_tspan==ti)=n;
         data_out.l_t(:,out_tspan==ti)=l;
         data_out.nd_t(:,out_tspan==ti)=n_d;
