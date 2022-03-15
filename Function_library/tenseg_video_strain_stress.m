@@ -18,7 +18,7 @@ function tenseg_video_strain_stress(data_out,ele_num,pic_num,dt)
 %%
 color=['y','m','c','r','g','b','w','k'];
 name=['stress_strain3',data_out.material{1}];
-figure(99);
+figure;
 %     set(gcf,'Position',get(0,'ScreenSize'));  %full screen
 for i = 1:floor(size(data_out.strain_t,2)/100):size(data_out.strain_t,2)
     if strcmp(data_out.material{1},'linear_elastic')|strcmp(data_out.material{1},'plastic')|strcmp(data_out.material{1},'multielastic');
