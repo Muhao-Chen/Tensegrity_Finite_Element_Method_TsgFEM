@@ -13,7 +13,6 @@ thick=t; force_b=f; length_bar=l;c_e=c;
 r=fsolve(@area_hollowbar,t*ones(size(l)));    %solve r
 A=pi*(r.^2-(r-t).^2);
 end
-
 function F=area_hollowbar(r)
 % F=pi^3*E_b/4/l^2*(r^4-(r-t)^4)-f;
 global thick force_b length_bar Eb c_e

@@ -24,28 +24,28 @@ A=data.A;
 w_t_m=w_t(:,p_s)+(w_t(:,p_e)-w_t(:,p_s))*linspace(0,1,subsubstep);
 dXb_t_m=dXb_t(:,p_s)+(dXb_t(:,p_e)-dXb_t(:,p_s))*linspace(0,1,subsubstep);
 l0_t_m=l0_t(:,p_s)+(l0_t(:,p_e)-l0_t(:,p_s))*linspace(0,1,subsubstep);
-% lamda=linspace(p_s,p_e,subsubstep);    %coefficient for substep
+% lamda=linspace(p_s,p_e,subsubstep);    % coefficient for substep
 for k=1:subsubstep
-    w=w_t_m(:,k);               %external force
-    Xb=Xb0+dXb_t_m(:,k);         %forced node displacement
-    l0=l0_t_m(:,k);            %forced enlongation of string
+    w=w_t_m(:,k);                % external force
+    Xb=Xb0+dXb_t_m(:,k);         % forced node displacement
+    l0=l0_t_m(:,k);              % forced enlongation of string
     disp(['substep',num2str(k)]);
     u=1e-1;
 
     X=[Ia';Ib']\[Xa;Xb];
-    l=sqrt(sum((reshape(X,3,[])*C').^2))'; %bar length
-    q=E.*A.*(1./l0-1./l);      %force density
+    l=sqrt(sum((reshape(X,3,[])*C').^2))'; % bar length
+    q=E.*A.*(1./l0-1./l);                  % force density
     l_int=l;   f_int=q.*l;
 
     for i=1:1e3
         X=[Ia';Ib']\[Xa;Xb];
-        l=sqrt(sum((reshape(X,3,[])*C').^2))'; %bar length
-        q=E.*A.*(1./l0-1./l);      %force density
+        l=sqrt(sum((reshape(X,3,[])*C').^2))'; % bar length
+        q=E.*A.*(1./l0-1./l);                  % force density
         q_bar=diag(q);
 
-        K=kron(C'*q_bar*C,eye(3));                      %stiffness matrix
-        Fp=w-K*X;                                       %unbalanced force
-        Fp_a=Ia'*Fp;                                 %see the norm of unbalanced force
+        K=kron(C'*q_bar*C,eye(3));                      % stiffness matrix
+        Fp=w-K*X;                                       % unbalanced force
+        Fp_a=Ia'*Fp;                                    % see the norm of unbalanced force
         if norm(Fp_a)<1e-4
             break
         end
@@ -58,9 +58,9 @@ for k=1:subsubstep
         K_taa=Ia'*K_t*Ia;
 
         %modify the stiffness matrix
-        [V_mode,D]=eig(K_taa);                       % The eigenvalues of the stiffness matrix
-        d=diag(D);                            % eigenvalues
-        lmd=min(d);                     % the smallest eigenvalue
+        [V_mode,D]=eig(K_taa);           % The eigenvalues of the stiffness matrix
+        d=diag(D);                       % eigenvalues
+        lmd=min(d);                      % the smallest eigenvalue
         if lmd>0
             Km=K_taa+u*eye(size(K_taa)); % modified stiffness matrix
         else
@@ -69,7 +69,7 @@ for k=1:subsubstep
         dXa=Km\Fp_a;
 
         x=1;
-        %         line search
+        % line search method 
         if use_energy==1
             opt=optimset('TolX',1e-5);
             [x,V]=fminbnd(@energy,0,1,opt);
