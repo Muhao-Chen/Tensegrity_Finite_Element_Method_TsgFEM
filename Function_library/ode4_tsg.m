@@ -50,7 +50,7 @@ catch
     msg = ['Unable to evaluate the ODEFUN at t0,y0. ',lasterr];
     error(msg);
 end
-y0 = y0(:);   % Make a column vector.
+y0 = y0(:);   % make a column vector.
 if ~isequal(size(y0),size(f0))
     error('Inconsistent sizes of Y0 and f(t0,y0).');
 end
@@ -65,7 +65,7 @@ data_out.n_t=zeros(3*nn,numel(out_tspan));
 data_out.l_t=zeros(ne,numel(out_tspan));
 Y(:,1) = y0;
 if silentMode==0 && useWaitbar==1
-wb= waitbar(0,'Please wait...');
+    wb= waitbar(0,'Please wait...');
 end
 for i = 2:N
     ti = tspan(i-1);
@@ -88,7 +88,7 @@ for i = 2:N
         data_out.stress_t(:,out_tspan==ti)=stress;
         data_out.strain_t(:,out_tspan==ti)=strain;
     end
-    f_int=f; l_int=l;               %store the force and length(for plastic calculation)
+    f_int=f; l_int=l; % store the force and length(for plastic calculation)
     F(:,2) = feval(odefun,ti+0.5*hi,yi+0.5*hi*F(:,1),data_in);
     F(:,3) = feval(odefun,ti+0.5*hi,yi+0.5*hi*F(:,2),data_in);
     F(:,4) = feval(odefun,tspan(i),yi+hi*F(:,3),data_in);
@@ -106,20 +106,20 @@ close(wb)
 % %     data_out.l_t(:,i)=l;
 % %     data_out.q_t(:,i)=q;
 % %     data_out.E_t(:,i)=E;
-%     data_out.t_t(:,i)=f;      %member force
+%     data_out.t_t(:,i)=f;      % member force
 %     data_out.n_t(:,i)=n;
 % %     data_out.n_d_t(:,i)=n_d;
 %   end
 if  sum(out_tspan==tspan(end))
     disp(ti);
-    data_out.t_t(:,out_tspan==tspan(end))=f;      %member force
+    data_out.t_t(:,out_tspan==tspan(end))=f;      % member force
     data_out.n_t(:,out_tspan==tspan(end))=n;
     data_out.l_t(:,out_tspan==tspan(end))=l;
     data_out.stress_t(:,out_tspan==tspan(end))=stress;
     data_out.strain_t(:,out_tspan==tspan(end))=strain;
 end
 % feval(odefun,tspan(end),Y(:,end),data_in);
-%   data_out.t_t(:,end)=f;      %member force
+%   data_out.t_t(:,end)=f;      % member force
 %     data_out.n_t(:,end)=n;
 %% output data
 data_out.Ya_t=Y;
