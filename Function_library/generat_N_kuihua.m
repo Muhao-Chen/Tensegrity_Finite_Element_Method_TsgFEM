@@ -28,7 +28,7 @@ for i=1:m    %rotate nodes
         N0(:,i+m)=T1* N0(:,i+m);
     end
 end
-%% replicate units
+%% replicate the units
 beta2=2*pi/p;
 T2=[cos(beta2) -sin(beta2) 0
     sin(beta2) cos(beta2) 0
