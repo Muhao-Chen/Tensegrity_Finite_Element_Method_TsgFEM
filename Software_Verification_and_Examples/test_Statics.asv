@@ -8,8 +8,9 @@ testMode='test';
 approveQuestion=0;
 startLoc=1;
 %% running tests
-testFolder=fullfile(fileparts(fileparts(mfilename('fullpath'))),'docs');
+
 testFileList={'Main_tower_static.m'};
+testFolderList={'01_tower'}
 %% loop over all examples
 for q_test=1:1:numel(testFileList)
     
@@ -19,7 +20,8 @@ for q_test=1:1:numel(testFileList)
     disp(' ');
     
     % Make testFolder current directory
-    addpmaath(testFolder);
+    testFolder=fullfile(fileparts(mfilename('fullpath')),'Statics_Examples',testFolderList{q_test});
+    addpath(testFolder);
     cd(testFolder); 
     
         mFileNow=fullfile(testFolder,testFileList{q_test});

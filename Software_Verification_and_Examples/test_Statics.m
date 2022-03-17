@@ -8,9 +8,9 @@ testMode='test';
 approveQuestion=0;
 startLoc=1;
 %% running tests
-testFolder=fullfile(fileparts(fileparts(mfilename('fullpath'))),'Statics_Examples');
-testFileList={'Main_tower_static.m'};
-testFolderList={'01_tower'}
+
+testFileList={'Main_tower_static.m','Main_folding_3d_Dbar.m','Main_lander.m','main_Jasen_linkage_3.m'};
+testFolderList={'01_tower','02_3D_Dbar','03_lander','04_Jasen_linkage\example3'}
 %% loop over all examples
 for q_test=1:1:numel(testFileList)
     
@@ -20,7 +20,8 @@ for q_test=1:1:numel(testFileList)
     disp(' ');
     
     % Make testFolder current directory
-    addpmaath(testFolder);
+    testFolder=fullfile(fileparts(mfilename('fullpath')),'Statics_Examples',testFolderList{q_test});
+    addpath(testFolder);
     cd(testFolder); 
     
         mFileNow=fullfile(testFolder,testFileList{q_test});
@@ -33,6 +34,15 @@ for q_test=1:1:numel(testFileList)
        
     load('tempPub.mat'); %Load variables
     delete('tempPub.mat'); %Clean up
+    
+            choice = questdlg([fileMessage,'. Done. Do you want to proceed?'],testFileList{q_test},'Yes','No','Yes');
+        switch choice
+            case 'Yes'
+                
+            case 'No'
+                edit(mFileNow);
+                break
+        end
     
         clearvars('-except',initialVars_publish{:});
     close all;
