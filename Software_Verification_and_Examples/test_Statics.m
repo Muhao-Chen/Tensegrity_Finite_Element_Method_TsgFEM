@@ -21,7 +21,7 @@ testMode='test';
 approveQuestion=0;
 startLoc=1;
 %% running tests
-
+originFolder=fileparts(mfilename('fullpath'));
 testFileList={'Main_tower_static.m','Main_folding_3d_Dbar.m','Main_lander.m','main_Jasen_linkage_3.m'};
 testFolderList={'01_tower','02_3D_Dbar','03_lander','04_Jasen_linkage\example3'}
 %% loop over all examples
@@ -60,3 +60,4 @@ for q_test=1:1:numel(testFileList)
     clearvars('-except',initialVars_publish{:});
     close all;
 end
+cd(originFolder);

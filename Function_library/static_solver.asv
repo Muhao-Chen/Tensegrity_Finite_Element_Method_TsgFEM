@@ -77,9 +77,9 @@ for k=1:substep
 %     disp(k);
         if silentMode==0
             if useWaitbar==1
-                waitbar(k/substep,wb,['Current step: ',sprintf('%u',k)]); % display a waitbar with the instant simulation clock
+                waitbar(i/N,wb,['Current time: ',sprintf('%.5f',ti),'s']); % display a waitbar with the instant simulation clock
             else
-                disp(['Current step: ',sprintf('%u',k)]); % display the simulation clock
+                disp(['Current time: ',sprintf('%.5f',ti)]); % display the simulation clock
             end
             % disp(ti);
         end

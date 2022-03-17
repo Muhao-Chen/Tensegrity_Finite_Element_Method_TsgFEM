@@ -181,7 +181,7 @@ tenseg_plot_result(out_tspan(1:end-1),nd_t(3*8-1,:),{'8Y'},{'Time (s)','Velocity
 tenseg_plot_result(out_tspan,l_t(7:8,:),{'element 7','element 8'},{'Time (s)','Length (m)'},'member_length.png',saveimg);
 %% make video of the dynamic
 name=['tower','tf_',num2str(tf),material{1},num2str(material{2})];
-tenseg_video(n_t,C_b,C_s,[],50,name,savevideo,R3Ddata);
-
+% tenseg_video(n_t,C_b,C_s,[],50,name,savevideo,R3Ddata);
+tenseg_video(n_t,C_b,C_s,[],50,name,savevideo);
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
