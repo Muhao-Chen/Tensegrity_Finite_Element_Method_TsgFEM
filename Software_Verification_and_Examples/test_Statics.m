@@ -1,5 +1,18 @@
+%% Automated test 
+% The auomated test file format is from *GIBBON footer text*. 
+% The source code is here:
+% https://github.com/gibbonCode/GIBBON/blob/master/lib/testGibbon.m
+% The license of _*GIBBON footer text*_ is given below. 
+% License: <https://github.com/gibbonCode/GIBBON/blob/master/LICENSE>
+% And the copyright information.
+% Copyright (C) 2006-2021 Kevin Mattheus Moerman and the GIBBON
+% contributors.
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+% Please include their licence and Copyright information when you use this
+% file. 
 %% test Statics
-% Below is to run the statics examples automatically
+% Below is to run the statics examples automatically.
 %%
 clear; close all; clc;
 %%
