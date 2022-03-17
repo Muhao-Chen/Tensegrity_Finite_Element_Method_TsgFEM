@@ -1,4 +1,4 @@
-%% Automated test 
+%% Automated dynamics test 
 % The auomated test file format is from *GIBBON footer text*. 
 % The source code is here:
 % https://github.com/gibbonCode/GIBBON/blob/master/lib/testGibbon.m
