@@ -4,7 +4,7 @@
 % https://github.com/gibbonCode/GIBBON/blob/master/lib/testGibbon.m
 % The license of _*GIBBON footer text*_ is given below. 
 % License: <https://github.com/gibbonCode/GIBBON/blob/master/LICENSE>
-% And the copyright information.
+% And the copyright information is:
 % Copyright (C) 2006-2021 Kevin Mattheus Moerman and the GIBBON
 % contributors.
 % You should have received a copy of the GNU General Public License
