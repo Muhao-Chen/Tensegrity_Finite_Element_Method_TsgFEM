@@ -35,7 +35,7 @@ out_dt=0.02;            % output data interval(approximately, not exatly)
 lumped=0;               % use lumped matrix 1-yes,0-no
 saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
-savevideo=0;            % make video(1) or not(0)
+savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 % move_ground=0;          % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
 
