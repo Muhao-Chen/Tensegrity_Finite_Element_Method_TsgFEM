@@ -191,6 +191,11 @@ for k=1:substep
     % data_out.V{k}=energy_cal(data_out);
     data_out.Fpn_out(k)=norm(Ia'*Fp);
 end
+
+if silentMode==0 && useWaitbar==1
+    close(wb); %Close waitbar
+end
+
 data_out.E=E;
 data_out.N=reshape(X,3,[]);
 end

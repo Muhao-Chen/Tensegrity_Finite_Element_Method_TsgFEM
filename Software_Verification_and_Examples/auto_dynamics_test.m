@@ -1,8 +1,9 @@
 %% Automated dynamics test 
-% The auomated test file format is from *GIBBON footer text*. 
-% The source code is here:
+
+% This automated test code was derived from codes from the GIBBON project.
+% The source code is here: 
 % https://github.com/gibbonCode/GIBBON/blob/master/lib/testGibbon.m
-% The license of _*GIBBON footer text*_ is given below. 
+% The license for GIBBON is given below. 
 % License: <https://github.com/gibbonCode/GIBBON/blob/master/LICENSE>
 % And the copyright information is:
 % Copyright (C) 2006-2021 Kevin Mattheus Moerman and the GIBBON
@@ -11,19 +12,29 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 % Please include their licence and Copyright information when you use this
 % file. 
+
 %% test Dynamics
 % Below is to run the dynamics examples automatically.
 %%
 clear; close all; clc;
-%%
-testSet='all';
-testMode='test';
-approveQuestion=0;
-startLoc=1;
+
 %% running tests
 originFolder=fileparts(mfilename('fullpath'));
-testFileList={'main_tower_dynamic_simple.m','main_10seg_truss_simple.m','main_double_pendulum_simple.m','main_lander.m'};
-testFolderList={'01_tower','02_cantilever_truss','03_double_pendulum\FEM_solution','04_Lander'}
+testFileList={'main_tower_dynamic_simple.m',...
+              'main_10seg_truss_simple.m',...
+              'main_Double_Pendulum_Analytical.m',...
+              'main_double_pendulum_simple.m',...
+              'main_lander.m',...
+              'main_Tbar_dynamics'...
+              };
+testFolderList={'01_tower',...
+                '02_cantilever_truss',...
+                ['03_double_pendulum',filesep,'Analytical_Solution'],...
+                ['03_double_pendulum',filesep,'FEM_solution'],...
+                '04_Lander',...
+                '05_T_bar_Dynamics',...
+                };
+
 %% loop over all examples
 for q_test=1:1:numel(testFileList)
 

@@ -18,6 +18,7 @@ addpath(genpath('User_Guide'));
 addpath(genpath('Videos'));
 % add JOSS Paper
 addpath(genpath('JOSS_Paper'));
+
 %% Open the User_Guide
 % cd User_Guide;
 % open('User_Guide_Tensegrity_Finite_Element_Method_(TsgFEM).pdf');
