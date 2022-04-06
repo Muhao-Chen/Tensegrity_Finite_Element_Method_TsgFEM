@@ -3,8 +3,8 @@ function tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,view_vec,axislim,nu
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
-% This function make video for dynamic simulation(plot slack string as a
-% catenary.
+% This function makes a video for dynamic simulation (plot slack string as
+% a catenary.
 %
 % Inputs:
 %   n_t: time history of tensegrity configuration
@@ -29,17 +29,19 @@ if isempty(axislim)
 end
 
 if savevideo==1
-    figure(6);
-    %     set(gcf,'Position',get(0,'ScreenSize'));          %full screen
+    hf=figure; hold on
+    set(hf,'color','w');
+    % set(hf,'Position',get(0,'ScreenSize'));          %full screen    
+    axis equal; 
+    
     for p = 1:floor(size(n_t,2)/num):size(n_t,2)
         switch slack
             case 0
-                tenseg_plot(reshape(n_t(:,p),3,[]),C_b,C_s,6,[],view_vec,[],R3Ddata);hold on
+                tenseg_plot(reshape(n_t(:,p),3,[]),C_b,C_s,hf,[],view_vec,[],R3Ddata);
             case 1
-                tenseg_plot_catenary( reshape(n_t(:,p),3,[]),C_b,C_s,6,[],view_vec,[],R3Ddata,l0_t(index_s,p));hold on
+                tenseg_plot_catenary( reshape(n_t(:,p),3,[]),C_b,C_s,hf,[],view_vec,[],R3Ddata,l0_t(index_s,p));
         end
-        set(gcf,'color','w');
-        axis(axislim)
+        axis(axislim); 
         tenseg_savegif_forever(name);
         hold off;
     end

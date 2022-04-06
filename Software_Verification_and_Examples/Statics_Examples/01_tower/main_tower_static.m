@@ -34,6 +34,8 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
+
 %% N C of the structure
 % Manually specify node positions of a tensegrity tower.
 R=10; h=30; p=3;        % radius; height; number of edge
@@ -118,7 +120,7 @@ ind_dl0=1; dl0=-0.3;
 % ind_dnb=4*3-2; dnb0=0.5;
 
 %% input file of ANSYS
-ansys_input_gp_00(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),ind_w,w,ind_dnb,dnb0,'tower_ansys');
+ansys_input_gp_00(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),ind_w,w,ind_dnb,dnb0,fullfile(savePath,'tower_ansys'));
 % ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'tower');
 
 %% equilibrium calculation
@@ -139,17 +141,17 @@ t_t=data_out.t_out;          %member force in every step
 n_t=data_out.n_out;          %nodal coordinate in every step
 N_out=data_out.N_out;
 %% plot member force
-tenseg_plot_result(1:substep,t_t([1;7;13],:),{'bar','horizontal string','vertical string'},{'Load step','Force (N)'},'plot_member_force.png',saveimg);
+tenseg_plot_result(1:substep,t_t([1;7;13],:),{'bar','horizontal string','vertical string'},{'Load step','Force (N)'},fullfile(savePath,'plot_member_force.png'),saveimg);
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},'plot_coordinate.png',saveimg);
+tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'plot_coordinate.png'),saveimg);
 %% Plot final configuration
 tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 %% save output data
 if savedata==1
-    save (['tower_static_',material{1},'.mat']);
+    save(fullfile(savePath,['tower_static_',material{1},'.mat']));
 end
 %% make video of the dynamic
-name=['tower_',material{1},'_slack_',num2str(material{2})];
+name=fullfile(savePath,['tower_',material{1},'_slack_',num2str(material{2})]); %File name for saving
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2});
 % tenseg_video(n_t,C_b,C_s,[],min(substep,50),name,savevideo,R3Ddata);
 %% linearized dynaimcs

@@ -6,3 +6,12 @@ tempPub.mat
 
 # Ignore gif animations files
 # *.gif
+
+# Ignore png images
+# *.png
+
+# Ignore txt files
+# *.txt
+
+# Ignore folder content
+# /data/temp

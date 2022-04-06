@@ -26,7 +26,7 @@ function [V_mode,omega]=tenseg_mode(Ia,C,C_b,C_s,n,E,A,l0,M,num_plt,saveimg,ampl
 %%
 switch nargin
     case 11
-        ampli=0.1 %default value of ampli=0.1
+        ampli=0.1; %default value of ampli=0.1
 end
 %% calculate the mode shape and frequency
 N=reshape(n,3,[]);      %nodal coordinate matrix

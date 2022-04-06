@@ -26,6 +26,7 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=1;              % consider gravity 1 for yes, 0 for no
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
 
 %% N C of structure
 % initial configuration of structure
@@ -68,7 +69,7 @@ t=0*ones(ne,1);                 % zero internal force
 l0=E.*A.*l./(t+E.*A);
 
 %% input data for dynamic analysis
-% density vector 
+% density vector
 rho=rho_b*ones(ne,1);
 % mass matrix
 mass=rho.*A.*l0;           % mass vector
@@ -84,7 +85,7 @@ num_plt=1:3;        % number of modes to plot
 %% input data for dynamic analysis
 % time step
 if auto_dt
-dt=pi/(16*max(omega)); 	% time step dt is 1/8 of the smallest period, guarantee convergence in solving ODE
+    dt=pi/(16*max(omega)); 	% time step dt is 1/8 of the smallest period, guarantee convergence in solving ODE
 end
 tspan=0:dt:tf;
 out_dt=dt;            % output data interval(approximately, not exatly)
@@ -114,26 +115,26 @@ data.tf=tf;data.dt=dt;data.tspan=tspan;data.out_tspan=out_tspan;
 data_out=dynamic_solver(data);        %solve ODE of dynamic equation
 % time history of structure
 t_t=data_out.t_t;   %time history of members' force
-n_t=data_out.n_t;   %time history of nodal coordinate 
-l_t=data_out.l_t;   %time history of members' length 
+n_t=data_out.n_t;   %time history of nodal coordinate
+l_t=data_out.l_t;   %time history of members' length
 %% save output data
 if savedata==1
-    save (['FEM_double_pendulum','.mat']);
+    save (fullfile(savePath,['FEM_double_pendulum','.mat']));
 end
 
-%% plot member force 
-tenseg_plot_result(out_tspan,t_t(1:2,:),{'element 1','element 2'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
+%% plot member force
+tenseg_plot_result(out_tspan,t_t(1:2,:),{'element 1','element 2'},{'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(out_tspan,n_t(3*[2:3]-2,:),{'2X','3X'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
-tenseg_plot_result(out_tspan,n_t(3*[2:3]-1,:),{'2Y','3Y'},{'Time (s)','Coordinate (m)'},'Y_coordinate.png',saveimg);
+tenseg_plot_result(out_tspan,n_t(3*[2:3]-2,:),{'2X','3X'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'X_coordinate.png'),saveimg);
+tenseg_plot_result(out_tspan,n_t(3*[2:3]-1,:),{'2Y','3Y'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'Y_coordinate.png'),saveimg);
 
 %% Plot error of bar length
-tenseg_plot_result(out_tspan,l_t(1:2,:)-1,{'Bar 1','Bar 2'},{'Time (s)','Error of Bar Length (m)'},'Error of bar length.png',saveimg);
+tenseg_plot_result(out_tspan,l_t(1:2,:)-1,{'Bar 1','Bar 2'},{'Time (s)','Error of Bar Length (m)'},fullfile(savePath,'Error of bar length.png'),saveimg);
 
 %% make video of the dynamic
-name=['double_pendulum','tf_',num2str(tf),material{1}];
+name=fullfile(savePath,['double_pendulum','tf_',num2str(tf),material{1}]);
 tenseg_video(n_t,C_b,C_s,[-1.5,1.5,-2,0.1,-1,1],100,name,savevideo);
 
-%% linearized dynaimcs 
+%% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);

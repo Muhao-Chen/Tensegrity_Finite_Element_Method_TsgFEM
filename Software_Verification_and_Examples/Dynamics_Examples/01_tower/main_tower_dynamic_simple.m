@@ -38,6 +38,7 @@ savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 % move_ground=0;          % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.
@@ -109,7 +110,7 @@ R3Ddata.Nradius=ones(nn,1);
 tenseg_plot(N,C_b,C_s,[],[],[],'Double layer prism',R3Ddata);
 
 %% input file of ANSYS
-ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'tower');
+ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'tower'));
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix
@@ -150,7 +151,7 @@ data.M=M;data.D=D;
 data.tf=tf;data.dt=dt;data.tspan=tspan;data.out_tspan=out_tspan;
 
 %% output the seismic data
-output_vibration(dz_a_t(1,:)','tjx.txt');
+output_vibration(dz_a_t(1,:)',fullfile(savePath,'tjx.txt'));
 
 %% plot external force information
 % tenseg_plot_exforce(Ib,tspan,w_t,(4:6),dnb_t,dnb_d_t,dnb_dd_t,(1),saveimg);
@@ -166,21 +167,21 @@ nd_t=data_out.nd_t;   %time history of nodal velocity
 
 %% save output data
 if savedata==1
-    save (['FEM_tower_simple',material{1},'.mat']);
+    save (fullfile(savePath,['FEM_tower_simple',material{1},'.mat']));
 end
 
 %% plot member force
-tenseg_plot_result(out_tspan,t_t(7:8,:),{'element 7','element 8'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
+tenseg_plot_result(out_tspan,t_t(7:8,:),{'element 7','element 8'},{'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(out_tspan,n_t(3*8-2,:),{'8X'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
-tenseg_plot_result(out_tspan,n_t(3*8-1,:),{'8Y'},{'Time (s)','Coordinate (m)'},'Y_coordinate.png',saveimg);
+tenseg_plot_result(out_tspan,n_t(3*8-2,:),{'8X'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'X_coordinate.png'),saveimg);
+tenseg_plot_result(out_tspan,n_t(3*8-1,:),{'8Y'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'Y_coordinate.png'),saveimg);
 %% plot velocity of nodal coordinate
-tenseg_plot_result(out_tspan(1:end-1),nd_t(3*8-1,:),{'8Y'},{'Time (s)','Velocity (m/s)'},'Y_coordinate.png',saveimg);
+tenseg_plot_result(out_tspan(1:end-1),nd_t(3*8-1,:),{'8Y'},{'Time (s)','Velocity (m/s)'},fullfile(savePath,'Y_coordinate.png'),saveimg);
 %% plot member length
-tenseg_plot_result(out_tspan,l_t(7:8,:),{'element 7','element 8'},{'Time (s)','Length (m)'},'member_length.png',saveimg);
+tenseg_plot_result(out_tspan,l_t(7:8,:),{'element 7','element 8'},{'Time (s)','Length (m)'},fullfile(savePath,'member_length.png'),saveimg);
 %% make video of the dynamic
-name=['tower','tf_',num2str(tf),material{1},num2str(material{2})];
+name=fullfile(savePath,['tower','tf_',num2str(tf),material{1},num2str(material{2})]);
 % tenseg_video(n_t,C_b,C_s,[],50,name,savevideo,R3Ddata);
 tenseg_video(n_t,C_b,C_s,[],50,name,savevideo);
 %% linearized dynaimcs
