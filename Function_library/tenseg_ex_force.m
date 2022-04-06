@@ -46,7 +46,7 @@ dz_a_t=[];
 % dna_dd_t=zeros(numel(a),numel(tspan));
 % n_n = [a;b];
 switch type
-    case 'impluse'
+    case 'impulse'
         w_t(c_index,tspan<0.05)=amplitude*20;        % impluse load in c_index
         w_t=w_t+G*ones(size(tspan));            % add gravity force
     case 'step'

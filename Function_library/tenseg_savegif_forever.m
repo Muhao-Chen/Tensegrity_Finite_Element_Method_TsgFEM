@@ -1,4 +1,4 @@
-function tenseg_savegif_forever(varargin,dt)
+function tenseg_savegif_forever(varargin)
 %% tenseg_savegif_forever
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -7,22 +7,29 @@ function tenseg_savegif_forever(varargin,dt)
 % This function will save the animation in the for loop as gif file.
 % How to use it?
 % 1. When use it, it has to be in for loop, the default name is untitledgif.gif?;
-% 2. savegif('filename') will named the animation as filename.gif?.
-% 3. savegif('filename.gif') will named the animation as filename.gif?.
+% 2. tenseg_savegif_forever('filename') will named the animation as filename.gif?.
+% 3. tenseg_savegif_forever('filename.gif') will named the animation as filename.gif?.
 % Note: please use 'clear all' to clean all the global variables when using this function.
 %%
 % warning off;
+
+%Parse input 
+switch nargin
+    case 1
+        filename=varargin{1};
+        dt=0.1; %default dt=0.1
+    case 2
+        filename=varargin{1};
+        dt=varargin{2};
+end
+
 loops=65535;
 global iiii; global time;
 p=clock;
-if nargin==1   %default dt=0.1
-    dt=0.1;
-    %     dt=1;
-end
-if isempty(varargin)
+
+if isempty(filename)
     filename='untitledgif.gif';
-else
-    filename=varargin;
+else    
     if length(filename)<4
         filename=[filename,'.gif'];
     else

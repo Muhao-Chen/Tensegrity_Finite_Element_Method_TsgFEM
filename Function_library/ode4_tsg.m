@@ -94,7 +94,8 @@ for i = 2:N
     F(:,4) = feval(odefun,tspan(i),yi+hi*F(:,3),data_in);
     Y(:,i) = yi + (hi/6)*(F(:,1) + 2*F(:,2) + 2*F(:,3) + F(:,4));
 end
-close(wb)
+close(wb);
+
 %% calculate the time history data
 % %initialize time history data
 % data_out.t_t=zeros(ne,numel(out_tspan));
@@ -111,7 +112,7 @@ close(wb)
 % %     data_out.n_d_t(:,i)=n_d;
 %   end
 if  sum(out_tspan==tspan(end))
-    disp(ti);
+    %disp(ti);
     data_out.t_t(:,out_tspan==tspan(end))=f;      % member force
     data_out.n_t(:,out_tspan==tspan(end))=n;
     data_out.l_t(:,out_tspan==tspan(end))=l;

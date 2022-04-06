@@ -23,6 +23,7 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.
@@ -74,7 +75,7 @@ R3Ddata.Nradius=1.2*max(R3Ddata.Bradius)*ones(nn,1);
 tenseg_plot(N,C_b,C_s,[],[],[],'Cable dome',R3Ddata);
 
 %% input file of ANSYS
-ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'cable_dome');
+ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'cable_dome'));
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix
@@ -115,21 +116,21 @@ n_t=data_out.n_out;          %nodal coordinate in every step
 N_out=data_out.N_out;
 
 %% plot member force 
-tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'member_force.png',saveimg);
+tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(1:substep,n_t([3*1,3*2],:),{'1Z','2Z'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
+tenseg_plot_result(1:substep,n_t([3*1,3*2],:),{'1Z','2Z'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'X_coordinate.png'),saveimg);
 
 %% Plot final configuration
 tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 
 %% save output data
 if savedata==1
-    save (['cable_dome',material{1},'.mat',num2str(material{2})]);
+    save (fullfile(savePath,['cable_dome',material{1},'.mat',num2str(material{2})]));
 end
 
 %% make video of the dynamic
-name=['cable_dome','tf_',num2str(tf),material{1},num2str(material{2})];
+name=fullfile(savePath,['cable_dome','tf_',num2str(tf),material{1},num2str(material{2})]);
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],3,[],min(substep,30),name,savevideo,material{2});
 

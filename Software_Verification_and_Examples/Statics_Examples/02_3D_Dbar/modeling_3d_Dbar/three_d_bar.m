@@ -5,6 +5,7 @@ function [N,C_b,C_s] = three_d_bar(p1,p2,q,angle)
 %%
 % p1 = [0 0 0];p2 = [4 0 0];q = 1; angle = pi/18;
 [N,C_b_n,C_s_n]=threedbar(p1,p2,angle,q);
+
 % save all_test
 % [y,N,C_b_in,C_s_in]=convert_index_connectivity([1 0 0 0],pi/6,2);
 %

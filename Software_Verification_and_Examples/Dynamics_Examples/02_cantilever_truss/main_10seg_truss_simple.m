@@ -40,6 +40,8 @@ savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 % move_ground=0;          % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
+
 %% N C of the structure
 % Manually specify node positions of double layer prism.
 N=[0 0 0;1 0 0;2 0 0;3 0 0;4 0 0;5 0 0;6 0 0;7 0 0;8 0 0;9 0 0;10 0 0;
@@ -87,7 +89,7 @@ d=0;     %damping coefficient
 D=d*2*max(sqrt(mass.*E.*A./l0))*eye(3*nn);    %critical damping
 
 %% output for anlysis
-ansys_input_gp(N,C,A,t,b,Eb,Es,rho_b,rho_s,Gp,index_s,index_s,'truss_10seg2.txt');
+ansys_input_gp(N,C,A,t,b,Eb,Es,rho_b,rho_s,Gp,index_s,index_s,fullfile(savePath,'truss_10seg2.txt'));
 
 %% mode analysis
 num_plt=1:3;        % number of modes to plot
@@ -131,11 +133,11 @@ strain_t=data_out.strain_t; % time history of members' strain
 
 %% save output data
 if savedata==1
-    save (['FEM_cantilever_10seg',material{1},'.mat']) ;
+    save (fullfile(savePath,['FEM_cantilever_10seg',material{1},'.mat'])) ;
 end
 
 %% plot member force
-tenseg_plot_result(out_tspan,t_t(1:2,:),{'element 1','element 2'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
+tenseg_plot_result(out_tspan,t_t(1:2,:),{'element 1','element 2'},{'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 %% video member stress-strain
 tenseg_video_strain_stress(data_out,[1,32,37],100,0.1);
 
@@ -145,12 +147,12 @@ tenseg_video_strain_stress(data_out,[1,32,37],100,0.1);
 time=1;
 tenseg_plot_strain_stress(data_out,[1,32,37],time);
 %plot stress
-tenseg_plot_result(out_tspan,stress_t([1,32,37],:),{'1','32','37'},{'Time (s)','Stress (Pa)'},'Stress.png',saveimg);
+tenseg_plot_result(out_tspan,stress_t([1,32,37],:),{'1','32','37'},{'Time (s)','Stress (Pa)'},fullfile(savePath,'Stress.png'),saveimg);
 
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(out_tspan,n_t(3*22-2,:),{'22X'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
-tenseg_plot_result(out_tspan,n_t(3*22-1,:),{'22Y'},{'Time (s)','Coordinate (m)'},'Y_coordinate.png',saveimg);
+tenseg_plot_result(out_tspan,n_t(3*22-2,:),{'22X'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'X_coordinate.png'),saveimg);
+tenseg_plot_result(out_tspan,n_t(3*22-1,:),{'22Y'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'Y_coordinate.png'),saveimg);
 
 %% Plot configuration
 %plot configuration in one given time
@@ -169,7 +171,7 @@ end
 axis([0,10.5,-1.5,1.2,0-1,1]);
 
 %% make video of the dynamic
-name=['cantilever_','tf_',num2str(tf),material{1}];
+name=fullfile(savePath,['cantilever_','tf_',num2str(tf),material{1}]);
 tenseg_video(n_t,C_b,C_s,[0,10.5,-1.5,1.2,0-1,1],100,name,savevideo);
 
 %% linearized dynaimcs

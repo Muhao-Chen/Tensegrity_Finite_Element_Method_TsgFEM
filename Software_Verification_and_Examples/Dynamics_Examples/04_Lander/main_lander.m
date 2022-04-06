@@ -41,6 +41,7 @@ savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 % move_ground=0;        % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.
@@ -102,7 +103,7 @@ R3Ddata.Nradius=0.01*ones(nn,1);
 tenseg_plot(N,C_b,C_s,[],[],[],'Tensegrity Lander',R3Ddata);
 
 %% input file of ANSYS
-ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'lander');
+ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'lander'));
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix
@@ -124,7 +125,7 @@ tspan=0:dt:tf;
 out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data time span
 
 % calculate external force and forced motion of nodes
-[~,~,~,~,dz_a_t]=tenseg_ex_force(tspan,a,b,'impluse',gravity,[0;0;9.8],C,mass,3*(4:9)-1,0,period);
+[~,~,~,~,dz_a_t]=tenseg_ex_force(tspan,a,b,'impulse',gravity,[0;0;9.8],C,mass,3*(4:9)-1,0,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'step',gravity,C,mass,3*(4:9)-2,1e5,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'ramp',gravity,C,mass,3*(4:9),-1e6,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'vib_force',gravity,C,mass,3*(4:9)-2,50,period);
@@ -161,19 +162,18 @@ if savedata==1
 end
 
 %% plot member force
-tenseg_plot_result(out_tspan,t_t(7:8,:),{'element 7','element 8'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
+tenseg_plot_result(out_tspan,t_t(7:8,:),{'element 7','element 8'},{'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(out_tspan,n_t(3*8,:),{'8Z'},{'Time (s)','Coordinate (m)'},'Z_coordinate.png',saveimg);
-tenseg_plot_result(out_tspan,n_t(3*8-1,:),{'8Y'},{'Time (s)','Coordinate (m)'},'Y_coordinate.png',saveimg);
-tenseg_plot_result(out_tspan,n_t(3*8-2,:),{'8X'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
+tenseg_plot_result(out_tspan,n_t(3*8,:),{'8Z'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'Z_coordinate.png'),saveimg);
+tenseg_plot_result(out_tspan,n_t(3*8-1,:),{'8Y'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'Y_coordinate.png'),saveimg);
+tenseg_plot_result(out_tspan,n_t(3*8-2,:),{'8X'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'X_coordinate.png'),saveimg);
 %% plot external force information
 % tenseg_plot_exforce(Ib,tspan,w_t,[4:6],dnb_t,dnb_d_t,dnb_dd_t,[1],saveimg);
 
 %% make video of the dynamic
-name=['lander','tf_',num2str(tf),material{1}];
+name=fullfile(savePath,['lander','tf_',num2str(tf),material{1}]);
 % tenseg_video(n_t,C_b,C_s,[],100,name,savevideo);
-
 
 nx_t=n_t(1:3:end); min_x=min(min(nx_t));max_x=max(max(nx_t));d_x=max_x-min_x+1e-3;
 ny_t=n_t(2:3:end); min_y=min(min(ny_t));max_y=max(max(ny_t));d_y=max_y-min_y+1e-3;

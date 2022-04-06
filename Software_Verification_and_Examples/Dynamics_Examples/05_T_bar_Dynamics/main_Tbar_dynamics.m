@@ -34,6 +34,7 @@ saveimg=0;              % save image or not (1) yes (0)no
 savedata=0;             % save data or not (1) yes (0)no
 savevideo=0;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
 
 %% N C of the structure
 % Specify node positions
@@ -82,7 +83,6 @@ t_gp=l_gp.*q_gp;
 q=Gp*q_gp;
 t=Gp*t_gp;
 
-
 %% cross sectional design
 index_b=find(t<0);              % index of bar in compression
 index_s=setdiff(1:ne,index_b);	% index of strings
@@ -100,7 +100,7 @@ R3Ddata.Nradius=0.04*ones(nn,1);
 tenseg_plot(N,C_b,C_s,[],[],[],'Tbar',R3Ddata);
 
 %% input file of ANSYS
-ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'tower');
+ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'tower'));
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix
@@ -154,14 +154,15 @@ if savedata==1
 end
 
 %% plot member force 
-tenseg_plot_result(out_tspan,t_t(1:6,:),{'element 1','element 2','element 3','element 4','element 5','element 6'},{'Time (s)','Force (N)'},'member_force.png',saveimg);
+tenseg_plot_result(out_tspan,t_t(1:6,:),{'element 1','element 2','element 3','element 4','element 5','element 6'},...
+                   {'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 
 %% Plot nodal coordinate curve X Y
-tenseg_plot_result(out_tspan,n_t(3*1-2,:),{'1X'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
-tenseg_plot_result(out_tspan,n_t(3*1-1,:),{'1Y'},{'Time (s)','Coordinate (m)'},'Y_coordinate.png',saveimg);
+tenseg_plot_result(out_tspan,n_t(3*1-2,:),{'1X'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'X_coordinate.png'),saveimg);
+tenseg_plot_result(out_tspan,n_t(3*1-1,:),{'1Y'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'Y_coordinate.png'),saveimg);
 
 %% make video of the dynamic
-name=['Tbar','tf_',num2str(tf),material{1}];
+name=fullfile(savePath,['Tbar','tf_',num2str(tf),material{1}]);
 tenseg_video(n_t,C_b,C_s,[],100,name,savevideo);
 
 %% linearized dynaimcs 

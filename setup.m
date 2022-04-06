@@ -8,16 +8,26 @@
 %% Add all necessary functions to MATLAB path 
 % set up the workspace
 clear; clc;
+
+originFolder=fileparts(mfilename('fullpath')); %Main folder
+
 % add the function libraries
-addpath(genpath('Function_library'));
-% add the Software Verification and Examples
-addpath(genpath('Software_Verification_and_Examples'));
-% add User Guide
-addpath(genpath('User_Guide'));
-% add Videos folder
-addpath(genpath('Videos'));
-% add JOSS Paper
-addpath(genpath('JOSS_Paper'));
+addpath(fullfile(originFolder,'Function_library'));
+
+% add the Software Verification and Examples (with sub-folders)
+addpath(genpath(fullfile(originFolder,'Software_Verification_and_Examples')));
+
+% % add User Guide
+% addpath(genpath('User_Guide'));
+% 
+% % add Videos folder
+% addpath(genpath('Videos'));
+%
+% % add Videos folder
+% addpath(genpath('JOSS_paper'));
+
+%% Save path definitions
+savepath; 
 
 %% Open the User_Guide
 % cd User_Guide;

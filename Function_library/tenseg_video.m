@@ -29,17 +29,16 @@ if nargin ==7 % no radius
     R3Ddata=[];
 end
 
-if savevideo==1
-    %     figure(99);
-    hf=figure;
+if savevideo==1    
+    hf=figure; hold on
+    set(hf,'color','w');    
     %     set(gcf,'Position',get(0,'ScreenSize')); % full screen
     for p = 1:floor(size(n_t,2)/num):size(n_t,2)
         N = reshape(n_t(:,p),3,[]);
         %         tenseg_plot(N,C_b,C_s,99,[],[],[],R3Ddata);hold on
         %         delete_index = [7,13];
         %         [N,C_b,C_s] = tenseg_delete_extra_nodes(delete_index,N,C_b,C_s);
-        tenseg_plot(N,C_b,C_s,hf,[],[],[],R3Ddata);hold on
-        set(gcf,'color','w');
+        tenseg_plot(N,C_b,C_s,hf,[],[],[],R3Ddata);        
         axis(axislim);
         tenseg_savegif_forever(name);
         hold off;

@@ -27,6 +27,8 @@ savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 tf = 1/substep;         % simulation time step
+savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
+
 %% N C of the structure
 % Manually specify node positions (accurate).
 N0=[   38.0000   38.0000   -8.7357  -39.6678         0  -19.4476   17.0047   30.3109
@@ -133,11 +135,16 @@ t_t=data_out.t_out;          % member force in every step
 n_t=data_out.n_out;          % nodal coordinate in every step
 N_out=data_out.N_out;
 
+%% save output data
+if savedata==1
+    save (fullfile(savePath,['jansen_linkage',material{1},'.mat']));
+end
+
 %% input file of ANSYS
-ansys_input_gp(N_out{1},C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),'Jansen linkage full size');
+ansys_input_gp(N_out{1},C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'Jansen linkage full size'));
 
 %% plot member force
-tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},'member_force.png',saveimg);
+tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'Load step','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 
 %% Plot nodal coordinate curve X Y
 % tenseg_plot_result(1:substep,n_t([3*8-2,3*8-1],:),{'8X','8Y'},{'Time (s)','Coordinate (m)'},'X_coordinate.png',saveimg);
@@ -146,7 +153,7 @@ tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'
 % tenseg_plot_catenary(reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 
 %% make video of the dynamic
-name=['Jansen_machanism3','tf_',num2str(tf),material{1}];
+name=fullfile(savePath,['Jansen_machanism3','tf_',num2str(tf),material{1}]);
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,0,1],[-120,40,-85,50,-30,30],min(substep,50),name,savevideo,material{2});
 
@@ -155,4 +162,3 @@ tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,0,1],[-120,40,-85,50,-30,
 
 %% plot structure configuration
 % tenseg_plot_catenary(reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,90],[],[],l0_t(index_s,end));
-
