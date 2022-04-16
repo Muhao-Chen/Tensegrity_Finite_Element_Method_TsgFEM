@@ -4,7 +4,7 @@ function tenseg_plot_strain_stress(data_out,ele_num,time)
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 %
 % This function plot the stress strain curve with a moving mark changing
-% with time
+% with time.
 %
 % Inputs:
 %   data_out: bar material
