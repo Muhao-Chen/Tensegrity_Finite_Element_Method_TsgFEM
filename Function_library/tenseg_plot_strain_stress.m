@@ -14,7 +14,7 @@ function tenseg_plot_strain_stress(data_out,ele_num,time)
 % Outputs:
 %	a video
 % Example:
-%   tenseg_video_strain_stress(data_out,[1,32,38],100);
+%   tenseg_plot_strain_stress(data_out,[1,32,38],100);
 %%
 color=['y','m','c','r','g','b','w','k'];
 name=['stress_strain3',data_out.material{1}];
