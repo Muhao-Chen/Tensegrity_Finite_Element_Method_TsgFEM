@@ -35,6 +35,14 @@ savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
+% temprary folder 
+% I want to creat a new folder 'temp' in the current path(savePath)
+% then set folder'temp' as the current path
+% gitignore the 'temp' folder
+cd savePath      % 
+mkdir  savePath temp
+addpath('temp_result')
+
 
 %% N C of the structure
 % Manually specify node positions of a tensegrity tower.
