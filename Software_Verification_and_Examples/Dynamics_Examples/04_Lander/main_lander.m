@@ -125,7 +125,7 @@ tspan=0:dt:tf;
 out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data time span
 
 % calculate external force and forced motion of nodes
-[~,~,~,~,dz_a_t]=tenseg_ex_force(tspan,a,b,'impulse',gravity,[0;0;9.8],C,mass,3*(4:9)-1,0,period);
+[~,~,~,~,dz_a_t]=tenseg_ex_force(tspan,b,'impulse',gravity,[0;0;9.8],C,mass,3*(4:9)-1,0,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'step',gravity,C,mass,3*(4:9)-2,1e5,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'ramp',gravity,C,mass,3*(4:9),-1e6,period);
 % [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'vib_force',gravity,C,mass,3*(4:9)-2,50,period);

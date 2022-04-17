@@ -103,7 +103,7 @@ tspan=0:dt:tf;
 out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data time span
 
 % calculate external force and forced motion of nodes
-[w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'step',gravity,[0;0;9.8],C,mass,3*22-1,amplitude);
+[w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,b,'step',gravity,[0;0;9.8],C,mass,3*22-1,amplitude);
 
 % give initial speed of free coordinates
 n0a_d=0*ones(numel(a),1);        %initial speed in X direction

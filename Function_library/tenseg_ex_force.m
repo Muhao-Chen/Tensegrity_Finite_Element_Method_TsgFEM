@@ -1,4 +1,4 @@
-function [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,type,gravity,acc,C,mass,c_index,amplitude,period)
+function [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,b,type,gravity,acc,C,mass,c_index,amplitude,period)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -15,7 +15,6 @@ function [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,type,grav
 %           'ramp',
 %           'vib_force': sinusoidal wave vibration exerted to free coordinate
 %           'vib_nodes': sinusoidal wave vibration exerted to pinned coordinate
-%   a: index of free coordinates
 %   b: index of pinned coordinates
 %   c_index: coordinate index in external force or movement, a vector
 %   amplitude: amplitude for all type of force, can be a scaler or vector
@@ -28,7 +27,7 @@ function [w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,type,grav
 %   dnb_dd_t: acceleration of pinned nodes
 %%
 switch nargin
-    case 10
+    case 9
         period = [];
 end
 

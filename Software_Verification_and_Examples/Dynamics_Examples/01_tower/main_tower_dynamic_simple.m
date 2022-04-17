@@ -131,7 +131,7 @@ tspan=0:dt:tf;
 out_tspan=interp1(tspan,tspan,0:out_dt:tf, 'nearest','extrap');  % output data time span
 %% External force and boundary constraints
 % calculate external force and forced motion of nodes
-[w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,a,b,'vib_force',gravity,[0;0;9.8],C,mass,3*(4:9)-2,50,period);
+[w_t,dnb_t,dnb_d_t,dnb_dd_t,dz_a_t]=tenseg_ex_force(tspan,b,'vib_force',gravity,[0;0;9.8],C,mass,3*(4:9)-2,50,period);
 % give initial speed of free coordinates
 n0a_d=0*kron(ones(numel(a)/3,1),[1;0;0]);        %initial speed in X direction
 
