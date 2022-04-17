@@ -139,7 +139,7 @@ end
 %% plot member force
 tenseg_plot_result(out_tspan,t_t(1:2,:),{'element 1','element 2'},{'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 %% video member stress-strain
-tenseg_video_strain_stress(data_out,[1,32,37],100,0.1);
+tenseg_video_strain_stress(data_out,[1,32,37],0.1);
 
 %% plot member stress-strain
 % time=[1/3,2/3,1];

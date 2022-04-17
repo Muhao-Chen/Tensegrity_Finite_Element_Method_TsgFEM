@@ -1,4 +1,4 @@
-function tenseg_video_strain_stress(data_out,ele_num,pic_num,dt)
+function tenseg_video_strain_stress(data_out,ele_num,dt)
 % /* This Source Code Form is subject to the terms of the Mozilla Public
 % * License, v. 2.0. If a copy of the MPL was not distributed with this
 % * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -9,7 +9,6 @@ function tenseg_video_strain_stress(data_out,ele_num,pic_num,dt)
 % Inputs:
 %   data_out: bar material
 %   ele_num:element number to be highlighted (a vector)
-%   pic_num:number of pics to be plotted (a scaler)
 %   dt:time interval of pics in the video
 % Outputs:
 %	a video
