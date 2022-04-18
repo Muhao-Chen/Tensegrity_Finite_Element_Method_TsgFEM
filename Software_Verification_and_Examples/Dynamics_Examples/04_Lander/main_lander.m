@@ -41,7 +41,7 @@ savedata=0;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 % move_ground=0;        % for earthquake, use pinned nodes motion(1) or add inertia force in free node(0)
-savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
+savePath=fullfile(fileparts(mfilename('fullpath')),'data_temp'); %Save files in same folder as this code
 
 %% N C of the structure
 % Manually specify node positions of double layer prism.

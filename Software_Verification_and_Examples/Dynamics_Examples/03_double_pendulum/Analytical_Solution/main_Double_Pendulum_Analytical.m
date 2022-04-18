@@ -10,6 +10,7 @@ L1 = 1; L2 = 1;
 theta1 = 1*pi/4;
 theta2 = 1*pi/4;
 t = linspace(0,5,50001);
+savePath=fullfile(fileparts(mfilename('fullpath')),'data_temp'); %Save files in same folder as this code
 
 %% Solving ODE of a double pendulum
 options = odeset('RelTol',1e-12, 'AbsTol',1*1e-12*ones(4,1)); 
