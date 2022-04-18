@@ -17,11 +17,9 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
-% cd ..
-currentFolder = pwd;
-% cd(currentFolder)
 %%
 clc;clear;close all;
+warning off;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties:'linear_elastic'£¬ 'multielastic'£¬ 'plastic'
@@ -33,24 +31,11 @@ c_b=0.1;           % coefficient of safty of bars 0.5
 c_s=0.1;           % coefficient of safty of strings 0.3
 substep=100;            % load steps
 lumped=0;               % use lumped matrix 1-yes,0-no
-saveimg=0;              % save image or not (1) yes (0)no
-savedata=0;             % save data or not (1) yes (0)no
+saveimg=1;              % save image or not (1) yes (0)no
+savedata=1;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
-savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this code
-% temprary folder 
-% I want to creat a new folder 'temp' in the current path(savePath)
-% then set folder'temp' as the current path
-% gitignore the 'temp' folder
-% cd savePath      % 
-% mkdir  savePath temp
-% addpath('temp_result')
-
-% [pathstr,namestr]=fileparts('/Statics_Examples/01_tower/'); % pathstr is the path of current m file
-% cd ..\Statics_Examples\01_tower\..; % change the path to the .m file
-
-
-
+savePath=fullfile(fileparts(mfilename('fullpath')),'data_temp'); %Save files in same folder as this code
 %% N C of the structure
 % Manually specify node positions of a tensegrity tower.
 R=10; h=30; p=3;        % radius; height; number of edge
@@ -160,7 +145,7 @@ tenseg_plot_result(1:substep,t_t([1;7;13],:),{'bar','horizontal string','vertica
 %% Plot nodal coordinate curve X Y
 tenseg_plot_result(1:substep,n_t([3*4-2,3*4],:),{'4X','4Z'},{'Time (s)','Coordinate (m)'},fullfile(savePath,'plot_coordinate.png'),saveimg);
 %% Plot final configuration
-tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
+tenseg_plot_catenary(reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 %% save output data
 if savedata==1
     save(fullfile(savePath,['tower_static_',material{1},'.mat']));

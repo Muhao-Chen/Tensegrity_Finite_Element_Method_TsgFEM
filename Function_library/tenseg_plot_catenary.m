@@ -1,4 +1,4 @@
-function [fig_out] = tenseg_plot_catenary( N,C_b,C_s,fig_handle,highlight_nodes,view_vec, PlotTitle, R3Ddata,ls_0)
+function [fig_out] = tenseg_plot_catenary(N,C_b,C_s,fig_handle,highlight_nodes,view_vec, PlotTitle, R3Ddata,ls_0)
 % This function is modified from Goyal, R., Chen, M., Majji, M. and Skelton, R., 2019. MOTES: Modeling of Tensegrity Structures. Journal of Open Source Software, 4(42), p.1613.
 % The code license is Mozilla Public License, v. 2.0.
 % The source code is from the following link:
