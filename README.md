@@ -107,6 +107,12 @@ We are open and willing to answer any question. Please state your problem clearl
 
 ----
 
+### Acknowledgment:
+
+The authors want to thank the [Dr. Kevin Mattheus Moerman](https://kevinmoerman.org/), [Dr. Patrick Diehl](https://www.diehlpk.de/), and [Mr. Rohit Goswami](https://rgoswami.me/) for their great help improving the software. They are really nice, patient, and professional researchers. Thank you, indeed!
+
+----
+
 ### Join TsgFEM Community and Contribute
 
 #### How to contribute
