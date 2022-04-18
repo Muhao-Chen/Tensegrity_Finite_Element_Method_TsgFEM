@@ -18,7 +18,7 @@
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
 %%
-clc;clear;close all; warning off;
+clc;clear;close all; 
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties:linear_elastic; multielastic; plastic
