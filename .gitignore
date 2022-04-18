@@ -14,4 +14,4 @@
 *.txt
 
 # Ignore folder content
-# /data_temp
+/data_temp
