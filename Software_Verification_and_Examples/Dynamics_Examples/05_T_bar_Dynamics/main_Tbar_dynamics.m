@@ -100,7 +100,7 @@ R3Ddata.Nradius=0.04*ones(nn,1);
 tenseg_plot(N,C_b,C_s,[],[],[],'Tbar',R3Ddata);
 
 %% input file of ANSYS
-ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'tower'));
+ansys_input_gp(N,C,A_gp,t_gp,b,Eb,Es,rho_b,rho_s,Gp,index_s,find(t_gp>0),fullfile(savePath,'Tbar'));
 
 %% mass matrix and damping matrix
 M=tenseg_mass_matrix(mass,C,lumped); % generate mass matrix
