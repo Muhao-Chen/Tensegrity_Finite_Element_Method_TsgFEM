@@ -17,6 +17,9 @@
 % 9.External force, forced motion of nodes, shrink of strings
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
+% cd ..
+currentFolder = pwd;
+% cd(currentFolder)
 %%
 clc;clear;close all;
 % Specify material properties
@@ -39,9 +42,13 @@ savePath=fileparts(mfilename('fullpath')); %Save files in same folder as this co
 % I want to creat a new folder 'temp' in the current path(savePath)
 % then set folder'temp' as the current path
 % gitignore the 'temp' folder
-cd savePath      % 
-mkdir  savePath temp
-addpath('temp_result')
+% cd savePath      % 
+% mkdir  savePath temp
+% addpath('temp_result')
+
+% [pathstr,namestr]=fileparts('/Statics_Examples/01_tower/'); % pathstr is the path of current m file
+% cd ..\Statics_Examples\01_tower\..; % change the path to the .m file
+
 
 
 %% N C of the structure
