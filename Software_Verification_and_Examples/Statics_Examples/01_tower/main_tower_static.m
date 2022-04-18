@@ -18,8 +18,7 @@
 % 10.Equilibrium calculation
 % 11. Plot and make video, output data to TECPLOT(optional)
 %%
-clc;clear;close all;
-warning off;
+clc;clear;close all; warning off;
 % Specify material properties
 [consti_data,Eb,Es,sigmab,sigmas,rho_b,rho_s]=material_lib('Steel_Q345','Steel_string');
 material{1}='linear_elastic'; % index for material properties:'linear_elastic'£¬ 'multielastic'£¬ 'plastic'
@@ -36,6 +35,7 @@ savedata=1;             % save data or not (1) yes (0)no
 savevideo=1;            % make video(1) or not(0)
 gravity=0;              % consider gravity 1 for yes, 0 for no
 savePath=fullfile(fileparts(mfilename('fullpath')),'data_temp'); %Save files in same folder as this code
+
 %% N C of the structure
 % Manually specify node positions of a tensegrity tower.
 R=10; h=30; p=3;        % radius; height; number of edge
