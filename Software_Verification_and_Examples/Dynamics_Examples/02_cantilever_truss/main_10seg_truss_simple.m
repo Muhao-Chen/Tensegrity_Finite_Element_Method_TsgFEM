@@ -139,7 +139,7 @@ end
 %% plot member force
 tenseg_plot_result(out_tspan,t_t(1:2,:),{'element 1','element 2'},{'Time (s)','Force (N)'},fullfile(savePath,'member_force.png'),saveimg);
 %% video member stress-strain
-tenseg_video_strain_stress(data_out,[1,32,37],0.1);
+% tenseg_video_strain_stress(data_out,[1,32,37],0.1);
 
 %% plot member stress-strain
 % time=[1/3,2/3,1];
@@ -157,7 +157,7 @@ tenseg_plot_result(out_tspan,n_t(3*22-1,:),{'22Y'},{'Time (s)','Coordinate (m)'}
 %% Plot configuration
 %plot configuration in one given time
 [~,iii]=min(abs(out_tspan-1));       %this is to selcet the No. related to 0.35s
-tenseg_plot( reshape(n_t(:,iii),3,[]),C_b,C_s,[],[],[0,90]);   %plot structure in 0.3s
+tenseg_plot(reshape(n_t(:,iii),3,[]),C_b,C_s,[],[],[0,90]);   %plot structure in 0.3s
 axis([0,10.5,-1.5,1.2,0-1,1]);
 %plot configuration in three given time
 time=[1/3,2/3,1];
@@ -165,7 +165,7 @@ picture=figure;
 pic=zeros(1,numel(time));
 for i=1:numel(time)
     [~,pic(i)]=min(abs(out_tspan-time(i)));       %this is to selcet the No. related to 0s
-    tenseg_plot( reshape(n_t(:,pic(i)),3,[]),C_b,C_s,picture,[],[0,90]);   %plot structure in 0.3s
+    tenseg_plot(reshape(n_t(:,pic(i)),3,[]),C_b,C_s,picture,[],[0,90]);   %plot structure in 0.3s
     hold on;
 end
 axis([0,10.5,-1.5,1.2,0-1,1]);
