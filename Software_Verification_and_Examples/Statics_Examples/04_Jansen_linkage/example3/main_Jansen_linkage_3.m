@@ -158,7 +158,7 @@ end
 %% make video of the dynamic
 name=fullfile(savePath,['Jansen_mechanism3','tf_',num2str(tf),material{1}]);
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
-tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2});
+tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[],min(substep,50),name,savevideo,material{2});
 
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
