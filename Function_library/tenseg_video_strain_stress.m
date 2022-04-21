@@ -44,7 +44,7 @@ for i = 1:floor(size(data_out.strain_t,2)/100):size(data_out.strain_t,2)
     ylabel('Stress (Pa)','fontsize',18);
     xlabel('Strain','fontsize',18);
     %         axis(axislim)
-    tenseg_savegif_forever(name,dt);
+%     tenseg_savegif_forever(name,dt);
     hold off;
 end
 close
