@@ -153,7 +153,7 @@ tenseg_plot_result(1:substep,t_t(1:3,:),{'element 1','element 2','element 3'},{'
 % tenseg_plot_catenary(reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],R3Ddata,l0_t(index_s,end));
 
 %% make video of the dynamic
-name=fullfile(savePath,['Jansen_machanism3','tf_',num2str(tf),material{1}]);
+name=fullfile(savePath,['Jansen_mechanism3','tf_',num2str(tf),material{1}]);
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,R3Ddata,[0,0,1],[-120,40,-85,50,-30,30],min(substep,50),name,savevideo,material{2});
 
