@@ -147,7 +147,7 @@ if savedata==1
 end
 
 %% make video of the dynamic
-name=fullfile(savePath,['Jansen_machanism','tf_',num2str(tf),material{1}]);
+name=fullfile(savePath,['Jansen_mechanism','tf_',num2str(tf),material{1}]);
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,90],[-80,80,-85,50,0,70],min(substep,30),name,savevideo,material{2})
 
