@@ -155,7 +155,6 @@ end
 %% make video of the dynamic
 name=fullfile(savePath,['lander',material{1},num2str(material{2})]);
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
-% tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[45,30],[],min(substep,30),name,savevideo,material{2})
 tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2});
 
 %% linearized dynaimcs

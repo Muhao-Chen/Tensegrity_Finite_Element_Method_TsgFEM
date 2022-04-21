@@ -147,7 +147,7 @@ tenseg_plot_catenary( reshape(n_t(:,end),3,[]),C_b,C_s,[],[],[0,0],[],[],l0_t(in
 %% make video of the dynamic
 name=['half_Tbar_',num2str(material{1}),'_slack_',num2str(material{2})];
 % tenseg_video(n_t,C_b,C_s,[],substep,name,savevideo);
-tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[0,0],[-1,1,-1,1,-1,1],min(substep,30),name,savevideo,material{2});
+tenseg_video_slack(n_t,C_b,C_s,l0_t,index_s,[],[],[],min(substep,50),name,savevideo,material{2});
 
 %% linearized dynaimcs
 [A_lin,B_lin]=tenseg_lin_mtrx(C,N(:),E,A,l0,M,D,Ia,A_1a);
