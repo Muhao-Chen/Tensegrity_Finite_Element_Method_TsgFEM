@@ -34,22 +34,22 @@ The name of this software, TsgFEM, is suggested to be pronounced as Tenseg FEM. 
 This software allows one to do the following studies but is not limited to the listed items. 
 
 Topology design: 
-1. Modeling any tensegrity structures by nodal coordinates and the node's connectivity information. 
-2. Specifying the constraints of nodal coordinates and grouping structure members and forcing them to have the same force densities. 
+  1. Modeling any tensegrity structures by nodal coordinates and the node's connectivity information. 
+  2. Specifying the constraints of nodal coordinates and grouping structure members and forcing them to have the same force densities. 
 
 Statics: 
-1. Conducting structure equilibrium configuration, pre-stress design, and stiffness studies. 
-2. Performing pre-stress and mechanism modes analysis. 
-3. Checking stiffness, stability, and robustness in terms of pre-stress, materials, and geometric information of the structure. 
-4. Conducting studies on form-finding of tensegrity systems. 
-5. Simulating the forced motion of structures. 
-6. Studying the feasibility of pseudo-static deployment trajectories. 
+  1. Conducting structure equilibrium configuration, pre-stress design, and stiffness studies. 
+  2. Performing pre-stress and mechanism modes analysis. 
+  3. Checking stiffness, stability, and robustness in terms of pre-stress, materials, and geometric information of the structure. 
+  4. Conducting studies on form-finding of tensegrity systems. 
+  5. Simulating the forced motion of structures. 
+  6. Studying the feasibility of pseudo-static deployment trajectories. 
 
 Dynamics: 
-1. Rigid body dynamics with acceptable errors. This is achieved by setting relatively high stiffness for bars in the dynamics simulation. 
-2. FEM dynamics simulation with elastic or plastic deformations in the presence of various kinds of boundary conditions, such as fixing any nodes in any direction, applying static or dynamic external forces (i.e., gravitational force, some specified forces, or arbitrary seismic vibrations). 
-3. Modal analysis, including natural frequency and corresponding modes. 
-4. An interface towards structural control by a compact state-space form of a linear model.
+  1. Rigid body dynamics with acceptable errors. This is achieved by setting relatively high stiffness for bars in the dynamics simulation. 
+  2. FEM dynamics simulation with elastic or plastic deformations in the presence of various kinds of boundary conditions, such as fixing any nodes in any direction, applying static or dynamic external forces (i.e., gravitational force, some specified forces, or arbitrary seismic vibrations). 
+  3. Modal analysis, including natural frequency and corresponding modes. 
+  4. An interface towards structural control by a compact state-space form of a linear model.
 
 The governing equations of the dynamics are derived based on the Lagrangian method with a nodal coordinate vector as the variable and given in an explicit form [@ma2021tensegrity]. The dynamics ordinary differential equation is solved by ode4 to simulate the dynamics of any complexity tensegrity structure. By neglecting the time derivatives terms, one can get the statics equations. The statics equation is solved by a modified Newton method to guarantee the result converges to a stable equilibrium configuration. The software allows solving for the minimum mass subject to buckling and yielding failures of structure members by optimizing the cross-sectional area in the strings and bars in the presence of any external forces [@chen2020general]. The minimal mass problem is a constraint nonlinear optimization one in terms of the force densities in the structure members. The nonlinear optimization problem is solved by the Matlab function fmincon. We also provide a detailed user manual and strongly suggest beginners follow the descriptions step by step. TsgFEM provides a set of unit test and demonstration examples. The unit tests and accuracy discussion is given in the last section of the user manual. 
 
@@ -60,11 +60,11 @@ Tensegrity is a coined word by Buckminister Fuller [@fuller1982synergetics] for 
 # Assumptions 
 
 Based on the following assumptions, the FEM equations for the statics and dynamics of any tensegrity structures are formulated: 
-1. All the structural members are axially loaded and are connected by frictionless ball joints. 
-2. The structural members are allowed to have elastic or plastic deformation. 
-3. The rotation of the structure member along its longitudinal axis is neglected. 
-4. Each structural member is homogeneous along its length and of an equal cross-section. Thus, the mass of each structural member is distributed uniformly along its length. 
-5. A string can never push along its length; tension in the string is substituted to zero. Based on the FEM and Lagrangian methods with nodal vectors as the generalized coordinates given in [@chen2020general;@ma2021tensegrity], we developed TsgFEM (Tensegrity Finite Element Method). 
+  1. All the structural members are axially loaded and are connected by frictionless ball joints. 
+  2. The structural members are allowed to have elastic or plastic deformation. 
+  3. The rotation of the structure member along its longitudinal axis is neglected. 
+  4. Each structural member is homogeneous along its length and of an equal cross-section. Thus, the mass of each structural member is distributed uniformly along its length. 
+  5. A string can never push along its length; tension in the string is substituted to zero. Based on the FEM and Lagrangian methods with nodal vectors as the generalized coordinates given in [@chen2020general;@ma2021tensegrity], we developed TsgFEM (Tensegrity Finite Element Method). 
 
 # Statement of need
 
