@@ -59,7 +59,7 @@ Tensegrity is a coined word by Buckminister Fuller [@fuller1982synergetics] for 
 
 # Assumptions 
 
-Based on the following assumptions, the FEM equations for the statics and dynamics of any tensegrity structures are formulated: 
+Based on the following assumptions, the FEM equations for the statics and dynamics of any tensegrity structures are formulated:       
   1. All the structural members are axially loaded and are connected by frictionless ball joints.        
   2. The structural members are allowed to have elastic or plastic deformation.        
   3. The rotation of the structure member along its longitudinal axis is neglected.        
