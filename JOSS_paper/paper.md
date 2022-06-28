@@ -34,10 +34,12 @@ The name of this software, TsgFEM, is suggested to be pronounced as Tenseg FEM. 
 This software allows one to do the following studies but is not limited to the listed items. 
 
 Topology design:       
+
 1. Modeling any tensegrity structures by nodal coordinates and the node's connectivity information.        
 2. Specifying the constraints of nodal coordinates and grouping structure members and forcing them to have the same force densities. 
 
-Statics:        
+Statics:
+
 1. Conducting structure equilibrium configuration, pre-stress design, and stiffness studies.        
 2. Performing pre-stress and mechanism modes analysis.        
 3. Checking stiffness, stability, and robustness in terms of pre-stress, materials, and geometric information of the structure.        
@@ -45,7 +47,8 @@ Statics:
 5. Simulating the forced motion of structures.        
 6. Studying the feasibility of pseudo-static deployment trajectories.        
 
-Dynamics:       
+Dynamics:   
+
 1. Rigid body dynamics with acceptable errors. This is achieved by setting relatively high stiffness for bars in the dynamics simulation.        
 2. FEM dynamics simulation with elastic or plastic deformations in the presence of various kinds of boundary conditions, such as fixing any nodes in any direction, applying static or dynamic external forces (i.e., gravitational force, some specified forces, or arbitrary seismic vibrations).        
 3. Modal analysis, including natural frequency and corresponding modes.        
@@ -59,7 +62,8 @@ Tensegrity is a coined word by Buckminister Fuller [@fuller1982synergetics] for 
 
 # Assumptions 
 
-Based on the following assumptions, the FEM equations for the statics and dynamics of any tensegrity structures are formulated:       
+Based on the following assumptions, the FEM equations for the statics and dynamics of any tensegrity structures are formulated:    
+
 1. All the structural members are axially loaded and are connected by frictionless ball joints.        
 2. The structural members are allowed to have elastic or plastic deformation.        
 3. The rotation of the structure member along its longitudinal axis is neglected.        
