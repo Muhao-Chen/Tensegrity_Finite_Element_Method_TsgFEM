@@ -5,11 +5,14 @@
 #### General Information
 Our group focuses on the research of integrating structure and control design. We design structures based on the tensegrity paradigm to meet the specified objectives. These objectives can vary from minimizing the structure's mass to controlling the structure to meet specific performance. This software is intended to study the statics and dynamics of tensegrity systems based on FEM. The authors would like to make this open-source software to help other researchers interested in this field.
 
+---
+
 **Cite this work as:**   
 _Ma, S., Chen, M., Skelton, R.E., 2022. Tensegrity Finite Element Method. Journal of Open Source Software, 7(75), 3390. DOI: [https://doi.org/10.21105/joss.03390](https://doi.org/10.21105/joss.03390)_
 
 **Long term archived version:** [![DOI](https://joss.theoj.org/papers/10.21105/joss.03390/status.svg)](https://doi.org/10.21105/joss.03390)
 
+---
 
 This software aims to facilitate the statics and dynamics of Tensegrity systems based on FEM.
 The software allows modeling, structural design, nonlinear static, and dynamic FEM simulation of any tensegrity and truss systems. The contribution of this software is mainly in these three aspects.
